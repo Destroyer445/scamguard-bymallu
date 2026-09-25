@@ -1,7 +1,7 @@
 import telebot
 import re
 
-BOT_TOKEN = 8859624294:AAFq2fI5Yi7f1oJa34DWE-EaBL-ovwNTIZs
+BOT_TOKEN = "8859624294:AAFq2fI5Yi7f1oJa34DWE-EaBL-ovwNTIZs"
 
 bot = telebot.TeleBot(BOT_TOKEN)
 
