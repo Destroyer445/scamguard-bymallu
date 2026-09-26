@@ -1,4 +1,4 @@
-python-telegram-bot==22.3
-Flask==3.0.3
-requests==2.32.3
-python-whois==0.9.4
+    python-telegram-bot==20.7
+    Flask==2.3.3
+    requests
+    python-whois
