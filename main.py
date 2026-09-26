@@ -9,7 +9,7 @@ from telegram.ext import Application, CommandHandler, MessageHandler, CallbackQu
 app = Flask(__name__)
 @app.route('/')
 def home():
-    return "Scam Guard India ULTIMATE LIVE - 100% FIXED - Bot is Alive!"
+    return "Scam Guard India ULTIMATE LIVE - V2 GAMBLING FIX - Bot is Alive!"
 def run_flask():
     port = int(os.environ.get("PORT", 10000))
     app.run(host='0.0.0.0', port=port)
@@ -97,7 +97,7 @@ def vt_check(url):
     except: pass
     return None
 
-# --- 3. HANDLERS - FIXED & PERFECT ---
+# --- 3. HANDLERS - ULTIMATE V2 WITH GAMBLING FIX ---
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     chat_id = update.effective_chat.id
@@ -137,20 +137,38 @@ async def tool_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def handle_link(url, update):
     try:
         domain = urlparse(url).netloc or urlparse('https://'+url).netloc or url
+        low = url.lower()
+        low_dom = domain.lower()
         age = check_domain_age(domain)
         score=0; reasons=[]
-        if any(k in domain.lower() for k in ['offer','lottery','win','free','amazon','flipkart','gov','kyc','prize','lucky']): score+=30; reasons.append("⚠️ Suspicious keywords (offer/lottery/gov)")
+
+        # --- GAMBLING / BETTING / RUMMY - YONO FIX (90/100) ---
+        gambling_list = ['yono', 'rummy', 'teenpatti', 'casino', 'aviator', 'betting', 'dream11', 'winzo', 'mpl', 'fairplay', '1xbet', 'bet365', 'stake', 'gambling', 'lottery']
+        found_g = [k for k in gambling_list if k in low or k in low_dom]
+        if found_g:
+            score+=90
+            reasons.append(f"🚨 GAMBLING/BETTING - {', '.join(found_g)} - പൈസ നഷ്ടമാകും!")
+
+        if any(k in low_dom for k in ['offer','lottery','win','free','amazon','flipkart','gov','kyc','prize','lucky']):
+            score+=30; reasons.append("⚠️ Suspicious keywords (offer/lottery/gov)")
         if age is not None:
             if age<30: score+=40; reasons.append(f"🚨 Domain {age} days only (VERY NEW!)")
             elif age<180: score+=20; reasons.append(f"⚠️ Domain {age} days old")
-            else: reasons.append(f"✅ Domain {age} days old")
+            else:
+                if score < 70: reasons.append(f"✅ Domain {age} days old")
         else: score+=15; reasons.append("⚠️ Whois hidden / new domain")
         if re.search(r'\d+\.\d+\.\d+\.\d+', url): score+=25; reasons.append("⚠️ IP based URL (scam sign)")
-        if 'bit.ly' in url or 'tinyurl' in url or 'cutt.ly' in url: score+=20; reasons.append("⚠️ Shortener URL (hidden)")
+        if 'bit.ly' in low or 'tinyurl' in low or 'cutt.ly' in low or 'is.gd' in low: score+=20; reasons.append("⚠️ Shortener URL (hidden)")
         vt = vt_check(url)
         if vt: reasons.append(f"🔍 VirusTotal: {vt}")
-        status = "🚨 SCAM LIKELY" if score>=50 else "⚠️ SUSPICIOUS" if score>=25 else "✅ SAFE"
-        await update.message.reply_text(f"{status} ({score}/100)\n🌐 {domain}\n\n"+"\n".join(reasons))
+
+        final_score = min(score, 100)
+        if final_score >= 70: status = "🚨 RISKY / GAMBLING TRAP"
+        elif final_score >= 50: status = "🚨 SCAM LIKELY"
+        elif final_score >= 25: status = "⚠️ SUSPICIOUS"
+        else: status = "✅ SAFE"
+
+        await update.message.reply_text(f"{status} ({final_score}/100)\n🌐 {domain}\n\n"+"\n".join(reasons))
     except Exception as e:
         await update.message.reply_text(f"Link check error: {e}")
 
@@ -158,11 +176,9 @@ async def handle_number(text, update):
     digits = re.sub(r'\D','',text)
     num = digits[-10:] if len(digits)>=10 else digits
     if len(num)!=10:
-        await update.message.reply_text("❌ 10 digit number thanne ayakk. Eg: 9876543210")
-        return
+        await update.message.reply_text("❌ 10 digit number thanne ayakk. Eg: 9876543210"); return
     if num[0] not in ['6','7','8','9']:
-        await update.message.reply_text(f"❌ **Invalid Mobile Number!**\n\n📱 `{num}`\nIndian mobile 6,7,8,9 il thanne thudanganam.\n\n11, 01, 14 okke Landline/Invalid aanu.\nType /start to go back.", parse_mode='Markdown')
-        return
+        await update.message.reply_text(f"❌ **Invalid Mobile Number!**\n\n📱 `{num}`\nIndian mobile 6,7,8,9 il thanne thudanganam.\n\nType /start", parse_mode='Markdown'); return
     spam_score=0; reasons=[]
     if re.search(r'(\d)\1{5,}', num): spam_score+=80; reasons.append("Same digit repeated (99999)")
     if num.startswith('140'): spam_score+=60; reasons.append("Telemarketer series (140)")
@@ -175,8 +191,7 @@ async def handle_number(text, update):
 async def handle_upi(text, update):
     upis = re.findall(r'[\w.\-]+@[\w]+', text.lower())
     if not upis:
-        await update.message.reply_text("❌ UPI format sheriyalla. Eg: `shop@ybl` or `name@okhdfcbank`\nType /start to change mode.", parse_mode='Markdown')
-        return
+        await update.message.reply_text("❌ UPI format sheriyalla. Eg: `shop@ybl`\nType /start", parse_mode='Markdown'); return
     for upi in upis:
         scam_keywords = ['refund','lucky','offer','prize','lottery','army','amazon','flipkart','reward','cashback','kyc','verify','blocked','earn','investment','free','gift','paytm-cash']
         found = [k for k in scam_keywords if k in upi]
@@ -204,34 +219,24 @@ async def router(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text or ""
     chat_id = update.effective_chat.id
     low = text.lower().strip()
-
     if low in ['hi','hello','hai','hey','yo','/start','start','menu','help']:
         USER_MODE.pop(chat_id, None)
         await start(update, context)
         return
-
     mode = USER_MODE.get(chat_id, 'auto')
-
     if mode == 'upi':
         if '@' not in text:
-            await update.message.reply_text("💳 UPI modeil aanu. UPI ID ayakk. Eg: `shop@ybl`\nMaaranaan /start adikk", parse_mode='Markdown')
-            return
+            await update.message.reply_text("💳 UPI modeil aanu. UPI ID ayakk. Eg: `shop@ybl`\nMaaranaan /start adikk", parse_mode='Markdown'); return
         await handle_upi(text, update); return
-
     if mode == 'number':
         await handle_number(text, update); return
-
     if mode == 'job':
         await handle_job(text, update); return
-
     if mode == 'link':
         url = text if text.startswith('http') else 'https://'+text
         await handle_link(url, update); return
-
     if mode == 'ad':
         await photo_handler(update, context); return
-
-    # AUTO DETECT MODE
     if re.search(r'[\w.\-]+@(?:okaxis|okhdfcbank|okicici|oksbi|ybl|axl|upi|paytm|apl|ibl)', low):
         await handle_upi(text, update)
     elif re.search(r'\b\d{10,}\b', text):
@@ -245,7 +250,7 @@ async def router(update: Update, context: ContextTypes.DEFAULT_TYPE):
 def main():
     threading.Thread(target=run_flask, daemon=True).start()
     if not BOT_TOKEN:
-        print("ERROR: BOT_TOKEN missing in Environment!")
+        print("ERROR: BOT_TOKEN missing!")
         return
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
@@ -255,7 +260,7 @@ def main():
     app_bot.add_handler(CallbackQueryHandler(tool_callback, pattern="^tool_"))
     app_bot.add_handler(MessageHandler(filters.PHOTO, photo_handler))
     app_bot.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, router))
-    print("ULTIMATE Bot Started - 100% PERFECT - FINAL CHECKED 3 TIMES")
+    print("ULTIMATE V2 GAMBLING FIX Started")
     app_bot.run_polling()
 
 if __name__ == '__main__':
