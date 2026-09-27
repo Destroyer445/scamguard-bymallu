@@ -7,14 +7,14 @@ from telegram.ext import Application, CommandHandler, MessageHandler, CallbackQu
 
 app = Flask(__name__)
 @app.route('/')
-def home(): return "Scam Guard India ULTRA V10001 - 6 TOOLS ACTIVE"
+def home(): return "Scam Guard India ULTRA V10002 - 6 TOOLS ACTIVE + BROADCAST"
 def run_flask():
     port = int(os.environ.get("PORT", 10000))
     app.run(host='0.0.0.0', port=port)
 
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
 VT_KEY = os.environ.get("VT_API_KEY")
-ADMIN_ID = int(os.environ.get("ADMIN_ID", "123456789")) # Render > Environment > ADMIN_ID = ninte ID
+ADMIN_ID = int(os.environ.get("ADMIN_ID", "6331679163"))
 
 USER_LANG = {}
 USER_MODE = {}
@@ -50,8 +50,8 @@ def load_users_ultra():
 
 TEXTS = {
     'en': {
-        'welcome': "🛡️ *Welcome to Scam Guard India ULTRA V10001* 🛡️\n\n🔥 6 TOOLS | AI + Bank API + Whois + VT + Fake News Detector\nSelect language:",
-        'ask_tool': "✅ ULTRA V10001 Loaded! 6 TOOLS Active\n\n👇 *What to check?*",
+        'welcome': "🛡️ *Welcome to Scam Guard India ULTRA V10002* 🛡️\n\n🔥 6 TOOLS | AI + Bank API + Whois + VT + Fake News Detector\nSelect language:",
+        'ask_tool': "✅ ULTRA V10002 Loaded! 6 TOOLS Active\n\n👇 *What to check?*",
         'tools': ["🔗 Link ULTRA", "📱 Number ULTRA", "💳 UPI ULTRA", "💼 Job ULTRA AI", "📸 FB Ad ULTRA AI", "📰 News ULTRA"],
         'prompts': {
             'link': "🔗 *Link ULTRA*\nSend link. AI expand + Whois + VT + Gambling + IP + NS + DB",
@@ -63,8 +63,8 @@ TEXTS = {
         }
     },
     'ml': {
-        'welcome': "🛡️ *Scam Guard India ULTRA V10001* ലേക്ക് സ്വാഗതം 🛡️\n\n🔥 6 TOOLS | 10K DB + ULTRA AI\nഭാഷ തിരഞ്ഞെടുക്കൂ:",
-        'ask_tool': "✅ ULTRA V10001 Loaded! 6 TOOLS\n\n👇 *എന്ത് പരിശോധിക്കണം?*",
+        'welcome': "🛡️ *Scam Guard India ULTRA V10002* ലേക്ക് സ്വാഗതം 🛡️\n\n🔥 6 TOOLS | 10K DB + ULTRA AI\nഭാഷ തിരഞ്ഞെടുക്കൂ:",
+        'ask_tool': "✅ ULTRA V10002 Loaded! 6 TOOLS\n\n👇 *എന്ത് പരിശോധിക്കണം?*",
         'tools': ["🔗 ലിങ്ക് ULTRA", "📱 നമ്പർ ULTRA", "💳 UPI ULTRA", "💼 ജോലി ULTRA", "📸 FB ULTRA", "📰 വാർത്ത ULTRA"],
         'prompts': {
             'link': "🔗 *ലിങ്ക് ULTRA*\nലിങ്ക് അയക്കൂ", 'number': "📱 *നമ്പർ ULTRA*\nനമ്പർ അയക്കൂ",
@@ -73,12 +73,12 @@ TEXTS = {
         }
     },
     'ta': {
-        'welcome': "🛡️ *Scam Guard India ULTRA V10001* 🛡️\n6 TOOLS", 'ask_tool': "✅ ULTRA Loaded! 6 TOOLS 👇 *Enna check?*",
+        'welcome': "🛡️ *Scam Guard India ULTRA V10002* 🛡️\n6 TOOLS", 'ask_tool': "✅ ULTRA Loaded! 6 TOOLS 👇 *Enna check?*",
         'tools': ["🔗 Link ULTRA", "📱 Number", "💳 UPI", "💼 Job", "📸 FB", "📰 News"],
         'prompts': {'link': "🔗 *Link ULTRA*", 'number': "📱 *Number*", 'upi': "💳 *UPI*", 'job': "💼 *Job*", 'ad': "📸 *FB ULTRA*", 'news': "📰 *News ULTRA*"}
     },
     'hi': {
-        'welcome': "🛡️ *Scam Guard India ULTRA V10001* me Swagat 🛡️\n6 TOOLS", 'ask_tool': "✅ ULTRA Loaded! 6 TOOLS 👇 *Kya check?*",
+        'welcome': "🛡️ *Scam Guard India ULTRA V10002* me Swagat 🛡️\n6 TOOLS", 'ask_tool': "✅ ULTRA Loaded! 6 TOOLS 👇 *Kya check?*",
         'tools': ["🔗 Link ULTRA", "📱 Number", "💳 UPI", "💼 Job", "📸 FB", "📰 News"],
         'prompts': {'link': "🔗 *Link ULTRA*", 'number': "📱 *Number*", 'upi': "💳 *UPI*", 'job': "💼 *Job*", 'ad': "📸 *FB ULTRA*", 'news': "📰 *News ULTRA*"}
     }
@@ -236,6 +236,25 @@ async def router(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text or ""; chat_id=update.effective_chat.id; low=text.lower().strip()
     if low in ['hi','hello','hai','hey','yo','/start','start','menu','help','ultra']:
         USER_MODE.pop(chat_id, None); await start(update, context); return
+
+    # BROADCAST FIX - V10002
+    if low.startswith('/broadcast'):
+        if update.effective_user.id!= ADMIN_ID:
+            await update.message.reply_text("❌ Admin only ULTRA!"); return
+        msg_to_send = text[len('/broadcast'):].strip()
+        if not msg_to_send:
+            await update.message.reply_text("Usage: /broadcast Your message here"); return
+        users = load_users_ultra()
+        if not users:
+            await update.message.reply_text("⚠️ No users yet ULTRA! /start cheyyaan paray"); return
+        sent = 0
+        for u in users:
+            try:
+                await context.bot.send_message(chat_id=u['id'], text=f"📢 *ULTRA UPDATE V10002*\n\n{msg_to_send}", parse_mode='Markdown')
+                sent += 1
+            except: pass
+        await update.message.reply_text(f"✅ Broadcast sent to {sent}/{len(users)} users ULTRA!", parse_mode='Markdown'); return
+
     if low.startswith('/stats') or low.startswith('/users'):
         if update.effective_user.id!= ADMIN_ID:
             await update.message.reply_text("❌ Admin only ULTRA!"); return
@@ -245,11 +264,11 @@ async def router(update: Update, context: ContextTypes.DEFAULT_TYPE):
         except: db=[]
         today_str = datetime.now().strftime("%d-%m-%Y")
         today_users = len([u for u in users if today_str in u['joined']])
-        lang_count = {'total_scans': len(db)}
-        msg = f"👑 *ULTRA V10001 ADMIN PANEL*\n\n👥 Total Users: {len(users)}\n📅 Today: {today_users}\n🔍 Total Scans: {len(db)}\n\n*Last 10 Users:*\n"
+        msg = f"👑 *ULTRA V10002 ADMIN PANEL*\n\n👥 Total Users: {len(users)}\n📅 Today: {today_users}\n🔍 Total Scans: {len(db)}\n\n*Last 10 Users:*\n"
         for u in users[-10:][::-1]:
             msg += f"• {u['name']} @{u['username']} | {u['joined']}\n"
         await update.message.reply_text(msg, parse_mode='Markdown'); return
+
     mode = USER_MODE.get(chat_id, 'auto')
     if mode == 'upi':
         if '@' not in text: await update.message.reply_text("💳 UPI ULTRA - UPI ayakk"); return
@@ -274,10 +293,11 @@ def main():
     app_bot.add_handler(CommandHandler("start", start))
     app_bot.add_handler(CommandHandler("stats", router))
     app_bot.add_handler(CommandHandler("users", router))
+    app_bot.add_handler(CommandHandler("broadcast", router))
     app_bot.add_handler(CallbackQueryHandler(lang_callback, pattern="^lang_"))
     app_bot.add_handler(CallbackQueryHandler(tool_callback, pattern="^tool_"))
     app_bot.add_handler(MessageHandler(filters.PHOTO, photo_handler))
     app_bot.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, router))
-    print("ULTRA V10001 6-TOOLS + ADMIN PANEL STARTED"); app_bot.run_polling()
+    print("ULTRA V10002 6-TOOLS + BROADCAST + ADMIN PANEL STARTED"); app_bot.run_polling()
 
 if __name__ == '__main__': main()
