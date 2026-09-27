@@ -5,4 +5,6 @@ Pillow
 pytesseract
 python-whois
 cloudscraper
-curl_cffi
+pymongo
+Flask
+lxml
