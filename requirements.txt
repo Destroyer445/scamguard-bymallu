@@ -1,10 +1,11 @@
 python-telegram-bot==21.7
+Flask
 requests
+python-whois
 beautifulsoup4
+lxml
+pymongo
+cloudscraper
 Pillow
 pytesseract
-python-whois
-cloudscraper
-pymongo
-Flask
-lxml
+pyzbar
