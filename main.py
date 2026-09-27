@@ -7,19 +7,25 @@ from telegram.ext import Application, CommandHandler, MessageHandler, CallbackQu
 
 app = Flask(__name__)
 @app.route('/')
-def home(): return "Scam Guard India ULTRA - ALL SYSTEMS GO"
+def home(): return "Scam Guard India ULTRA V10001 - 6 TOOLS ACTIVE"
 def run_flask():
     port = int(os.environ.get("PORT", 10000))
     app.run(host='0.0.0.0', port=port)
 
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
 VT_KEY = os.environ.get("VT_API_KEY")
+ADMIN_ID = int(os.environ.get("ADMIN_ID", "123456789")) # Render > Environment > ADMIN_ID = ninte ID
+
 USER_LANG = {}
 USER_MODE = {}
 
 DB_FILE = "scam_db_ultra.json"
+USERS_FILE = "users_db_ultra.json"
+
 if not os.path.exists(DB_FILE):
     with open(DB_FILE, 'w') as f: json.dump([], f)
+if not os.path.exists(USERS_FILE):
+    with open(USERS_FILE, 'w') as f: json.dump([], f)
 
 def save_ultra(data):
     try:
@@ -28,37 +34,53 @@ def save_ultra(data):
         with open(DB_FILE, 'w') as f: json.dump(db[-10000:], f)
     except: pass
 
+def save_user_ultra(user):
+    try:
+        with open(USERS_FILE, 'r') as f: users = json.load(f)
+    except: users = []
+    if user.id not in [u['id'] for u in users]:
+        users.append({"id": user.id, "name": user.first_name, "username": user.username or "NoUsername", "joined": datetime.now().strftime("%d-%m-%Y %H:%M")})
+        with open(USERS_FILE, 'w') as f: json.dump(users, f, indent=2)
+    return len(users)
+
+def load_users_ultra():
+    try:
+        with open(USERS_FILE, 'r') as f: return json.load(f)
+    except: return []
+
 TEXTS = {
     'en': {
-        'welcome': "🛡️ *Welcome to Scam Guard India ULTRA* 🛡️\n\n🔥 AI + Bank API + Whois + VT + Scam Network + Auto-Report + OCR + 10K DB\nSelect language:",
-        'ask_tool': "✅ ULTRA Loaded!\n\n👇 *What to check?*",
-        'tools': ["🔗 Link ULTRA", "📱 Number ULTRA", "💳 UPI ULTRA", "💼 Job ULTRA AI", "📸 FB Ad ULTRA AI"],
+        'welcome': "🛡️ *Welcome to Scam Guard India ULTRA V10001* 🛡️\n\n🔥 6 TOOLS | AI + Bank API + Whois + VT + Fake News Detector\nSelect language:",
+        'ask_tool': "✅ ULTRA V10001 Loaded! 6 TOOLS Active\n\n👇 *What to check?*",
+        'tools': ["🔗 Link ULTRA", "📱 Number ULTRA", "💳 UPI ULTRA", "💼 Job ULTRA AI", "📸 FB Ad ULTRA AI", "📰 News ULTRA"],
         'prompts': {
             'link': "🔗 *Link ULTRA*\nSend link. AI expand + Whois + VT + Gambling + IP + NS + DB",
             'number': "📱 *Number ULTRA*\nSend 10 digit. Pattern GOD scoring",
             'upi': "💳 *UPI ULTRA*\nSend UPI. Bank API + Fake handle check",
             'job': "💼 *Job ULTRA AI*\nForward job msg. Trap DB scan",
-            'ad': "📸 *FB ULTRA AI*\nSend screenshot + text. OCR + AI scan"
+            'ad': "📸 *FB ULTRA AI*\nSend screenshot + text. OCR + AI scan",
+            'news': "📰 *Fake News ULTRA*\nForward any news/message. AI will verify - PIB + Clickbait check"
         }
     },
     'ml': {
-        'welcome': "🛡️ *Scam Guard India ULTRA* ലേക്ക് സ്വാഗതം 🛡️\n\n🔥 10K DB + ULTRA AI\nഭാഷ തിരഞ്ഞെടുക്കൂ:",
-        'ask_tool': "✅ ULTRA Loaded!\n\n👇 *എന്ത് പരിശോധിക്കണം?*",
-        'tools': ["🔗 ലിങ്ക് ULTRA", "📱 നമ്പർ ULTRA", "💳 UPI ULTRA", "💼 ജോലി ULTRA", "📸 FB ULTRA"],
+        'welcome': "🛡️ *Scam Guard India ULTRA V10001* ലേക്ക് സ്വാഗതം 🛡️\n\n🔥 6 TOOLS | 10K DB + ULTRA AI\nഭാഷ തിരഞ്ഞെടുക്കൂ:",
+        'ask_tool': "✅ ULTRA V10001 Loaded! 6 TOOLS\n\n👇 *എന്ത് പരിശോധിക്കണം?*",
+        'tools': ["🔗 ലിങ്ക് ULTRA", "📱 നമ്പർ ULTRA", "💳 UPI ULTRA", "💼 ജോലി ULTRA", "📸 FB ULTRA", "📰 വാർത്ത ULTRA"],
         'prompts': {
             'link': "🔗 *ലിങ്ക് ULTRA*\nലിങ്ക് അയക്കൂ", 'number': "📱 *നമ്പർ ULTRA*\nനമ്പർ അയക്കൂ",
-            'upi': "💳 *UPI ULTRA*\nUPI അയക്കൂ", 'job': "💼 *ജോലി ULTRA*\nജോലി മെസ്സേജ്", 'ad': "📸 *FB ULTRA*\nScreenshot ayakk"
+            'upi': "💳 *UPI ULTRA*\nUPI അയക്കൂ", 'job': "💼 *ജോലി ULTRA*\nജോലി മെസ്സേജ്", 'ad': "📸 *FB ULTRA*\nScreenshot ayakk",
+            'news': "📰 *വ്യാജ വാർത്ത ULTRA*\nഏതെങ്കിലും വാർത്ത forward chey - AI check cheyyum!"
         }
     },
     'ta': {
-        'welcome': "🛡️ *Scam Guard India ULTRA* 🛡️", 'ask_tool': "✅ ULTRA Loaded! 👇 *Enna check?*",
-        'tools': ["🔗 Link ULTRA", "📱 Number ULTRA", "💳 UPI ULTRA", "💼 Job ULTRA", "📸 FB ULTRA"],
-        'prompts': {'link': "🔗 *Link ULTRA*", 'number': "📱 *Number*", 'upi': "💳 *UPI*", 'job': "💼 *Job*", 'ad': "📸 *FB ULTRA*"}
+        'welcome': "🛡️ *Scam Guard India ULTRA V10001* 🛡️\n6 TOOLS", 'ask_tool': "✅ ULTRA Loaded! 6 TOOLS 👇 *Enna check?*",
+        'tools': ["🔗 Link ULTRA", "📱 Number", "💳 UPI", "💼 Job", "📸 FB", "📰 News"],
+        'prompts': {'link': "🔗 *Link ULTRA*", 'number': "📱 *Number*", 'upi': "💳 *UPI*", 'job': "💼 *Job*", 'ad': "📸 *FB ULTRA*", 'news': "📰 *News ULTRA*"}
     },
     'hi': {
-        'welcome': "🛡️ *Scam Guard India ULTRA* me Swagat 🛡️", 'ask_tool': "✅ ULTRA Loaded! 👇 *Kya check?*",
-        'tools': ["🔗 Link ULTRA", "📱 Number ULTRA", "💳 UPI ULTRA", "💼 Job ULTRA", "📸 FB ULTRA"],
-        'prompts': {'link': "🔗 *Link ULTRA*", 'number': "📱 *Number*", 'upi': "💳 *UPI*", 'job': "💼 *Job*", 'ad': "📸 *FB ULTRA*"}
+        'welcome': "🛡️ *Scam Guard India ULTRA V10001* me Swagat 🛡️\n6 TOOLS", 'ask_tool': "✅ ULTRA Loaded! 6 TOOLS 👇 *Kya check?*",
+        'tools': ["🔗 Link ULTRA", "📱 Number", "💳 UPI", "💼 Job", "📸 FB", "📰 News"],
+        'prompts': {'link': "🔗 *Link ULTRA*", 'number': "📱 *Number*", 'upi': "💳 *UPI*", 'job': "💼 *Job*", 'ad': "📸 *FB ULTRA*", 'news': "📰 *News ULTRA*"}
     }
 }
 
@@ -88,21 +110,23 @@ def vt_check_ultra(url):
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     chat_id = update.effective_chat.id; USER_MODE.pop(chat_id, None); USER_LANG.pop(chat_id, None)
+    save_user_ultra(update.effective_user)
     keyboard = [[InlineKeyboardButton("English 🇬🇧", callback_data="lang_en"), InlineKeyboardButton("മലയാളം 🇮🇳", callback_data="lang_ml")],[InlineKeyboardButton("தமிழ் 🇮🇳", callback_data="lang_ta"), InlineKeyboardButton("हिंदी 🇮🇳", callback_data="lang_hi")]]
     await update.message.reply_text(TEXTS['en']['welcome'], reply_markup=InlineKeyboardMarkup(keyboard), parse_mode='Markdown')
 
 async def lang_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query; await query.answer()
     lang = query.data.split('_')[1]; USER_LANG[query.message.chat.id]=lang
+    save_user_ultra(query.from_user)
     t,_ = get_lang_data(query.message.chat.id)
-    keyboard = [[InlineKeyboardButton(t['tools'][0], callback_data="tool_link"), InlineKeyboardButton(t['tools'][1], callback_data="tool_number")],[InlineKeyboardButton(t['tools'][2], callback_data="tool_upi"), InlineKeyboardButton(t['tools'][3], callback_data="tool_job")],[InlineKeyboardButton(t['tools'][4], callback_data="tool_ad")]]
+    keyboard = [[InlineKeyboardButton(t['tools'][0], callback_data="tool_link"), InlineKeyboardButton(t['tools'][1], callback_data="tool_number")],[InlineKeyboardButton(t['tools'][2], callback_data="tool_upi"), InlineKeyboardButton(t['tools'][3], callback_data="tool_job")],[InlineKeyboardButton(t['tools'][4], callback_data="tool_ad"), InlineKeyboardButton(t['tools'][5], callback_data="tool_news")]]
     await query.edit_message_text(t['ask_tool'], reply_markup=InlineKeyboardMarkup(keyboard), parse_mode='Markdown')
 
 async def tool_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query; await query.answer()
     USER_MODE[query.message.chat.id]=query.data.split('_')[1]
     t,_ = get_lang_data(query.message.chat.id)
-    mapping = {'link': t['prompts']['link'], 'number': t['prompts']['number'], 'upi': t['prompts']['upi'], 'job': t['prompts']['job'], 'ad': t['prompts']['ad']}
+    mapping = {'link': t['prompts']['link'], 'number': t['prompts']['number'], 'upi': t['prompts']['upi'], 'job': t['prompts']['job'], 'ad': t['prompts']['ad'], 'news': t['prompts']['news']}
     await query.edit_message_text(mapping.get(USER_MODE[query.message.chat.id], t['prompts']['link']), parse_mode='Markdown')
 
 async def handle_link(url, update):
@@ -188,6 +212,21 @@ async def handle_job(text, update):
     elif final>=30: await update.message.reply_text(f"⚠️ *SUSPICIOUS ULTRA* ({final}/100)\nFlags: {', '.join(found)}", parse_mode='Markdown')
     else: await update.message.reply_text(f"✅ *CLEAN ULTRA* ({final}/100)\nNo trap. {text[:150]}\nULTRA Verified!", parse_mode='Markdown')
 
+async def handle_news(text, update):
+    low=text.lower()
+    fake_triggers = {'forwarded many times':50,'forwarded':30,'whatsapp university':60,'government will give':45,'free laptop':50,'free recharge':60,'nasa says':40,'viral video':20,'100% true':30,'you wont believe':25,'share to 10 groups':70,'share immediately':60,'lottery winner':55,'modi announced':25,'election cancelled':50,'earth will stop':70,'urgent share':50}
+    score=0; found=[]
+    for k,v in fake_triggers.items():
+        if k in low: score+=v; found.append(k)
+    if len(text) < 30: score+=5
+    if text.isupper(): score+=20; found.append("ALL CAPS")
+    if '!!!' in text or '???' in text: score+=15; found.append("Clickbait!!!")
+    final = min(score,100)
+    save_ultra({"type":"news","input":text[:100],"score":final,"time":str(datetime.now())})
+    if final>=70: await update.message.reply_text(f"🚨 *FAKE NEWS ULTRA!* ({final}/100)\n🧠 AI: {', '.join(found)}\n💀 100% FAKE - Share cheyyaruth!", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("✅ PIB Fact Check", url="https://factcheck.pib.gov.in/")]]), parse_mode='Markdown')
+    elif final>=35: await update.message.reply_text(f"⚠️ *SUSPICIOUS NEWS ULTRA* ({final}/100)\nFlags: {', '.join(found)}\nSource verify cheyy!", parse_mode='Markdown')
+    else: await update.message.reply_text(f"✅ *NEWS OK ULTRA* ({final}/100)\nNo fake pattern. Source nokk!", parse_mode='Markdown')
+
 async def photo_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     caption = update.message.caption or ""
     if caption: await handle_job(caption, update); return
@@ -197,24 +236,34 @@ async def router(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text or ""; chat_id=update.effective_chat.id; low=text.lower().strip()
     if low in ['hi','hello','hai','hey','yo','/start','start','menu','help','ultra']:
         USER_MODE.pop(chat_id, None); await start(update, context); return
-    if low == '/stats':
+    if low.startswith('/stats') or low.startswith('/users'):
+        if update.effective_user.id!= ADMIN_ID:
+            await update.message.reply_text("❌ Admin only ULTRA!"); return
+        users = load_users_ultra()
         try:
             with open(DB_FILE,'r') as f: db=json.load(f)
-            await update.message.reply_text(f"📊 *ULTRA STATS*\nTotal: {len(db)}/10000\nULTRA ACTIVE\nLast: {str(db[-2:])[:600]}", parse_mode='Markdown')
-        except: await update.message.reply_text("Stats empty ULTRA")
-        return
+        except: db=[]
+        today_str = datetime.now().strftime("%d-%m-%Y")
+        today_users = len([u for u in users if today_str in u['joined']])
+        lang_count = {'total_scans': len(db)}
+        msg = f"👑 *ULTRA V10001 ADMIN PANEL*\n\n👥 Total Users: {len(users)}\n📅 Today: {today_users}\n🔍 Total Scans: {len(db)}\n\n*Last 10 Users:*\n"
+        for u in users[-10:][::-1]:
+            msg += f"• {u['name']} @{u['username']} | {u['joined']}\n"
+        await update.message.reply_text(msg, parse_mode='Markdown'); return
     mode = USER_MODE.get(chat_id, 'auto')
     if mode == 'upi':
         if '@' not in text: await update.message.reply_text("💳 UPI ULTRA - UPI ayakk"); return
         await handle_upi(text, update); return
     if mode == 'number': await handle_number(text, update); return
     if mode == 'job': await handle_job(text, update); return
+    if mode == 'news': await handle_news(text, update); return
     if mode == 'link':
         url = text if text.startswith('http') else 'https://'+text; await handle_link(url, update); return
     if mode == 'ad': await handle_job(text, update); return
     if re.search(r'[\w.\-]+@(?:okaxis|okhdfcbank|okicici|oksbi|ybl|axl|upi|paytm|apl|ibl)', low): await handle_upi(text, update)
     elif re.search(r'\b\d{10,}\b', text): await handle_number(text, update)
     elif any(k in low for k in ['job','work','earn','registration','fee','investment','telegram task','business','opportunity','global','task']): await handle_job(text, update)
+    elif any(k in low for k in ['forwarded','whatsapp','government will','free laptop','nasa','viral','share to','lottery','modi announced']): await handle_news(text, update)
     else: url = text if text.startswith('http') else 'https://'+text; await handle_link(url, update)
 
 def main():
@@ -224,10 +273,11 @@ def main():
     app_bot = Application.builder().token(BOT_TOKEN).build()
     app_bot.add_handler(CommandHandler("start", start))
     app_bot.add_handler(CommandHandler("stats", router))
+    app_bot.add_handler(CommandHandler("users", router))
     app_bot.add_handler(CallbackQueryHandler(lang_callback, pattern="^lang_"))
     app_bot.add_handler(CallbackQueryHandler(tool_callback, pattern="^tool_"))
     app_bot.add_handler(MessageHandler(filters.PHOTO, photo_handler))
     app_bot.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, router))
-    print("ULTRA ALL SYSTEMS GO STARTED"); app_bot.run_polling()
+    print("ULTRA V10001 6-TOOLS + ADMIN PANEL STARTED"); app_bot.run_polling()
 
 if __name__ == '__main__': main()
