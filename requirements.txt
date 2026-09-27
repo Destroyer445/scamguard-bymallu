@@ -4,3 +4,6 @@ requests
 python-whois
 pymongo
 pillow
+pytesseract
+beautifulsoup4
+lxml
