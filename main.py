@@ -5,7 +5,7 @@ from urllib.parse import urlparse
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, MessageHandler, CallbackQueryHandler, filters, ContextTypes
 
-# FULL POWER LIBS - V100032 ULTRA GOD 12 LAYER PYTHON 3.11 FIXED
+# FULL POWER LIBS - V100033 ULTRA GOD 12 LAYER PYTHON 3.11 + PTB 21.7 FIXED
 try:
     from PIL import Image
     import pytesseract
@@ -22,7 +22,7 @@ except Exception as e:
 
 app = Flask(__name__)
 @app.route('/')
-def home(): return "Scam Guard India V100032 ULTRA GOD 12 LAYER PYTHON 3.11 FIXED - 10 TOOLS - Age Real + How Bug Fixed + Admin Full + CyberCell"
+def home(): return "Scam Guard India V100033 ULTRA GOD 12 LAYER PYTHON 3.11 FIXED - 10 TOOLS - Age Real + How Bug Fixed + Admin Full + CyberCell"
 def run_flask():
     port = int(os.environ.get("PORT", 10000))
     app.run(host='0.0.0.0', port=port)
@@ -34,8 +34,8 @@ MONGO_URI = os.environ.get("MONGO_URI")
 
 USER_LANG = {}
 USER_MODE = {}
-DB_FILE = "scam_db_v100032.json"
-USERS_FILE = "users_db_v100032.json"
+DB_FILE = "scam_db_v100033.json"
+USERS_FILE = "users_db_v100033.json"
 REPORTS = []
 BANNED = set()
 
@@ -44,10 +44,10 @@ mongo_scans = None
 if MONGO_URI:
     try:
         client = MongoClient(MONGO_URI)
-        dbm = client["scam_guard_v100032"]
+        dbm = client["scam_guard_v100033"]
         mongo_users = dbm["users"]
         mongo_scans = dbm["scans"]
-        print("MONGODB V100032 PERMANENT CONNECTED!")
+        print("MONGODB V100033 PERMANENT CONNECTED!")
     except Exception as e:
         print(f"Mongo Error: {e}")
 
@@ -92,28 +92,28 @@ def load_users_ultra():
 
 TEXTS = {
     'en': {
-        'welcome': "🛡️ *Welcome to Scam Guard India V100032 ULTRA GOD 12 LAYER* 🛡️\n\n🔥 10 TOOLS | 4 LANGUAGES | 12 LAYER | AGE REAL | OCR REAL\nSelect language:",
-        'ask_tool': "✅ *V100032 GOD Loaded! 10 TOOLS 12 LAYER Active*\n\n👇 *What to check? Select GOD:*",
+        'welcome': "🛡️ *Welcome to Scam Guard India V100033 ULTRA GOD 12 LAYER* 🛡️\n\n🔥 10 TOOLS | 4 LANGUAGES | 12 LAYER | AGE REAL | OCR REAL\nSelect language:",
+        'ask_tool': "✅ *V100033 GOD Loaded! 10 TOOLS 12 LAYER Active*\n\n👇 *What to check? Select GOD:*",
         'tools': ["🔗 Link GOD 12 Layer", "📱 Number GOD 12 Layer", "💳 UPI GOD 12 Layer", "💼 Job GOD 12 Layer", "📸 FB Ad GOD 12 Layer", "📰 News GOD 12 Layer", "📷 Photo GOD AI 12 Layer", "🎤 Voice GOD 12 Layer", "📸 Insta GOD 12 Layer", "🛡️ Family GOD 12 Layer"],
-        'prompts': {'link': "🔗 *Link GOD 12 Layer V100032*\nSend ANY link (q567aa, bit.ly, fb ad) - 12 Layer Scan", 'number': "📱 *Number GOD 12 Layer V100032*\nSend 10 digit", 'upi': "💳 *UPI GOD 12 Layer V100032*\nSend UPI ID", 'job': "💼 *Job GOD AI 12 Layer V100032*\nForward job message", 'ad': "📸 *FB Ad GOD 12 Layer V100032*\nSend FB Ad link with fbclid - Paid Ad Trap", 'news': "📰 *News GOD 12 Layer V100032*\nForward news", 'photo': "📷 *Photo GOD AI 12 Layer V100032*\nSend ANY photo screenshot - OCR + 12 Layer", 'voice': "🎤 *Voice GOD 12 Layer V100032*\nSend voice note", 'insta': "📸 *Insta GOD 12 Layer V100032*\nSend Insta Reel link - Giveaway Check", 'family': "🛡️ *Family Shield V100032 12 LAYER*\nFamily protection ON"}
+        'prompts': {'link': "🔗 *Link GOD 12 Layer V100033*\nSend ANY link (q567aa, bit.ly, fb ad) - 12 Layer Scan", 'number': "📱 *Number GOD 12 Layer V100033*\nSend 10 digit", 'upi': "💳 *UPI GOD 12 Layer V100033*\nSend UPI ID", 'job': "💼 *Job GOD AI 12 Layer V100033*\nForward job message", 'ad': "📸 *FB Ad GOD 12 Layer V100033*\nSend FB Ad link with fbclid - Paid Ad Trap", 'news': "📰 *News GOD 12 Layer V100033*\nForward news", 'photo': "📷 *Photo GOD AI 12 Layer V100033*\nSend ANY photo screenshot - OCR + 12 Layer", 'voice': "🎤 *Voice GOD 12 Layer V100033*\nSend voice note", 'insta': "📸 *Insta GOD 12 Layer V100033*\nSend Insta Reel link - Giveaway Check", 'family': "🛡️ *Family Shield V100033 12 LAYER*\nFamily protection ON"}
     },
     'ml': {
-        'welcome': "🛡️ *Scam Guard V100032 ULTRA GOD 12 LAYER* 🛡️\n\n🔥 10 TOOLS | 4 ഭാഷ | 12 LAYER | AGE REAL | OCR REAL\nഭാഷ തിരഞ്ഞെടുക്കൂ:",
-        'ask_tool': "✅ *V100032 GOD Loaded! 10 TOOLS 12 LAYER*\n\n👇 *എന്ത് പരിശോധിക്കണം?*",
+        'welcome': "🛡️ *Scam Guard V100033 ULTRA GOD 12 LAYER* 🛡️\n\n🔥 10 TOOLS | 4 ഭാഷ | 12 LAYER | AGE REAL | OCR REAL\nഭാഷ തിരഞ്ഞെടുക്കൂ:",
+        'ask_tool': "✅ *V100033 GOD Loaded! 10 TOOLS 12 LAYER*\n\n👇 *എന്ത് പരിശോധിക്കണം?*",
         'tools': ["🔗 ലിങ്ക് GOD 12 Layer", "📱 നമ്പർ GOD 12 Layer", "💳 UPI GOD 12 Layer", "💼 ജോലി GOD 12 Layer", "📸 FB പരസ്യം GOD 12 Layer", "📰 വാർത്ത GOD 12 Layer", "📷 ഫോട്ടോ GOD AI 12 Layer", "🎤 Voice GOD 12 Layer", "📸 Insta GOD 12 Layer", "🛡️ Family GOD 12 Layer"],
-        'prompts': {'link': "🔗 *ലിങ്ക് GOD 12 Layer V100032*\nLink ayakk - Age kanikkum - 12 Layer", 'number': "📱 *നമ്പർ GOD 12 Layer V100032*", 'upi': "💳 *UPI GOD 12 Layer V100032*", 'job': "💼 *ജോലി GOD 12 Layer V100032*", 'ad': "📸 *FB പരസ്യം GOD 12 Layer V100032* - fbclid check", 'news': "📰 *വാർത്ത GOD 12 Layer V100032*", 'photo': "📷 *ഫോട്ടോ GOD AI 12 Layer V100032* - Photo ayakk - OCR", 'voice': "🎤 *Voice GOD 12 Layer*", 'insta': "📸 *Insta GOD 12 Layer* - Reel link", 'family': "🛡️ *Family GOD 12 Layer*"}
+        'prompts': {'link': "🔗 *ലിങ്ക് GOD 12 Layer V100033*\nLink ayakk - Age kanikkum - 12 Layer", 'number': "📱 *നമ്പർ GOD 12 Layer V100033*", 'upi': "💳 *UPI GOD 12 Layer V100033*", 'job': "💼 *ജോലി GOD 12 Layer V100033*", 'ad': "📸 *FB പരസ്യം GOD 12 Layer V100033* - fbclid check", 'news': "📰 *വാർത്ത GOD 12 Layer V100033*", 'photo': "📷 *ഫോട്ടോ GOD AI 12 Layer V100033* - Photo ayakk - OCR", 'voice': "🎤 *Voice GOD 12 Layer*", 'insta': "📸 *Insta GOD 12 Layer* - Reel link", 'family': "🛡️ *Family GOD 12 Layer*"}
     },
     'ta': {
-        'welcome': "🛡️ *Scam Guard V100032 ULTRA GOD 12 LAYER* 🛡️\n\n🔥 10 TOOLS | 4 மொழிகள் | 12 LAYER | AGE REAL\nமொழியை தேர்ந்தெடுக்கவும்:",
-        'ask_tool': "✅ *V100032 GOD Loaded! 10 TOOLS 12 LAYER*\n\n👇 *என்ன சரிபார்க்க வேண்டும்?*",
+        'welcome': "🛡️ *Scam Guard V100033 ULTRA GOD 12 LAYER* 🛡️\n\n🔥 10 TOOLS | 4 மொழிகள் | 12 LAYER | AGE REAL\nமொழியை தேர்ந்தெடுக்கவும்:",
+        'ask_tool': "✅ *V100033 GOD Loaded! 10 TOOLS 12 LAYER*\n\n👇 *என்ன சரிபார்க்க வேண்டும்?*",
         'tools': ["🔗 லிங்க் GOD 12 Layer", "📱 நம்பர் GOD 12 Layer", "💳 UPI GOD 12 Layer", "💼 வேலை GOD 12 Layer", "📸 FB விளம்பரம் GOD 12 Layer", "📰 செய்தி GOD 12 Layer", "📷 போட்டோ GOD AI 12 Layer", "🎤 Voice GOD 12 Layer", "📸 Insta GOD 12 Layer", "🛡️ Family GOD 12 Layer"],
-        'prompts': {'link': "🔗 *லிங்க் GOD 12 Layer V100032*", 'number': "📱 *நம்பர் GOD 12 Layer*", 'upi': "💳 *UPI GOD 12 Layer*", 'job': "💼 *வேலை GOD 12 Layer*", 'ad': "📸 *FB விளம்பரம் GOD 12 Layer*", 'news': "📰 *செய்தி GOD 12 Layer*", 'photo': "📷 *போட்டோ GOD AI 12 Layer*", 'voice': "🎤 *Voice GOD 12 Layer*", 'insta': "📸 *Insta GOD 12 Layer*", 'family': "🛡️ *Family GOD 12 Layer*"}
+        'prompts': {'link': "🔗 *லிங்க் GOD 12 Layer V100033*", 'number': "📱 *நம்பர் GOD 12 Layer*", 'upi': "💳 *UPI GOD 12 Layer*", 'job': "💼 *வேலை GOD 12 Layer*", 'ad': "📸 *FB விளம்பரம் GOD 12 Layer*", 'news': "📰 *செய்தி GOD 12 Layer*", 'photo': "📷 *போட்டோ GOD AI 12 Layer*", 'voice': "🎤 *Voice GOD 12 Layer*", 'insta': "📸 *Insta GOD 12 Layer*", 'family': "🛡️ *Family GOD 12 Layer*"}
     },
     'hi': {
-        'welcome': "🛡️ *Scam Guard V100032 ULTRA GOD 12 LAYER* 🛡️\n\n🔥 10 TOOLS | 4 भाषाएँ | 12 LAYER | AGE REAL\nभाषा चुनें:",
-        'ask_tool': "✅ *V100032 GOD Loaded! 10 TOOLS 12 LAYER*\n\n👇 *क्या जांचना है?*",
+        'welcome': "🛡️ *Scam Guard V100033 ULTRA GOD 12 LAYER* 🛡️\n\n🔥 10 TOOLS | 4 भाषाएँ | 12 LAYER | AGE REAL\nभाषा चुनें:",
+        'ask_tool': "✅ *V100033 GOD Loaded! 10 TOOLS 12 LAYER*\n\n👇 *क्या जांचना है?*",
         'tools': ["🔗 लिंक GOD 12 Layer", "📱 नंबर GOD 12 Layer", "💳 UPI GOD 12 Layer", "💼 नौकरी GOD 12 Layer", "📸 FB विज्ञापन GOD 12 Layer", "📰 समाचार GOD 12 Layer", "📷 फोटो GOD AI 12 Layer", "🎤 Voice GOD 12 Layer", "📸 Insta GOD 12 Layer", "🛡️ Family GOD 12 Layer"],
-        'prompts': {'link': "🔗 *लिंक GOD 12 Layer V100032*", 'number': "📱 *नंबर GOD 12 Layer*", 'upi': "💳 *UPI GOD 12 Layer*", 'job': "💼 *नौकरी GOD 12 Layer*", 'ad': "📸 *FB विज्ञापन GOD 12 Layer*", 'news': "📰 *समाचार GOD 12 Layer*", 'photo': "📷 *फोटो GOD AI 12 Layer*", 'voice': "🎤 *Voice GOD 12 Layer*", 'insta': "📸 *Insta GOD 12 Layer*", 'family': "🛡️ *Family GOD 12 Layer*"}
+        'prompts': {'link': "🔗 *लिंक GOD 12 Layer V100033*", 'number': "📱 *नंबर GOD 12 Layer*", 'upi': "💳 *UPI GOD 12 Layer*", 'job': "💼 *नौकरी GOD 12 Layer*", 'ad': "📸 *FB विज्ञापन GOD 12 Layer*", 'news': "📰 *समाचार GOD 12 Layer*", 'photo': "📷 *फोटो GOD AI 12 Layer*", 'voice': "🎤 *Voice GOD 12 Layer*", 'insta': "📸 *Insta GOD 12 Layer*", 'family': "🛡️ *Family GOD 12 Layer*"}
     }
 }
 
@@ -231,7 +231,7 @@ async def handle_link(url, update):
         TRUSTED_GOD = ['google.com','google.co.in','youtube.com','facebook.com','instagram.com','whatsapp.com','wikipedia.org','amazon.in','amazon.com','flipkart.com','github.com','telegram.org','apple.com','microsoft.com']
         if any(t in low_dom for t in TRUSTED_GOD):
             vt_txt, vt_mal = vt_check_ultra(final_url)
-            await update.message.reply_text(f"🛡️ *LINK V100032 GOD 12 LAYER*\n✅ GOD SAFE - TRUSTED (0/100)\n🌐 {domain}\n📅 L3 Age GOD: {age_txt}\n✅ L1 Whitelist - 100% Safe!\n🔍 L8 VT GOD: {vt_txt}\n📡 L10 NS GOD: {ns}\n💾 PERMANENT DB", parse_mode='Markdown')
+            await update.message.reply_text(f"🛡️ *LINK V100033 GOD 12 LAYER*\n✅ GOD SAFE - TRUSTED (0/100)\n🌐 {domain}\n📅 L3 Age GOD: {age_txt}\n✅ L1 Whitelist - 100% Safe!\n🔍 L8 VT GOD: {vt_txt}\n📡 L10 NS GOD: {ns}\n💾 PERMANENT DB", parse_mode='Markdown')
             return
 
         score=0; reasons=[f"📅 L3 Age GOD: {age_txt}"]
@@ -263,8 +263,8 @@ async def handle_link(url, update):
         status = "💀 GOD CONFIRMED SCAM 100% DO NOT CLICK!" if final_score >= 85 else "🚨 GOD RISKY" if final_score >= 70 else "🚨 SCAM LIKELY" if final_score >= 50 else "⚠️ SUSPICIOUS" if final_score >= 25 else "✅ GOD SAFE"
         save_ultra({"type":"link","input":original,"final":final_url,"domain":domain,"score":final_score,"time":str(datetime.now())})
         kb = InlineKeyboardMarkup([[InlineKeyboardButton("🚨 Report to CyberCell 1930", url="https://cybercrime.gov.in/"), InlineKeyboardButton("📄 Generate Report PDF", callback_data=f"genreport_{domain}_{final_score}")],[InlineKeyboardButton("👨‍👩‍👧‍👦 Share with Family", callback_data="share_family"), InlineKeyboardButton("🛡️ Block Domain", callback_data=f"block_{domain}")]])
-        await update.message.reply_text(f"🛡️ *LINK 12 LAYER REPORT V100032*\n{status} ({final_score}/100)\n🔗 {original[:50]}\n🎯 {final_url[:50]}\n🌐 {domain}\n📄 {title[:50]}\n\n⚠️ *12 LAYER REASONS:*\n"+"\n".join([f"{i+1}. {x}" for i,x in enumerate(reasons[:12])]), reply_markup=kb, parse_mode='Markdown')
-    except Exception as e: await update.message.reply_text(f"Link error GOD V100032: {e}")
+        await update.message.reply_text(f"🛡️ *LINK 12 LAYER REPORT V100033*\n{status} ({final_score}/100)\n🔗 {original[:50]}\n🎯 {final_url[:50]}\n🌐 {domain}\n📄 {title[:50]}\n\n⚠️ *12 LAYER REASONS:*\n"+"\n".join([f"{i+1}. {x}" for i,x in enumerate(reasons[:12])]), reply_markup=kb, parse_mode='Markdown')
+    except Exception as e: await update.message.reply_text(f"Link error GOD V100033: {e}")
 
 async def handle_number(text, update):
     digits = re.sub(r'\D','',text); num = digits[-10:] if len(digits)>=10 else digits
@@ -277,7 +277,7 @@ async def handle_number(text, update):
     if num in ['9999999999','8888888888','7000000000','1234567890','9876543210']: score+=90; reasons.append("L4 Spam DB GOD - 90")
     save_ultra({"type":"number","input":num,"score":score,"time":str(datetime.now())})
     msg = f"🚨 SPAM GOD ({score}/100) {', '.join(reasons)}" if score>=60 else f"✅ Valid GOD ({score}/100) {', '.join(reasons)}"
-    await update.message.reply_text(f"📱 *NUMBER 12 LAYER V100032 GOD*\n+91 {num}\n{msg}", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🚨 Report 1930", url="https://cybercrime.gov.in/")]]), parse_mode='Markdown')
+    await update.message.reply_text(f"📱 *NUMBER 12 LAYER V100033 GOD*\n+91 {num}\n{msg}", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🚨 Report 1930", url="https://cybercrime.gov.in/")]]), parse_mode='Markdown')
 
 async def handle_upi(text, update):
     upis = re.findall(r'[\w.\-]+@[\w]+', text.lower())
@@ -288,8 +288,8 @@ async def handle_upi(text, update):
         found = [k for k in ['refund','lucky','offer','prize','lottery','army','amazon','flipkart','reward','kyc','verify'] if k in upi]
         score = len(found)*40 + (30 if len(handle)<=3 else 0) + (25 if b not in banks else 0)
         save_ultra({"type":"upi","input":upi,"score":score,"time":str(datetime.now())})
-        if score>=30: await update.message.reply_text(f"🚨 *SCAM UPI V100032 12 LAYER!* ({min(score,100)}/100)\n💳 `{upi}`\n🏦 {bank}\n🧠 {', '.join(found)}\n❌ Pay cheyyaruth! Block!", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🚨 Report CyberCell 1930", url="https://cybercrime.gov.in/"), InlineKeyboardButton("📄 Generate UPI Report", callback_data=f"genreport_{upi}_{score}")]]), parse_mode='Markdown')
-        else: await update.message.reply_text(f"✅ *UPI SAFE V100032*\n💳 `{upi}`\n🏦 {bank}\n📊 {score}/100", parse_mode='Markdown')
+        if score>=30: await update.message.reply_text(f"🚨 *SCAM UPI V100033 12 LAYER!* ({min(score,100)}/100)\n💳 `{upi}`\n🏦 {bank}\n🧠 {', '.join(found)}\n❌ Pay cheyyaruth! Block!", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🚨 Report CyberCell 1930", url="https://cybercrime.gov.in/"), InlineKeyboardButton("📄 Generate UPI Report", callback_data=f"genreport_{upi}_{score}")]]), parse_mode='Markdown')
+        else: await update.message.reply_text(f"✅ *UPI SAFE V100033*\n💳 `{upi}`\n🏦 {bank}\n📊 {score}/100", parse_mode='Markdown')
 
 async def handle_job(text, update):
     low=text.lower(); traps = {'registration fee':50,'pay to join':60,'investment':45,'telegram task':60,'earn daily':45,'fee':30,'security deposit':60,'daily 3000':50,'daily 5000':55,'daily 8000':65,'work from home typing':45,'bj task':70,'bjtasks':70,'task shop':70,'veetilirunnu joli':60,'veetil irunnu':50,'dinasam 5000':55,'panam sambadikkam':60,'q567aa':95,'567aa':95}
@@ -300,9 +300,9 @@ async def handle_job(text, update):
     if sal and int(sal.group(1))>=3000: score+=50; found.append(f"₹{sal.group(1)}/day UNREAL")
     final = min(score,98)
     save_ultra({"type":"job","input":text[:150],"score":final,"time":str(datetime.now())})
-    if final>=70: await update.message.reply_text(f"💼 *JOB 12 LAYER V100032* ({final}/100)\n🧠 {', '.join(found[:5])}\nL1 Fee L2 Telegram L3 Unreal Salary\n🚨 *100% SCAM! DON'T PAY!*", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🚨 Report CyberCell 1930", url="https://cybercrime.gov.in/"), InlineKeyboardButton("📄 Generate Job Report", callback_data="genreport_job")],[InlineKeyboardButton("👨‍👩‍👧‍👦 Share with Family", callback_data="share_family")]]), parse_mode='Markdown')
-    elif final>=30: await update.message.reply_text(f"⚠️ *SUSPICIOUS JOB V100032* ({final}/100)\n{', '.join(found)}", parse_mode='Markdown')
-    else: await update.message.reply_text(f"✅ *CLEAN JOB V100032* ({final}/100)", parse_mode='Markdown')
+    if final>=70: await update.message.reply_text(f"💼 *JOB 12 LAYER V100033* ({final}/100)\n🧠 {', '.join(found[:5])}\nL1 Fee L2 Telegram L3 Unreal Salary\n🚨 *100% SCAM! DON'T PAY!*", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🚨 Report CyberCell 1930", url="https://cybercrime.gov.in/"), InlineKeyboardButton("📄 Generate Job Report", callback_data="genreport_job")],[InlineKeyboardButton("👨‍👩‍👧‍👦 Share with Family", callback_data="share_family")]]), parse_mode='Markdown')
+    elif final>=30: await update.message.reply_text(f"⚠️ *SUSPICIOUS JOB V100033* ({final}/100)\n{', '.join(found)}", parse_mode='Markdown')
+    else: await update.message.reply_text(f"✅ *CLEAN JOB V100033* ({final}/100)", parse_mode='Markdown')
 
 async def handle_news(text, update):
     low=text.lower()
@@ -312,12 +312,12 @@ async def handle_news(text, update):
         if k in low: score+=v; found.append(k)
     final = min(score,98)
     save_ultra({"type":"news","input":text[:150],"score":final,"time":str(datetime.now())})
-    if final>=70: await update.message.reply_text(f"📰 *FAKE NEWS V100032 GOOGLE 12 LAYER!* ({final}/100)\n🧠 {', '.join(found)}\n💀 100% FAKE!", parse_mode='Markdown')
-    else: await update.message.reply_text(f"✅ *NEWS OK V100032* ({final}/100)", parse_mode='Markdown')
+    if final>=70: await update.message.reply_text(f"📰 *FAKE NEWS V100033 GOOGLE 12 LAYER!* ({final}/100)\n🧠 {', '.join(found)}\n💀 100% FAKE!", parse_mode='Markdown')
+    else: await update.message.reply_text(f"✅ *NEWS OK V100033* ({final}/100)", parse_mode='Markdown')
 
 async def photo_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     try:
-        await update.message.reply_text("📷 *PHOTO AI 12 LAYER OCR SCANNING V100032...*", parse_mode='Markdown')
+        await update.message.reply_text("📷 *PHOTO AI 12 LAYER OCR SCANNING V100033...*", parse_mode='Markdown')
         photo = update.message.photo[-1]
         file = await context.bot.get_file(photo.file_id)
         file_path = f"/tmp/{photo.file_id}.jpg"
@@ -330,13 +330,13 @@ async def photo_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             except: ocr_text = update.message.caption or ""
         else: ocr_text = update.message.caption or ""
         if ocr_text.strip():
-            await update.message.reply_text(f"📸 *Photo OCR V100032 GOD 12 LAYER*\n📝 Text: `{ocr_text[:500]}`\n\n🔍 12 Layer Scanning...", parse_mode='Markdown')
+            await update.message.reply_text(f"📸 *Photo OCR V100033 GOD 12 LAYER*\n📝 Text: `{ocr_text[:500]}`\n\n🔍 12 Layer Scanning...", parse_mode='Markdown')
             await handle_job(ocr_text, update)
-        else: await update.message.reply_text("📸 *Photo Received V100032* - Captionil text ayakk! - 12 Layer", parse_mode='Markdown')
-    except Exception as e: await update.message.reply_text(f"Photo error V100032: {e}")
+        else: await update.message.reply_text("📸 *Photo Received V100033* - Captionil text ayakk! - 12 Layer", parse_mode='Markdown')
+    except Exception as e: await update.message.reply_text(f"Photo error V100033: {e}")
 
 async def voice_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("🎤 *Voice GOD 12 Layer V100032*\nVoice received - Text aayi ayakk! 12 Layer: Scam keywords + Money request + KYC", parse_mode='Markdown')
+    await update.message.reply_text("🎤 *Voice GOD 12 Layer V100033*\nVoice received - Text aayi ayakk! 12 Layer: Scam keywords + Money request + KYC", parse_mode='Markdown')
 
 async def insta_handler(text, update):
     low = text.lower(); score=0; reasons=[]
@@ -344,24 +344,24 @@ async def insta_handler(text, update):
     if 'click link in bio' in low: score+=30; reasons.append("L2 Bio link trap - 30")
     if 'instagram.com' in low: score+=20; reasons.append("L3 Insta link - 20")
     save_ultra({"type":"insta","input":text[:100],"score":score,"time":str(datetime.now())})
-    await update.message.reply_text(f"📸 *INSTA GOD 12 Layer V100032* ({score}/100)\n" + "\n".join(reasons) + f"\n{'🚨 SCAM REEL!' if score>=50 else '✅ SAFE'}", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🚨 Report CyberCell 1930", url="https://cybercrime.gov.in/"), InlineKeyboardButton("📄 Generate Insta Report", callback_data="genreport_insta")]]), parse_mode='Markdown')
+    await update.message.reply_text(f"📸 *INSTA GOD 12 Layer V100033* ({score}/100)\n" + "\n".join(reasons) + f"\n{'🚨 SCAM REEL!' if score>=50 else '✅ SAFE'}", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🚨 Report CyberCell 1930", url="https://cybercrime.gov.in/"), InlineKeyboardButton("📄 Generate Insta Report", callback_data="genreport_insta")]]), parse_mode='Markdown')
 
 async def family_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("🛡️ *FAMILY SHIELD V100032 12 LAYER*\n\n👨‍👩‍👧‍👦 Family protection ON\n\nL1 Unknown link click cheyyaruth\nL2 UPI PIN share cheyyaruth\nL3 Jobinu fee kodukkaruth\nL4 OTP share cheyyaruth\n\n📢 Family groupil share cheyyu!", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("👨‍👩‍👧‍👦 Share with Family", callback_data="share_family"), InlineKeyboardButton("🚨 Report CyberCell", url="https://cybercrime.gov.in/")]]), parse_mode='Markdown')
+    await update.message.reply_text("🛡️ *FAMILY SHIELD V100033 12 LAYER*\n\n👨‍👩‍👧‍👦 Family protection ON\n\nL1 Unknown link click cheyyaruth\nL2 UPI PIN share cheyyaruth\nL3 Jobinu fee kodukkaruth\nL4 OTP share cheyyaruth\n\n📢 Family groupil share cheyyu!", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("👨‍👩‍👧‍👦 Share with Family", callback_data="share_family"), InlineKeyboardButton("🚨 Report CyberCell", url="https://cybercrime.gov.in/")]]), parse_mode='Markdown')
 
 async def report_cb(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query; await query.answer()
     data = query.data
     if data.startswith("genreport"):
-        await query.message.reply_text(f"📄 *CYBERCELL REPORT GENERATED V100032 12 LAYER*\nDomain: {data}\nUser: {query.message.chat.id}\nTime: {datetime.now()}\n\nSubmit at https://cybercrime.gov.in\nHelpline: 1930\nScore {data.split('_')[-1] if '_' in data else 'N/A'}/100 - 12 Layer Confirmed Scam\n💾 Saved in PERMANENT DB", parse_mode='Markdown')
+        await query.message.reply_text(f"📄 *CYBERCELL REPORT GENERATED V100033 12 LAYER*\nDomain: {data}\nUser: {query.message.chat.id}\nTime: {datetime.now()}\n\nSubmit at https://cybercrime.gov.in\nHelpline: 1930\nScore {data.split('_')[-1] if '_' in data else 'N/A'}/100 - 12 Layer Confirmed Scam\n💾 Saved in PERMANENT DB", parse_mode='Markdown')
     elif data == "share_family":
-        await query.message.reply_text("🛡️ *Family Shield ON V100032!* All family members alerted! Share this bot: @ScamGuardBot")
+        await query.message.reply_text("🛡️ *Family Shield ON V100033!* All family members alerted! Share this bot: @ScamGuardBot")
     elif data.startswith("block_"):
         await query.message.reply_text(f"🛡️ Domain {data.replace('block_','')} blocked in your shield! 12 Layer Block Active!")
 
 async def router(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text or ""; chat_id=update.effective_chat.id; low=text.lower().strip()
-    if chat_id in BANNED: await update.message.reply_text("🚫 You are banned V100032"); return
+    if chat_id in BANNED: await update.message.reply_text("🚫 You are banned V100033"); return
     if low in ['hi','hello','hai','hey','/start','start','menu','help','god','ultra','how','how?','what','thanks','ok','okay','mm','mone']:
         if low in ['/start','start','menu','help','god','ultra']:
             await start(update, context); return
@@ -370,7 +370,7 @@ async def router(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text(t['ask_tool'], reply_markup=InlineKeyboardMarkup(keyboard), parse_mode='Markdown')
         return
     if low.startswith('/stats') or low.startswith('/users') or low.startswith('/broadcast') or low.startswith('/ban') or low.startswith('/reportlist') or low.startswith('/checklink'):
-        if update.effective_user.id!= ADMIN_ID: await update.message.reply_text("❌ Admin only ULTRA GOD V100032!"); return
+        if update.effective_user.id!= ADMIN_ID: await update.message.reply_text("❌ Admin only ULTRA GOD V100033!"); return
         if low.startswith('/stats'):
             users = load_users_ultra()
             try:
@@ -378,24 +378,24 @@ async def router(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 else:
                     with open(DB_FILE,'r') as f: total_scans=len(json.load(f))
             except: total_scans=len(REPORTS)
-            await update.message.reply_text(f"👑 *ADMIN PANEL V100032 ULTRA GOD 12 LAYER*\n\n👥 Users: {len(users)}\n🔍 Scans: {total_scans}\n🚫 Banned: {len(BANNED)}\n📄 Reports: {len(REPORTS)}\n💾 DB: {'MongoDB PERMANENT' if mongo_users else 'JSON'}\nFULL_POWER: {FULL_POWER}\n\nCommands:\n/stats - This panel\n/users - List users\n/broadcast <msg> - Broadcast\n/ban <id> - Ban user\n/reportlist - All reports\n/checklink <url> - Check link\n\nVT: {'YES' if VT_KEY else 'NO'} | Mongo: {'YES' if MONGO_URI else 'NO'}", parse_mode='Markdown'); return
+            await update.message.reply_text(f"👑 *ADMIN PANEL V100033 ULTRA GOD 12 LAYER*\n\n👥 Users: {len(users)}\n🔍 Scans: {total_scans}\n🚫 Banned: {len(BANNED)}\n📄 Reports: {len(REPORTS)}\n💾 DB: {'MongoDB PERMANENT' if mongo_users else 'JSON'}\nFULL_POWER: {FULL_POWER}\n\nCommands:\n/stats - This panel\n/users - List users\n/broadcast <msg> - Broadcast\n/ban <id> - Ban user\n/reportlist - All reports\n/checklink <url> - Check link\n\nVT: {'YES' if VT_KEY else 'NO'} | Mongo: {'YES' if MONGO_URI else 'NO'}", parse_mode='Markdown'); return
         if low.startswith('/users'):
             users = load_users_ultra(); txt = "\n".join([f"{u.get('id')} - {u.get('name')}" for u in users[-20:]]); await update.message.reply_text(f"👥 Users ({len(users)}):\n{txt[:4000]}"); return
         if low.startswith('/reportlist'):
-            if not REPORTS: await update.message.reply_text("No reports yet V100032"); return
-            txt="📄 REPORT LIST V100032\n" + "\n".join([f"{r.get('domain', r.get('input',''))} - {r.get('score')}/100 - {r.get('time')}" for r in REPORTS[-20:]]); await update.message.reply_text(txt[:4000]); return
+            if not REPORTS: await update.message.reply_text("No reports yet V100033"); return
+            txt="📄 REPORT LIST V100033\n" + "\n".join([f"{r.get('domain', r.get('input',''))} - {r.get('score')}/100 - {r.get('time')}" for r in REPORTS[-20:]]); await update.message.reply_text(txt[:4000]); return
         if low.startswith('/broadcast'):
             msg = text.replace('/broadcast','').strip()
             if not msg: await update.message.reply_text("Usage: /broadcast <msg>"); return
             users = load_users_ultra(); count=0
             for u in users:
-                try: await context.bot.send_message(u['id'], f"📢 ADMIN V100032: {msg}"); count+=1
+                try: await context.bot.send_message(u['id'], f"📢 ADMIN V100033: {msg}"); count+=1
                 except: pass
-            await update.message.reply_text(f"✅ Broadcast to {count} users - V100032"); return
+            await update.message.reply_text(f"✅ Broadcast to {count} users - V100033"); return
         if low.startswith('/ban'):
             parts = text.split()
             if len(parts)>=2:
-                try: BANNED.add(int(parts[1])); await update.message.reply_text(f"🚫 Banned {parts[1]} - V100032")
+                try: BANNED.add(int(parts[1])); await update.message.reply_text(f"🚫 Banned {parts[1]} - V100033")
                 except: await update.message.reply_text("Invalid ID")
             return
         if low.startswith('/checklink'):
@@ -429,10 +429,11 @@ async def router(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await handle_job(text, update)
 
 def main():
-    threading.Thread(target=run_flask, daemon=True).start()
     if not BOT_TOKEN:
         print("BOT_TOKEN missing!")
         return
+    threading.Thread(target=run_flask, daemon=True).start()
+    print("Flask started on port - V100033")
     application = Application.builder().token(BOT_TOKEN).build()
     application.add_handler(CommandHandler("start", start))
     application.add_handler(CommandHandler("stats", router))
@@ -447,8 +448,8 @@ def main():
     application.add_handler(MessageHandler(filters.PHOTO, photo_handler))
     application.add_handler(MessageHandler(filters.VOICE, voice_handler))
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, router))
-    print("V100032 ULTRA GOD PYTHON 3.11 FIXED - 10 TOOLS 12 LAYER FINAL - Colors OK STARTED")
-    application.run_polling(drop_pending_updates=True)
+    print("V100033 ULTRA GOD PYTHON 3.11 + PTB 21.7 FIXED - 10 TOOLS 12 LAYER FINAL - STARTED")
+    application.run_polling(drop_pending_updates=True, close_loop=False)
 
 if __name__ == '__main__':
     main()
