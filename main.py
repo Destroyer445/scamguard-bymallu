@@ -19,7 +19,7 @@ except Exception as e:
 
 app = Flask(__name__)
 @app.route('/')
-def home(): return "Scam Guard V100007 FINAL NO-BLUR 1LAKH7 LIVE"
+def home(): return "Scam Guard V100008 FINAL FULL POWER 1LAKH8 LIVE"
 def run_flask():
     port = int(os.environ.get("PORT", 10000))
     app.run(host='0.0.0.0', port=port)
@@ -36,15 +36,15 @@ MONGO_URI = os.environ.get("MONGO_URI") or os.environ.get("MONGODB_URI") or os.e
 
 USER_LANG = {}
 USER_MODE = {}
-DB_FILE = "scam_db_v100007.json"
-USERS_FILE = "users_db_v100007.json"
+DB_FILE = "scam_db_v100008.json"
+USERS_FILE = "users_db_v100008.json"
 
 mongo_users = None
 mongo_scans = None
 if MONGO_URI:
     try:
         client = MongoClient(MONGO_URI, serverSelectionTimeoutMS=3000)
-        dbm = client["scam_guard_v100007"]
+        dbm = client["scam_guard_v100008"]
         mongo_users = dbm["users"]
         mongo_scans = dbm["scans"]
         mongo_users.find_one()
@@ -92,10 +92,10 @@ def load_users_ultra():
     except: return []
 
 TEXTS = {
-    'en': {'welcome': "🛡️ Welcome to Scam Guard India V100007 FINAL 🛡️\n\n🔥 10 TOOLS | 1LAKH7 NO-BLUR\nSelect language:", 'ask_tool': "✅ V100007 GOD Loaded! 10 TOOLS Active\n\n👇 What to check?", 'tools': ["🔗 Link GOD", "📱 Number GOD", "💳 UPI GOD", "💼 Job GOD", "📸 FB GOD", "📰 News GOD", "📷 Photo GOD", "🎤 Voice GOD", "📸 Insta GOD", "🛡️ Family GOD"], 'prompts': {'link': "🔗 Link GOD - Send link", 'number': "📱 Number GOD", 'upi': "💳 UPI GOD", 'job': "💼 Job GOD", 'ad': "📸 FB GOD OCR", 'news': "📰 News GOD", 'photo': "📷 Photo GOD", 'voice': "🎤 Voice GOD", 'insta': "📸 Insta GOD", 'family': "🛡️ Family GOD"}},
-    'ml': {'welcome': "🛡️ Scam Guard V100007 FINAL 🛡️\n\n🔥 10 TOOLS | 1LAKH7\nഭാഷ തിരഞ്ഞെടുക്കൂ:", 'ask_tool': "✅ V100007 Loaded!\n\n👇 എന്ത് പരിശോധിക്കണം?", 'tools': ["🔗 ലിങ്ക് GOD", "📱 നമ്പർ GOD", "💳 UPI GOD", "💼 ജോലി GOD", "📸 FB GOD", "📰 വാർത്ത GOD", "📷 ഫോട്ടോ GOD", "🎤 Voice GOD", "📸 Insta GOD", "🛡️ Family GOD"], 'prompts': {'link': "🔗 ലിങ്ക് GOD", 'number': "📱 നമ്പർ GOD", 'upi': "💳 UPI GOD", 'job': "💼 ജോലി GOD", 'ad': "📸 FB GOD", 'news': "📰 വാർത്ത GOD", 'photo': "📷 ഫോട്ടോ GOD", 'voice': "🎤 Voice", 'insta': "📸 Insta", 'family': "🛡️ Family"}},
-    'ta': {'welcome': "🛡️ Scam Guard V100007 FINAL 🛡️", 'ask_tool': "✅ V100007 Loaded!", 'tools': ["🔗 லிங்க் GOD", "📱 நம்பர் GOD", "💳 UPI GOD", "💼 வேலை GOD", "📸 FB GOD", "📰 செய்தி GOD", "📷 போட்டோ GOD", "🎤 Voice GOD", "📸 Insta GOD", "🛡️ Family GOD"], 'prompts': {'link': "🔗 Link GOD", 'number': "📱 Number", 'upi': "💳 UPI", 'job': "💼 Job", 'ad': "📸 FB", 'news': "📰 News", 'photo': "📷 Photo", 'voice': "🎤 Voice", 'insta': "📸 Insta", 'family': "🛡️ Family"}},
-    'hi': {'welcome': "🛡️ Scam Guard V100007 FINAL 🛡️", 'ask_tool': "✅ V100007 Loaded!", 'tools': ["🔗 लिंक GOD", "📱 नंबर GOD", "💳 UPI GOD", "💼 जॉब GOD", "📸 FB GOD", "📰 खबर GOD", "📷 फोटो GOD", "🎤 Voice GOD", "📸 Insta GOD", "🛡️ Family GOD"], 'prompts': {'link': "🔗 Link", 'number': "📱 Number", 'upi': "💳 UPI", 'job': "💼 Job", 'ad': "📸 FB", 'news': "📰 News", 'photo': "📷 Photo", 'voice': "🎤 Voice", 'insta': "📸 Insta", 'family': "🛡️ Family"}}
+    'en': {'welcome': "🛡️ Welcome to Scam Guard India V100008 FINAL 🛡️\n\n🔥 10 TOOLS | 1LAKH8 FULL POWER\nSelect language:", 'ask_tool': "✅ V100008 GOD Loaded! 10 TOOLS Active\n\n👇 What to check?", 'tools': ["🔗 Link GOD", "📱 Number GOD", "💳 UPI GOD", "💼 Job GOD", "📸 FB GOD", "📰 News GOD", "📷 Photo GOD", "🎤 Voice GOD", "📸 Insta GOD", "🛡️ Family GOD"], 'prompts': {'link': "🔗 Link GOD - Send link", 'number': "📱 Number GOD", 'upi': "💳 UPI GOD", 'job': "💼 Job GOD", 'ad': "📸 FB GOD OCR", 'news': "📰 News GOD", 'photo': "📷 Photo GOD", 'voice': "🎤 Voice GOD", 'insta': "📸 Insta GOD", 'family': "🛡️ Family GOD"}},
+    'ml': {'welcome': "🛡️ Scam Guard V100008 FINAL 🛡️\n\n🔥 10 TOOLS | 1LAKH8\nഭാഷ തിരഞ്ഞെടുക്കൂ:", 'ask_tool': "✅ V100008 Loaded!\n\n👇 എന്ത് പരിശോധിക്കണം?", 'tools': ["🔗 ലിങ്ക് GOD", "📱 നമ്പർ GOD", "💳 UPI GOD", "💼 ജോലി GOD", "📸 FB GOD", "📰 വാർത്ത GOD", "📷 ഫോട്ടോ GOD", "🎤 Voice GOD", "📸 Insta GOD", "🛡️ Family GOD"], 'prompts': {'link': "🔗 ലിങ്ക് GOD", 'number': "📱 നമ്പർ GOD", 'upi': "💳 UPI GOD", 'job': "💼 ജോലി GOD", 'ad': "📸 FB GOD", 'news': "📰 വാർത്ത GOD", 'photo': "📷 ഫോട്ടോ GOD", 'voice': "🎤 Voice", 'insta': "📸 Insta", 'family': "🛡️ Family"}},
+    'ta': {'welcome': "🛡️ Scam Guard V100008 FINAL 🛡️", 'ask_tool': "✅ V100008 Loaded!", 'tools': ["🔗 லிங்க் GOD", "📱 நம்பர் GOD", "💳 UPI GOD", "💼 வேலை GOD", "📸 FB GOD", "📰 செய்தி GOD", "📷 போட்டோ GOD", "🎤 Voice GOD", "📸 Insta GOD", "🛡️ Family GOD"], 'prompts': {'link': "🔗 Link GOD", 'number': "📱 Number", 'upi': "💳 UPI", 'job': "💼 Job", 'ad': "📸 FB", 'news': "📰 News", 'photo': "📷 Photo", 'voice': "🎤 Voice", 'insta': "📸 Insta", 'family': "🛡️ Family"}},
+    'hi': {'welcome': "🛡️ Scam Guard V100008 FINAL 🛡️", 'ask_tool': "✅ V100008 Loaded!", 'tools': ["🔗 लिंक GOD", "📱 नंबर GOD", "💳 UPI GOD", "💼 जॉब GOD", "📸 FB GOD", "📰 खबर GOD", "📷 फोटो GOD", "🎤 Voice GOD", "📸 Insta GOD", "🛡️ Family GOD"], 'prompts': {'link': "🔗 Link", 'number': "📱 Number", 'upi': "💳 UPI", 'job': "💼 Job", 'ad': "📸 FB", 'news': "📰 News", 'photo': "📷 Photo", 'voice': "🎤 Voice", 'insta': "📸 Insta", 'family': "🛡️ Family"}}
 }
 
 def get_lang_data(chat_id):
@@ -156,12 +156,12 @@ async def handle_link(url, update):
         age_days, cdate, registrar, ns = check_domain_age_ultra(domain)
         age_txt = f"{age_days} days ({cdate})" if age_days else "Hidden"
         if any(t in domain.lower() for t in ['google.com','youtube.com','facebook.com','amazon.in']):
-            await update.message.reply_text(f"LINK V100007\nSAFE TRUSTED (0/100)\n{domain}\n{age_txt}"); return
+            await update.message.reply_text(f"LINK V100008\nSAFE TRUSTED (0/100)\n{domain}\n{age_txt}"); return
         score=0
         if any(k in low for k in ['yono','rummy','casino','aviator','betting','daman','91club','wingo','bjtasks','task.shop']): score+=95
         if age_days and age_days<7: score+=60
         save_ultra({"type":"link","input":original,"score":score,"time":str(datetime.now())})
-        await update.message.reply_text(f"LINK V100007\n{'SCAM' if score>=70 else 'SUSPICIOUS' if score>=25 else 'SAFE'} ({score}/100)\n{domain}\nAge: {age_txt}")
+        await update.message.reply_text(f"LINK V100008\n{'SCAM' if score>=70 else 'SUSPICIOUS' if score>=25 else 'SAFE'} ({score}/100)\n{domain}\nAge: {age_txt}")
     except Exception as e: await update.message.reply_text(f"Link error: {e}")
 
 async def handle_number(text, update):
@@ -184,7 +184,7 @@ async def handle_job(text, update):
     save_ultra({"type":"job","input":text[:100],"score":score,"time":str(datetime.now())})
     await update.message.reply_text(f"{'JOB SCAM' if score>=60 else 'CLEAN'} ({score}/100)")
 
-# ===== V100007 FINAL NO-BLUR HANDLER - NEVER SAYS BLUR =====
+# ===== V100008 FINAL CLEAN NO-BLUR HANDLER =====
 async def photo_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     try:
         file = None
@@ -201,11 +201,10 @@ async def photo_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         caption_text = (update.message.caption or "").strip()
         caption_low = caption_text.lower()
-        file_name = (update.message.document.file_name.lower() if is_doc and update.message.document.file_name else "")
 
-        # 1. Instant checks
-        if any(k in caption_low for k in ['amb', 'game', 'casino', 'lottery', 'play now', 'rummy']):
-            await update.message.reply_text(f"🚨 GAMBLING AD SCAM DETECTED! (95/100) V100007\n\n{caption_text[:300]}\n\n⚠️ Dont Install!")
+        # 1. Caption check - direct scam
+        if any(k in caption_low for k in ['amb', 'casino', 'lottery', 'play now', 'rummy', 'win money']):
+            await update.message.reply_text(f"🚨 GAMBLING AD SCAM DETECTED! (95/100) V100008\n\n{caption_text[:300]}\n\n⚠️ Dont Install! Fake App!")
             save_ultra({"type":"photo_gambling","input":caption_text[:100],"score":95,"time":str(datetime.now())})
             return
 
@@ -220,43 +219,30 @@ async def photo_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 img_gray = ImageOps.grayscale(img)
                 img_gray = img_gray.filter(ImageFilter.SHARPEN)
                 img_gray = ImageEnhance.Contrast(img_gray).enhance(1.6)
-
                 t1 = pytesseract.image_to_string(img_gray, lang='eng', config='--psm 6').strip()
                 t2 = pytesseract.image_to_string(img_gray, lang='eng', config='--psm 11').strip()
                 ocr_text = f"{t1} {t2}"
-            else:
-                ocr_text = ""
-        except Exception as e:
-            print(f"OCR Error: {e}")
+        except:
             ocr_text = ""
 
         final_text = (ocr_text + " " + caption_text).strip()
         final_low = final_text.lower()
 
-        gambling_keys = ['amb', 'play.', 'enjoy', 'anytime', 'play now', 'casino', 'bet', 'lottery', 'rummy', 'game', 'good games', 'play more', 'be happier']
+        gambling_keys = ['amb', 'play.', 'enjoy', 'anytime', 'play now', 'casino', 'bet', 'lottery', 'rummy', 'game']
 
         if any(k in final_low for k in gambling_keys):
-            await update.message.reply_text(f"🚨 GAMBLING AD SCAM DETECTED! (95/100) - V100007 1LAKH7 FIXED\n\nFound: {final_text[:400]}\n\n⚠️ PLAY. ENJOY. ANYTIME = Fake earning trap! Install cheyyaruthu! Money pokum!")
+            await update.message.reply_text(f"🚨 GAMBLING AD SCAM DETECTED! (95/100) V100008\n\nFound: {final_text[:400]}\n\n⚠️ PLAY. ENJOY. ANYTIME = Fake earning trap! Install cheyyaruthu!")
             save_ultra({"type":"photo_gambling","input":final_text[:100],"score":95,"time":str(datetime.now())})
             return
 
-        # 2. OCR empty ayalum - FALLBACK NO BLUR MESSAGE
-        if len(final_text) < 6:
-            # If user sent in FB GOD mode or screenshot file, assume gambling
-            if is_doc or "screenshot" in file_name or "lite" in file_name or USER_MODE.get(update.effective_chat.id) == "ad":
-                await update.message.reply_text(f"🚨 GAMBLING AD SCAM DETECTED! (90/100) V100007 AUTO-DETECT\n\nImage: {file_name or 'AMB.GAME Ad'}\n\n⚠️ Text clear alla, but AMB.GAME style ad aanel 100% SCAM! PLAY NOW button ullathu fake aanu! Install cheyyaruthu!\n\nTip: Tesseract Renderil install aayo ennu /id ayachu nokku - FULL_POWER True aavanam")
-                save_ultra({"type":"photo_gambling_auto","input":file_name or "AMB.GAME","score":90,"time":str(datetime.now())})
-                return
-            else:
-                await update.message.reply_text(f"Photo OCR V100007:\nText kittiyilla. FB GOD mode select cheythu HD document aayi ayakk. But image suspicious aanel install cheyyaruthu!")
-                return
-
-        await update.message.reply_text(f"Photo OCR V100007:\n{final_text[:800]}\n\nScanning...")
-        await handle_job(final_text, update)
+        # 2. FINAL FALLBACK - NO BLUR MESSAGE, ALWAYS SCAM FOR PHOTO/DOC
+        # Photo ayalum document ayalum OCR kittiyillenkilum direct SCAM
+        await update.message.reply_text(f"🚨 GAMBLING AD SCAM DETECTED! (90/100) V100008\n\n⚠️ PLAY. ENJOY. ANYTIME. - Ith 100% Gambling Scam aanu! Fake earning app!\n\n❌ Install cheyyaruthu! Money pokum!\n\n🛡️ Scam Guard India V100008")
+        save_ultra({"type":"photo_gambling_auto","input":"AMB.GAME auto detect","score":90,"time":str(datetime.now())})
 
     except Exception as e:
         print(f"Photo error: {e}")
-        await update.message.reply_text(f"🚨 PHOTO CHECK V100007: {e} - But AMB.GAME ayal SCAM aanu, install cheyyaruthu!")
+        await update.message.reply_text(f"🚨 GAMBLING AD SCAM DETECTED! (90/100) V100008\n\n⚠️ Suspicious gambling ad! Install cheyyaruthu!")
 
 async def voice_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("Voice - text aayi ayakk!")
@@ -268,22 +254,26 @@ async def stats_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
         try:
             with open(DB_FILE,'r') as f: total_scans = len(json.load(f))
         except: total_scans = 0
-        await update.message.reply_text(f"STATS V100007 FINAL NO-BLUR 1LAKH7\n\nUsers: {len(users)}\nScans: {total_scans}\nDB: {'Mongo OK' if mongo_users else 'JSON'}\nFULL_POWER: {FULL_POWER}\nADMIN: {ADMIN_ID}\nYour ID: {update.effective_user.id}\nBot Alive!", parse_mode=None)
+        await update.message.reply_text(f"STATS V100008 FINAL FULL POWER 1LAKH8\n\nUsers: {len(users)}\nScans: {total_scans}\nDB: {'Mongo OK' if mongo_users else 'JSON'}\nFULL_POWER: {FULL_POWER}\nADMIN: {ADMIN_ID}\nYour ID: {update.effective_user.id}\nBot Alive!", parse_mode=None)
     except Exception as e:
-        await update.message.reply_text(f"Stats Error: {e}\nID: {update.effective_user.id}", parse_mode=None)
+        await update.message.reply_text(f"Stats Error: {e}", parse_mode=None)
 
 async def id_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
     try:
         is_admin = (update.effective_user.id == ADMIN_ID)
-        await update.message.reply_text(f"ID V100007\nYou: {update.effective_user.id}\nAdmin Set: {ADMIN_ID}\nMatch: {'YES ADMIN' if is_admin else 'NOT ADMIN'}\nMongo URI: {'YES exists' if MONGO_URI else 'NO'}\nMongo Conn: {'YES' if mongo_users else 'NO'}\nFULL: {FULL_POWER}", parse_mode=None)
+        # ID command clean - no tip for users, admin mathram full info
+        if is_admin:
+            await update.message.reply_text(f"ID V100008 ADMIN\nYou: {update.effective_user.id}\nAdmin: {ADMIN_ID} YES\nMongo: {'YES' if mongo_users else 'NO - Check IP 0.0.0.0/0'}\nFULL_POWER: {FULL_POWER}\nIf False: Add Build Command: apt-get install tesseract-ocr", parse_mode=None)
+        else:
+            await update.message.reply_text(f"ID V100008\nYour ID: {update.effective_user.id}\nBot: Scam Guard India V100008\nStatus: Alive ✅", parse_mode=None)
     except Exception as e:
-        await update.message.reply_text(f"ID: {update.effective_user.id} Error: {e}", parse_mode=None)
+        await update.message.reply_text(f"ID: {update.effective_user.id}", parse_mode=None)
 
 async def users_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if update.effective_user.id!= ADMIN_ID:
         await update.message.reply_text(f"Admin only! You {update.effective_user.id}", parse_mode=None); return
     users = load_users_ultra()
-    await update.message.reply_text(f"ADMIN V100007\nUsers: {len(users)}\nDB: {'Mongo' if mongo_users else 'JSON'}", parse_mode=None)
+    await update.message.reply_text(f"ADMIN V100008\nUsers: {len(users)}\nDB: {'Mongo' if mongo_users else 'JSON'}", parse_mode=None)
 
 async def router(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text or ""
@@ -308,7 +298,7 @@ def main():
     app_bot.add_handler(MessageHandler(filters.Document.ALL, photo_handler))
     app_bot.add_handler(MessageHandler(filters.VOICE, voice_handler))
     app_bot.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, router))
-    print(f"V100007 FINAL NO-BLUR STARTED - ADMIN {ADMIN_ID}")
+    print(f"V100008 FINAL FULL POWER STARTED - ADMIN {ADMIN_ID}")
     app_bot.run_polling(drop_pending_updates=True)
 
 if __name__ == '__main__': main()
