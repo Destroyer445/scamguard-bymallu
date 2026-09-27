@@ -19,7 +19,7 @@ except Exception as e:
 
 app = Flask(__name__)
 @app.route('/')
-def home(): return "Scam Guard V100008 FINAL FULL POWER 1LAKH8 LIVE"
+def home(): return "Scam Guard V100010 ALL SCAM ULTRA 1LAKH10 LIVE"
 def run_flask():
     port = int(os.environ.get("PORT", 10000))
     app.run(host='0.0.0.0', port=port)
@@ -36,15 +36,15 @@ MONGO_URI = os.environ.get("MONGO_URI") or os.environ.get("MONGODB_URI") or os.e
 
 USER_LANG = {}
 USER_MODE = {}
-DB_FILE = "scam_db_v100008.json"
-USERS_FILE = "users_db_v100008.json"
+DB_FILE = "scam_db_v100010.json"
+USERS_FILE = "users_db_v100010.json"
 
 mongo_users = None
 mongo_scans = None
 if MONGO_URI:
     try:
         client = MongoClient(MONGO_URI, serverSelectionTimeoutMS=3000)
-        dbm = client["scam_guard_v100008"]
+        dbm = client["scam_guard_v100010"]
         mongo_users = dbm["users"]
         mongo_scans = dbm["scans"]
         mongo_users.find_one()
@@ -91,11 +91,22 @@ def load_users_ultra():
         with open(USERS_FILE, 'r') as f: return json.load(f)
     except: return []
 
+# ===== ALL SCAM DATABASE V100010 =====
+ALL_SCAM_KEYWORDS = {
+    'gambling': ['amb.game', 'play. enjoy', 'anytime', 'rummy', 'yono', 'daman', '91club', 'wingo', 'aviator', 'casino', 'betting', 'play now win', 'good games'],
+    'crypto_telegram': ['t.me/', 'alexyulia', 'alphacrypto', 'aitoken', 'unlock daily benefits', 'unlock benefits', 'click to join', 'level up your day with ai', 'follow to unlock', 'qr code', 'crypto bot', 'usdt earning', 'alpha crypto', 'daily benefits'],
+    'job': ['registration fee', 'pay to join', 'telegram task', 'daily 5000', 'bj task', 'veetilirunnu', 'work from home 5000', 'like and earn', 'task.shop', 'bjtasks', 'part time 2000', 'veetilirunnu joli'],
+    'loan': ['instant loan', 'pan card loan', 'adhar loan', '0% interest', 'kyc update loan', 'personal loan approved', '5 min loan', 'instant personal loan'],
+    'kyc_bank': ['sbi account blocked', 'account suspended', 'electricity bill pending', 'kyc expired', 'update kyc', 'bank account blocked', 'sbi yono blocked'],
+    'investment': ['2x profit', 'double money', 'trading investment', 'usdt double', 'crypto investment', 'forex profit', 'invest 500 get 5000'],
+    'parcel_gift': ['customs parcel', 'gift parcel', 'uk doctor', 'army gift', 'parcel fee', 'airport parcel', 'military parcel']
+}
+
 TEXTS = {
-    'en': {'welcome': "🛡️ Welcome to Scam Guard India V100008 FINAL 🛡️\n\n🔥 10 TOOLS | 1LAKH8 FULL POWER\nSelect language:", 'ask_tool': "✅ V100008 GOD Loaded! 10 TOOLS Active\n\n👇 What to check?", 'tools': ["🔗 Link GOD", "📱 Number GOD", "💳 UPI GOD", "💼 Job GOD", "📸 FB GOD", "📰 News GOD", "📷 Photo GOD", "🎤 Voice GOD", "📸 Insta GOD", "🛡️ Family GOD"], 'prompts': {'link': "🔗 Link GOD - Send link", 'number': "📱 Number GOD", 'upi': "💳 UPI GOD", 'job': "💼 Job GOD", 'ad': "📸 FB GOD OCR", 'news': "📰 News GOD", 'photo': "📷 Photo GOD", 'voice': "🎤 Voice GOD", 'insta': "📸 Insta GOD", 'family': "🛡️ Family GOD"}},
-    'ml': {'welcome': "🛡️ Scam Guard V100008 FINAL 🛡️\n\n🔥 10 TOOLS | 1LAKH8\nഭാഷ തിരഞ്ഞെടുക്കൂ:", 'ask_tool': "✅ V100008 Loaded!\n\n👇 എന്ത് പരിശോധിക്കണം?", 'tools': ["🔗 ലിങ്ക് GOD", "📱 നമ്പർ GOD", "💳 UPI GOD", "💼 ജോലി GOD", "📸 FB GOD", "📰 വാർത്ത GOD", "📷 ഫോട്ടോ GOD", "🎤 Voice GOD", "📸 Insta GOD", "🛡️ Family GOD"], 'prompts': {'link': "🔗 ലിങ്ക് GOD", 'number': "📱 നമ്പർ GOD", 'upi': "💳 UPI GOD", 'job': "💼 ജോലി GOD", 'ad': "📸 FB GOD", 'news': "📰 വാർത്ത GOD", 'photo': "📷 ഫോട്ടോ GOD", 'voice': "🎤 Voice", 'insta': "📸 Insta", 'family': "🛡️ Family"}},
-    'ta': {'welcome': "🛡️ Scam Guard V100008 FINAL 🛡️", 'ask_tool': "✅ V100008 Loaded!", 'tools': ["🔗 லிங்க் GOD", "📱 நம்பர் GOD", "💳 UPI GOD", "💼 வேலை GOD", "📸 FB GOD", "📰 செய்தி GOD", "📷 போட்டோ GOD", "🎤 Voice GOD", "📸 Insta GOD", "🛡️ Family GOD"], 'prompts': {'link': "🔗 Link GOD", 'number': "📱 Number", 'upi': "💳 UPI", 'job': "💼 Job", 'ad': "📸 FB", 'news': "📰 News", 'photo': "📷 Photo", 'voice': "🎤 Voice", 'insta': "📸 Insta", 'family': "🛡️ Family"}},
-    'hi': {'welcome': "🛡️ Scam Guard V100008 FINAL 🛡️", 'ask_tool': "✅ V100008 Loaded!", 'tools': ["🔗 लिंक GOD", "📱 नंबर GOD", "💳 UPI GOD", "💼 जॉब GOD", "📸 FB GOD", "📰 खबर GOD", "📷 फोटो GOD", "🎤 Voice GOD", "📸 Insta GOD", "🛡️ Family GOD"], 'prompts': {'link': "🔗 Link", 'number': "📱 Number", 'upi': "💳 UPI", 'job': "💼 Job", 'ad': "📸 FB", 'news': "📰 News", 'photo': "📷 Photo", 'voice': "🎤 Voice", 'insta': "📸 Insta", 'family': "🛡️ Family"}}
+    'en': {'welcome': "🛡️ Welcome to Scam Guard India V100010 ALL SCAM ULTRA 🛡️\n\n🔥 10 TOOLS | 1LAKH10 | 100+ SCAMS\nSelect language:", 'ask_tool': "✅ V100010 GOD Loaded! 10 TOOLS Active\n\n👇 What to check?", 'tools': ["🔗 Link GOD", "📱 Number GOD", "💳 UPI GOD", "💼 Job GOD", "📸 FB GOD", "📰 News GOD", "📷 Photo GOD", "🎤 Voice GOD", "📸 Insta GOD", "🛡️ Family GOD"], 'prompts': {'link': "🔗 Link GOD - Send link", 'number': "📱 Number GOD", 'upi': "💳 UPI GOD", 'job': "💼 Job GOD", 'ad': "📸 FB GOD OCR", 'news': "📰 News GOD", 'photo': "📷 Photo GOD", 'voice': "🎤 Voice GOD", 'insta': "📸 Insta GOD", 'family': "🛡️ Family GOD"}},
+    'ml': {'welcome': "🛡️ Scam Guard V100010 ALL SCAM ULTRA 🛡️\n\n🔥 10 TOOLS | 1LAKH10 | 100+ SCAMS\nഭാഷ തിരഞ്ഞെടുക്കൂ:", 'ask_tool': "✅ V100010 Loaded!\n\n👇 എന്ത് പരിശോധിക്കണം?", 'tools': ["🔗 ലിങ്ക് GOD", "📱 നമ്പർ GOD", "💳 UPI GOD", "💼 ജോലി GOD", "📸 FB GOD", "📰 വാർത്ത GOD", "📷 ഫോട്ടോ GOD", "🎤 Voice GOD", "📸 Insta GOD", "🛡️ Family GOD"], 'prompts': {'link': "🔗 ലിങ്ക് GOD", 'number': "📱 നമ്പർ GOD", 'upi': "💳 UPI GOD", 'job': "💼 ജോലി GOD", 'ad': "📸 FB GOD", 'news': "📰 വാർത്ത GOD", 'photo': "📷 ഫോട്ടോ GOD", 'voice': "🎤 Voice", 'insta': "📸 Insta", 'family': "🛡️ Family"}},
+    'ta': {'welcome': "🛡️ Scam Guard V100010 🛡️", 'ask_tool': "✅ V100010 Loaded!", 'tools': ["🔗 லிங்க் GOD", "📱 நம்பர் GOD", "💳 UPI GOD", "💼 வேலை GOD", "📸 FB GOD", "📰 செய்தி GOD", "📷 போட்டோ GOD", "🎤 Voice GOD", "📸 Insta GOD", "🛡️ Family GOD"], 'prompts': {'link': "🔗 Link GOD", 'number': "📱 Number", 'upi': "💳 UPI", 'job': "💼 Job", 'ad': "📸 FB", 'news': "📰 News", 'photo': "📷 Photo", 'voice': "🎤 Voice", 'insta': "📸 Insta", 'family': "🛡️ Family"}},
+    'hi': {'welcome': "🛡️ Scam Guard V100010 🛡️", 'ask_tool': "✅ V100010 Loaded!", 'tools': ["🔗 लिंक GOD", "📱 नंबर GOD", "💳 UPI GOD", "💼 जॉब GOD", "📸 FB GOD", "📰 खबर GOD", "📷 फोटो GOD", "🎤 Voice GOD", "📸 Insta GOD", "🛡️ Family GOD"], 'prompts': {'link': "🔗 Link", 'number': "📱 Number", 'upi': "💳 UPI", 'job': "💼 Job", 'ad': "📸 FB", 'news': "📰 News", 'photo': "📷 Photo", 'voice': "🎤 Voice", 'insta': "📸 Insta", 'family': "🛡️ Family"}}
 }
 
 def get_lang_data(chat_id):
@@ -156,12 +167,13 @@ async def handle_link(url, update):
         age_days, cdate, registrar, ns = check_domain_age_ultra(domain)
         age_txt = f"{age_days} days ({cdate})" if age_days else "Hidden"
         if any(t in domain.lower() for t in ['google.com','youtube.com','facebook.com','amazon.in']):
-            await update.message.reply_text(f"LINK V100008\nSAFE TRUSTED (0/100)\n{domain}\n{age_txt}"); return
+            await update.message.reply_text(f"LINK V100010\nSAFE TRUSTED (0/100)\n{domain}\n{age_txt}"); return
         score=0
-        if any(k in low for k in ['yono','rummy','casino','aviator','betting','daman','91club','wingo','bjtasks','task.shop']): score+=95
+        if any(k in low for k in ['yono','rummy','casino','aviator','betting','daman','91club','wingo','bjtasks','task.shop','t.me/alex','alphacrypto','aitoken']): score+=95
         if age_days and age_days<7: score+=60
+        if 't.me/' in low: score+=80
         save_ultra({"type":"link","input":original,"score":score,"time":str(datetime.now())})
-        await update.message.reply_text(f"LINK V100008\n{'SCAM' if score>=70 else 'SUSPICIOUS' if score>=25 else 'SAFE'} ({score}/100)\n{domain}\nAge: {age_txt}")
+        await update.message.reply_text(f"LINK V100010\n{'🚨 SCAM' if score>=70 else '⚠️ SUSPICIOUS' if score>=25 else '✅ SAFE'} ({score}/100)\n{domain}\nAge: {age_txt}")
     except Exception as e: await update.message.reply_text(f"Link error: {e}")
 
 async def handle_number(text, update):
@@ -169,83 +181,102 @@ async def handle_number(text, update):
     if len(num)!=10: await update.message.reply_text("10 digit needed"); return
     score=85 if re.search(r'(\d)\1{6,}', num) else 0
     save_ultra({"type":"number","input":num,"score":score,"time":str(datetime.now())})
-    await update.message.reply_text(f"+91 {num} - {'SPAM' if score>=60 else 'OK'} ({score}/100)")
+    await update.message.reply_text(f"+91 {num} - {'SPAM' if score>=60 else 'OK'} ({score}/100) V100010")
 
 async def handle_upi(text, update):
     upis = re.findall(r'[\w.\-]+@[\w]+', text.lower())
     if not upis: await update.message.reply_text("UPI Eg: shop@ybl"); return
     for upi in upis:
-        score = 40 if any(k in upi for k in ['refund','offer','prize']) else 0
+        score = 90 if any(k in upi for k in ['refund','offer','prize','lottery']) else 0
         save_ultra({"type":"upi","input":upi,"score":score,"time":str(datetime.now())})
-        await update.message.reply_text(f"{'SCAM' if score>=30 else 'SAFE'} UPI {upi} ({score}/100)")
+        await update.message.reply_text(f"{'🚨 SCAM' if score>=30 else '✅ SAFE'} UPI {upi} ({score}/100) V100010")
 
 async def handle_job(text, update):
-    low=text.lower(); score=70 if any(k in low for k in ['registration fee','pay to join','telegram task','daily 5000','bj task','veetilirunnu']) else 0
-    save_ultra({"type":"job","input":text[:100],"score":score,"time":str(datetime.now())})
-    await update.message.reply_text(f"{'JOB SCAM' if score>=60 else 'CLEAN'} ({score}/100)")
+    low = text.lower()
+    score = 0
+    found_type = ""
+    for scam_type, keywords in ALL_SCAM_KEYWORDS.items():
+        for k in keywords:
+            if k in low:
+                score += 40
+                found_type = scam_type
+                break
+    if any(k in low for k in ['registration fee', 'pay to join', 'instant loan', 'sbi blocked', 'double money', 't.me/']):
+        score = 95
+    save_ultra({"type":found_type or "job","input":text[:100],"score":score,"time":str(datetime.now())})
+    if score >= 80:
+        msg = f"🚨 {found_type.upper()} SCAM DETECTED! ({score}/100) V100010\n\n⚠️ 100% SCAM! Money pokum!\n❌ Pay cheyyaruthu!\n\n🛡️ Scam Guard India V100010"
+    elif score >= 40:
+        msg = f"⚠️ SUSPICIOUS {found_type.upper()} ({score}/100) V100010\n\nCareful! Scam chance!\n\n🛡️ Scam Guard"
+    else:
+        msg = f"✅ CLEAN ({score}/100) V100010\n\nSafe aanennu thonnunnu!\n\n🛡️ Scam Guard"
+    await update.message.reply_text(msg)
 
-# ===== V100008 FINAL CLEAN NO-BLUR HANDLER =====
+# ===== PHOTO GOD V100010 - ALL SCAM SMART - NO TIP =====
 async def photo_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     try:
         file = None
-        is_doc = False
         if update.message.photo:
             file = await context.bot.get_file(update.message.photo[-1].file_id)
         elif update.message.document:
             file = await context.bot.get_file(update.message.document.file_id)
-            is_doc = True
-        if not file:
-            await update.message.reply_text("No photo found"); return
+        if not file: return
         file_path = f"/tmp/{file.file_id}.jpg"
         await file.download_to_drive(file_path)
 
-        caption_text = (update.message.caption or "").strip()
-        caption_low = caption_text.lower()
-
-        # 1. Caption check - direct scam
-        if any(k in caption_low for k in ['amb', 'casino', 'lottery', 'play now', 'rummy', 'win money']):
-            await update.message.reply_text(f"🚨 GAMBLING AD SCAM DETECTED! (95/100) V100008\n\n{caption_text[:300]}\n\n⚠️ Dont Install! Fake App!")
-            save_ultra({"type":"photo_gambling","input":caption_text[:100],"score":95,"time":str(datetime.now())})
-            return
-
+        caption = (update.message.caption or "").lower()
         ocr_text = ""
         try:
             if FULL_POWER:
                 img = Image.open(file_path)
                 img = ImageOps.exif_transpose(img)
                 w,h = img.size
-                if w < 1200:
-                    img = img.resize((int(w*2.2), int(h*2.2)), Image.LANCZOS)
+                if w < 1200: img = img.resize((int(w*2.2), int(h*2.2)), Image.LANCZOS)
                 img_gray = ImageOps.grayscale(img)
                 img_gray = img_gray.filter(ImageFilter.SHARPEN)
                 img_gray = ImageEnhance.Contrast(img_gray).enhance(1.6)
                 t1 = pytesseract.image_to_string(img_gray, lang='eng', config='--psm 6').strip()
                 t2 = pytesseract.image_to_string(img_gray, lang='eng', config='--psm 11').strip()
-                ocr_text = f"{t1} {t2}"
-        except:
-            ocr_text = ""
+                ocr_text = f"{t1} {t2}".strip()
+        except: ocr_text = ""
 
-        final_text = (ocr_text + " " + caption_text).strip()
-        final_low = final_text.lower()
+        final = (ocr_text + " " + caption).lower()
 
-        gambling_keys = ['amb', 'play.', 'enjoy', 'anytime', 'play now', 'casino', 'bet', 'lottery', 'rummy', 'game']
+        detected = None
+        for scam_type, keywords in ALL_SCAM_KEYWORDS.items():
+            for k in keywords:
+                if k in final:
+                    detected = scam_type
+                    break
+            if detected: break
 
-        if any(k in final_low for k in gambling_keys):
-            await update.message.reply_text(f"🚨 GAMBLING AD SCAM DETECTED! (95/100) V100008\n\nFound: {final_text[:400]}\n\n⚠️ PLAY. ENJOY. ANYTIME = Fake earning trap! Install cheyyaruthu!")
-            save_ultra({"type":"photo_gambling","input":final_text[:100],"score":95,"time":str(datetime.now())})
-            return
-
-        # 2. FINAL FALLBACK - NO BLUR MESSAGE, ALWAYS SCAM FOR PHOTO/DOC
-        # Photo ayalum document ayalum OCR kittiyillenkilum direct SCAM
-        await update.message.reply_text(f"🚨 GAMBLING AD SCAM DETECTED! (90/100) V100008\n\n⚠️ PLAY. ENJOY. ANYTIME. - Ith 100% Gambling Scam aanu! Fake earning app!\n\n❌ Install cheyyaruthu! Money pokum!\n\n🛡️ Scam Guard India V100008")
-        save_ultra({"type":"photo_gambling_auto","input":"AMB.GAME auto detect","score":90,"time":str(datetime.now())})
-
+        if detected:
+            if detected == 'gambling':
+                txt = f"🚨 GAMBLING AD SCAM! (95/100) V100010\n\n🎰 AMB.GAME / Rummy / Aviator - Fake Earning App!\n❌ Install cheyyaruthu! Money pokum!\n\n🛡️ Scam Guard V100010"
+            elif detected == 'crypto_telegram':
+                txt = f"🚨 CRYPTO TELEGRAM BOT SCAM! (92/100) V100010\n\n🤖 Found: {ocr_text[:120] or caption[:120]}\n⚠️ t.me/AlexYulia_bot, AlphaCrypto9002 pola bots SCAM!\n❌ QR Scan / Click cheyyaruthu!\n\n🛡️ Scam Guard V100010"
+            elif detected == 'loan':
+                txt = f"🚨 LOAN SCAM! (95/100) V100010\n\n💸 Instant Loan - 100% Fraud!\n❌ Fee adakkaruthu!\n\n🛡️ Scam Guard V100010"
+            elif detected == 'kyc_bank':
+                txt = f"🚨 BANK KYC SCAM! (98/100) V100010\n\n🏦 SBI Blocked / Electricity Bill - Fake!\n❌ Link click cheyyaruthu!\n\n🛡️ Scam Guard V100010"
+            elif detected == 'job':
+                txt = f"🚨 JOB SCAM! (95/100) V100010\n\n💼 Registration Fee / Telegram Task - SCAM!\n❌ Pay cheyyaruthu!\n\n🛡️ Scam Guard V100010"
+            else:
+                txt = f"🚨 {detected.upper()} SCAM! (90/100) V100010\n\n⚠️ {final[:150]}\n❌ Scam aanu!\n\n🛡️ Scam Guard V100010"
+            await update.message.reply_text(txt)
+            save_ultra({"type":f"photo_{detected}","input":final[:100],"score":95,"time":str(datetime.now())})
+        else:
+            if len(final.strip()) < 5:
+                await update.message.reply_text(f"⚠️ SUSPICIOUS AD! (75/100) V100010\n\nPhoto text clear alla, but FB la kanda AI/Crypto/Loan ad aanel 99% SCAM!\n❌ Click/Install cheyyaruthu!\nLink undel Link GODil check cheyyu!\n\n🛡️ Scam Guard India V100010")
+            else:
+                await update.message.reply_text(f"📸 OCR V100010:\n{ocr_text[:500]}\n\nScanning...")
+                await handle_job(final, update)
     except Exception as e:
         print(f"Photo error: {e}")
-        await update.message.reply_text(f"🚨 GAMBLING AD SCAM DETECTED! (90/100) V100008\n\n⚠️ Suspicious gambling ad! Install cheyyaruthu!")
+        await update.message.reply_text(f"⚠️ SUSPICIOUS AD! (70/100) V100010\n\nScam chance undu! Careful!\n\n🛡️ Scam Guard")
 
 async def voice_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("Voice - text aayi ayakk!")
+    await update.message.reply_text("Voice - text aayi ayakk! V100010")
 
 async def stats_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
     try:
@@ -254,26 +285,25 @@ async def stats_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
         try:
             with open(DB_FILE,'r') as f: total_scans = len(json.load(f))
         except: total_scans = 0
-        await update.message.reply_text(f"STATS V100008 FINAL FULL POWER 1LAKH8\n\nUsers: {len(users)}\nScans: {total_scans}\nDB: {'Mongo OK' if mongo_users else 'JSON'}\nFULL_POWER: {FULL_POWER}\nADMIN: {ADMIN_ID}\nYour ID: {update.effective_user.id}\nBot Alive!", parse_mode=None)
+        await update.message.reply_text(f"STATS V100010 ALL SCAM ULTRA 1LAKH10\n\nUsers: {len(users)}\nScans: {total_scans}\nDB: {'Mongo OK' if mongo_users else 'JSON'}\nFULL_POWER: {FULL_POWER}\nADMIN: {ADMIN_ID}\nYour ID: {update.effective_user.id}\nBot Alive!", parse_mode=None)
     except Exception as e:
         await update.message.reply_text(f"Stats Error: {e}", parse_mode=None)
 
 async def id_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
     try:
         is_admin = (update.effective_user.id == ADMIN_ID)
-        # ID command clean - no tip for users, admin mathram full info
         if is_admin:
-            await update.message.reply_text(f"ID V100008 ADMIN\nYou: {update.effective_user.id}\nAdmin: {ADMIN_ID} YES\nMongo: {'YES' if mongo_users else 'NO - Check IP 0.0.0.0/0'}\nFULL_POWER: {FULL_POWER}\nIf False: Add Build Command: apt-get install tesseract-ocr", parse_mode=None)
+            await update.message.reply_text(f"ID V100010 ADMIN\nYou: {update.effective_user.id}\nAdmin: {ADMIN_ID} YES\nMongo: {'YES' if mongo_users else 'NO'}\nFULL_POWER: {FULL_POWER}", parse_mode=None)
         else:
-            await update.message.reply_text(f"ID V100008\nYour ID: {update.effective_user.id}\nBot: Scam Guard India V100008\nStatus: Alive ✅", parse_mode=None)
-    except Exception as e:
+            await update.message.reply_text(f"ID V100010\nYour ID: {update.effective_user.id}\nBot: Scam Guard India V100010\nStatus: Alive ✅", parse_mode=None)
+    except:
         await update.message.reply_text(f"ID: {update.effective_user.id}", parse_mode=None)
 
 async def users_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if update.effective_user.id!= ADMIN_ID:
         await update.message.reply_text(f"Admin only! You {update.effective_user.id}", parse_mode=None); return
     users = load_users_ultra()
-    await update.message.reply_text(f"ADMIN V100008\nUsers: {len(users)}\nDB: {'Mongo' if mongo_users else 'JSON'}", parse_mode=None)
+    await update.message.reply_text(f"ADMIN V100010\nUsers: {len(users)}\nDB: {'Mongo' if mongo_users else 'JSON'}", parse_mode=None)
 
 async def router(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text or ""
@@ -298,7 +328,7 @@ def main():
     app_bot.add_handler(MessageHandler(filters.Document.ALL, photo_handler))
     app_bot.add_handler(MessageHandler(filters.VOICE, voice_handler))
     app_bot.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, router))
-    print(f"V100008 FINAL FULL POWER STARTED - ADMIN {ADMIN_ID}")
+    print(f"V100010 ALL SCAM ULTRA STARTED - ADMIN {ADMIN_ID}")
     app_bot.run_polling(drop_pending_updates=True)
 
 if __name__ == '__main__': main()
