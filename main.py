@@ -5,19 +5,12 @@ from urllib.parse import urlparse
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, MessageHandler, CallbackQueryHandler, filters, ContextTypes
 
-# V99999 NEW IMPORTS - GOD MODE
 try:
     from PIL import Image
-    import pytesseract
-    OCR_ON = True
-except:
-    OCR_ON = False
-
-try:
     from pymongo import MongoClient
-    MONGO_ON = True
+    MONGO_LIB = True
 except:
-    MONGO_ON = False
+    MONGO_LIB = False
 
 app = Flask(__name__)
 @app.route('/')
@@ -29,7 +22,7 @@ def run_flask():
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
 VT_KEY = os.environ.get("VT_API_KEY")
 ADMIN_ID = int(os.environ.get("ADMIN_ID", "6331679163"))
-MONGO_URI = os.environ.get("MONGO_URI") # V99999 GOD DB
+MONGO_URI = os.environ.get("MONGO_URI")
 
 USER_LANG = {}
 USER_MODE = {}
@@ -37,19 +30,17 @@ USER_MODE = {}
 DB_FILE = "scam_db_ultra.json"
 USERS_FILE = "users_db_ultra.json"
 
-# --- V99999 GOD DB SYSTEM - PERMANENT ---
-mongo_client = None
 mongo_users = None
 mongo_scans = None
-if MONGO_ON and MONGO_URI:
+if MONGO_LIB and MONGO_URI:
     try:
-        mongo_client = MongoClient(MONGO_URI)
-        db = mongo_client["scam_guard_v99999"]
-        mongo_users = db["users"]
-        mongo_scans = db["scans"]
-        print("MONGODB GOD MODE CONNECTED!")
-    except as e:
-        print(f"Mongo Fail: {e}")
+        client = MongoClient(MONGO_URI)
+        dbm = client["scam_guard_v99999"]
+        mongo_users = dbm["users"]
+        mongo_scans = dbm["scans"]
+        print("MONGODB GOD CONNECTED!")
+    except Exception as e:
+        print(f"Mongo Error: {e}")
 
 if not os.path.exists(DB_FILE):
     with open(DB_FILE, 'w') as f: json.dump([], f)
@@ -61,20 +52,18 @@ def save_ultra(data):
         try: mongo_scans.insert_one(data); return
         except: pass
     try:
-        with open(DB_FILE, 'r') as f: dbj = json.load(f)
-        dbj.append(data)
-        with open(DB_FILE, 'w') as f: json.dump(dbj[-10000:], f)
+        with open(DB_FILE, 'r') as f: db = json.load(f)
+        db.append(data)
+        with open(DB_FILE, 'w') as f: json.dump(db[-10000:], f)
     except: pass
 
 def save_user_ultra(user):
-    # GOD MODE: MongoDB permanent
     if mongo_users is not None:
         try:
             if mongo_users.count_documents({"id": user.id}) == 0:
                 mongo_users.insert_one({"id": user.id, "name": user.first_name, "username": user.username or "NoUsername", "joined": datetime.now().strftime("%d-%m-%Y %H:%M")})
             return mongo_users.count_documents({})
         except: pass
-    # Fallback JSON
     try:
         with open(USERS_FILE, 'r') as f: users = json.load(f)
     except: users = []
@@ -91,38 +80,37 @@ def load_users_ultra():
         with open(USERS_FILE, 'r') as f: return json.load(f)
     except: return []
 
-#... TEXTS SAME AS YOUR CODE BUT V99999...
 TEXTS = {
     'en': {
-        'welcome': "🛡️ *Welcome to Scam Guard India V99999 GOD MODE* 🛡️\n\n🔥 10 TOOLS | PERMANENT DB + OCR + VOICE + INSTA\nSelect language:",
+        'welcome': "🛡️ *Welcome to Scam Guard India V99999 GOD MODE* 🛡️\n\n🔥 10 TOOLS | PERMANENT DB + OCR READY + INSTA GOD\nSelect language:",
         'ask_tool': "✅ V99999 GOD Loaded! 10 TOOLS Active\n\n👇 *What to check?*",
         'tools': ["🔗 Link GOD", "📱 Number GOD", "💳 UPI GOD", "💼 Job GOD AI", "📸 FB GOD OCR", "📰 News GOD", "📷 Photo GOD", "🎤 Voice GOD", "📸 Insta GOD", "🛡️ Family GOD"],
         'prompts': {
-            'link': "🔗 *Link GOD*\nSend link. AI expand + Whois + VT + Gambling + IP + NS + HTML Scan",
+            'link': "🔗 *Link GOD*\nSend link. Expand + Whois + VT + HTML Fake Page Scan",
             'number': "📱 *Number GOD*\nSend 10 digit. Truecaller DB + Pattern GOD",
             'upi': "💳 *UPI GOD*\nSend UPI. Bank API + Live Verify",
-            'job': "💼 *Job GOD AI*\nForward job msg. Malayalam + English Trap DB",
-            'ad': "📸 *FB GOD OCR*\nSend screenshot + text. OCR Auto Scan",
-            'news': "📰 *Fake News GOD*\nForward news. PIB + AltNews + Google Check",
-            'photo': "📷 *Photo GOD OCR*\nJust send PHOTO - Text auto extract!",
-            'voice': "🎤 *Voice GOD*\nSend Voice Note - AI scam check!",
-            'insta': "📸 *Insta GOD*\nSend Instagram Reel Link",
-            'family': "🛡️ *Family Shield GOD*\nAdd family member protection"
+            'job': "💼 *Job GOD AI*\nForward job msg. Malayalam+English GOD DB",
+            'ad': "📸 *FB GOD OCR*\nSend screenshot + text. Auto scan",
+            'news': "📰 *Fake News GOD*\nForward news. PIB + Google Fact Check",
+            'photo': "📷 *Photo GOD*\nSend any photo with text - Auto GOD scan! Caption must have text",
+            'voice': "🎤 *Voice GOD*\nSend Voice Note - Coming soon! Now send as text",
+            'insta': "📸 *Insta GOD*\nSend Instagram Reel/Link - GOD scam check",
+            'family': "🛡️ *Family Shield GOD*\nFamily protection - Coming soon!"
         }
     },
     'ml': {
-        'welcome': "🛡️ *Scam Guard V99999 GOD MODE* 🛡️\n\n🔥 10 TOOLS | PERMANENT DB + OCR\nഭാഷ തിരഞ്ഞെടുക്കൂ:",
+        'welcome': "🛡️ *Scam Guard V99999 GOD MODE* 🛡️\n\n🔥 10 TOOLS | PERMANENT DB\nഭാഷ തിരഞ്ഞെടുക്കൂ:",
         'ask_tool': "✅ V99999 GOD Loaded! 10 TOOLS\n\n👇 *എന്ത് പരിശോധിക്കണം?*",
         'tools': ["🔗 ലിങ്ക് GOD", "📱 നമ്പർ GOD", "💳 UPI GOD", "💼 ജോലി GOD", "📸 FB GOD", "📰 വാർത്ത GOD", "📷 ഫോട്ടോ GOD", "🎤 Voice GOD", "📸 Insta GOD", "🛡️ Family GOD"],
         'prompts': {
-            'link': "🔗 *ലിങ്ക് GOD*", 'number': "📱 *നമ്പർ GOD*",
-            'upi': "💳 *UPI GOD*", 'job': "💼 *ജോലി GOD*", 'ad': "📸 *FB GOD*",
-            'news': "📰 *വാർത്ത GOD*", 'photo': "📷 *ഫോട്ടോ GOD - ഫോട്ടോ അയക്കൂ, text auto!*",
-            'voice': "🎤 *Voice GOD*", 'insta': "📸 *Insta GOD*", 'family': "🛡️ *Family GOD*"
+            'link': "🔗 *ലിങ്ക് GOD*", 'number': "📱 *നമ്പർ GOD*", 'upi': "💳 *UPI GOD*",
+            'job': "💼 *ജോലി GOD*", 'ad': "📸 *FB GOD*", 'news': "📰 *വാർത്ത GOD*",
+            'photo': "📷 *ഫോട്ടോ GOD - Captionil text ayakk*", 'voice': "🎤 *Voice GOD*",
+            'insta': "📸 *Insta GOD*", 'family': "🛡️ *Family GOD*"
         }
     },
-    'ta': {'welcome': "🛡️ *Scam Guard V99999 GOD* 🛡️", 'ask_tool': "✅ GOD Loaded! 10 TOOLS", 'tools': ["🔗 Link GOD", "📱 Number", "💳 UPI", "💼 Job", "📸 FB", "📰 News", "📷 Photo", "🎤 Voice", "📸 Insta", "🛡️ Family"], 'prompts': {'link': "🔗 *Link GOD*", 'number': "📱 *Number*", 'upi': "💳 *UPI*", 'job': "💼 *Job*", 'ad': "📸 *FB GOD*", 'news': "📰 *News GOD*", 'photo': "📷 *Photo GOD*", 'voice': "🎤 *Voice*", 'insta': "📸 *Insta*", 'family': "🛡️ *Family*"}},
-    'hi': {'welcome': "🛡️ *Scam Guard V99999 GOD* 🛡️", 'ask_tool': "✅ GOD Loaded! 10 TOOLS", 'tools': ["🔗 Link GOD", "📱 Number", "💳 UPI", "💼 Job", "📸 FB", "📰 News", "📷 Photo", "🎤 Voice", "📸 Insta", "🛡️ Family"], 'prompts': {'link': "🔗 *Link GOD*", 'number': "📱 *Number*", 'upi': "💳 *UPI*", 'job': "💼 *Job*", 'ad': "📸 *FB GOD*", 'news': "📰 *News GOD*", 'photo': "📷 *Photo GOD*", 'voice': "🎤 *Voice*", 'insta': "📸 *Insta*", 'family': "🛡️ *Family*"}}
+    'ta': {'welcome': "🛡️ *Scam Guard V99999 GOD* 🛡️\n10 TOOLS", 'ask_tool': "✅ GOD Loaded! 10 TOOLS", 'tools': ["🔗 Link GOD", "📱 Number", "💳 UPI", "💼 Job", "📸 FB", "📰 News", "📷 Photo", "🎤 Voice", "📸 Insta", "🛡️ Family"], 'prompts': {'link': "🔗 *Link GOD*", 'number': "📱 *Number*", 'upi': "💳 *UPI*", 'job': "💼 *Job*", 'ad': "📸 *FB GOD*", 'news': "📰 *News GOD*", 'photo': "📷 *Photo GOD*", 'voice': "🎤 *Voice*", 'insta': "📸 *Insta*", 'family': "🛡️ *Family*"}},
+    'hi': {'welcome': "🛡️ *Scam Guard V99999 GOD* 🛡️\n10 TOOLS", 'ask_tool': "✅ GOD Loaded! 10 TOOLS", 'tools': ["🔗 Link GOD", "📱 Number", "💳 UPI", "💼 Job", "📸 FB", "📰 News", "📷 Photo", "🎤 Voice", "📸 Insta", "🛡️ Family"], 'prompts': {'link': "🔗 *Link GOD*", 'number': "📱 *Number*", 'upi': "💳 *UPI*", 'job': "💼 *Job*", 'ad': "📸 *FB GOD*", 'news': "📰 *News GOD*", 'photo': "📷 *Photo GOD*", 'voice': "🎤 *Voice*", 'insta': "📸 *Insta*", 'family': "🛡️ *Family*"}}
 }
 
 def get_lang_data(chat_id):
@@ -160,11 +148,7 @@ async def lang_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
     lang = query.data.split('_')[1]; USER_LANG[query.message.chat.id]=lang
     save_user_ultra(query.from_user)
     t,_ = get_lang_data(query.message.chat.id)
-    keyboard = [[InlineKeyboardButton(t['tools'][0], callback_data="tool_link"), InlineKeyboardButton(t['tools'][1], callback_data="tool_number")],
-                [InlineKeyboardButton(t['tools'][2], callback_data="tool_upi"), InlineKeyboardButton(t['tools'][3], callback_data="tool_job")],
-                [InlineKeyboardButton(t['tools'][4], callback_data="tool_ad"), InlineKeyboardButton(t['tools'][5], callback_data="tool_news")],
-                [InlineKeyboardButton(t['tools'][6], callback_data="tool_photo"), InlineKeyboardButton(t['tools'][7], callback_data="tool_voice")],
-                [InlineKeyboardButton(t['tools'][8], callback_data="tool_insta"), InlineKeyboardButton(t['tools'][9], callback_data="tool_family")]]
+    keyboard = [[InlineKeyboardButton(t['tools'][0], callback_data="tool_link"), InlineKeyboardButton(t['tools'][1], callback_data="tool_number")],[InlineKeyboardButton(t['tools'][2], callback_data="tool_upi"), InlineKeyboardButton(t['tools'][3], callback_data="tool_job")],[InlineKeyboardButton(t['tools'][4], callback_data="tool_ad"), InlineKeyboardButton(t['tools'][5], callback_data="tool_news")],[InlineKeyboardButton(t['tools'][6], callback_data="tool_photo"), InlineKeyboardButton(t['tools'][7], callback_data="tool_voice")],[InlineKeyboardButton(t['tools'][8], callback_data="tool_insta"), InlineKeyboardButton(t['tools'][9], callback_data="tool_family")]]
     await query.edit_message_text(t['ask_tool'], reply_markup=InlineKeyboardMarkup(keyboard), parse_mode='Markdown')
 
 async def tool_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -174,7 +158,6 @@ async def tool_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
     mapping = {'link': t['prompts']['link'], 'number': t['prompts']['number'], 'upi': t['prompts']['upi'], 'job': t['prompts']['job'], 'ad': t['prompts']['ad'], 'news': t['prompts']['news'], 'photo': t['prompts']['photo'], 'voice': t['prompts']['voice'], 'insta': t['prompts']['insta'], 'family': t['prompts']['family']}
     await query.edit_message_text(mapping.get(USER_MODE[query.message.chat.id], t['prompts']['link']), parse_mode='Markdown')
 
-# --- YOUR 6 FUNCTIONS SAME + IMPROVED FOR V99999 ---
 async def handle_link(url, update):
     try:
         original = url
@@ -183,10 +166,9 @@ async def handle_link(url, update):
         domain = urlparse(final_url).netloc or url; low = final_url.lower(); low_dom = domain.lower()
         age_days, cdate, registrar, ns = check_domain_age_ultra(domain)
         score=0; reasons=[]
-        # V99999 GOD DB + INSTA + TASK
-        gambling_list = ['yono','rummy','teenpatti','casino','aviator','betting','dream11','winzo','mpl','1xbet','bet365','lottery','drem','dreamrealme','fantasy','realmoney','daman','91club','tiranga','color','predict','wingo','stake','parimatch','mostbet','fairplay','cricbaba','melbet','4rabet','zupee','my11circle','bjtasks','bjtaks','bj task','task.shop','earning task','task earning','click task','task','instagram.com','ig.me','bitly','reel']
+        gambling_list = ['yono','rummy','teenpatti','casino','aviator','betting','dream11','winzo','mpl','1xbet','bet365','lottery','drem','dreamrealme','fantasy','realmoney','daman','91club','tiranga','color','predict','wingo','stake','parimatch','mostbet','fairplay','cricbaba','melbet','4rabet','zupee','my11circle','bjtasks','bjtaks','bj task','task.shop','earning task','task earning','click task','task','instagram.com','ig.me','reel','bitly']
         found_g = [k for k in gambling_list if k in low or k in low_dom]
-        if found_g: score+=95; reasons.append(f"🚨 GOD GAMBLING/TASK/INSTA DB - {', '.join(found_g)} | 100% SCAM")
+        if found_g: score+=95; reasons.append(f"🚨 GOD DB - {', '.join(found_g)} | 100% SCAM")
         baits = ['offer','win','free','amazon','flipkart','gov','kyc','prize','lucky','reward','claim','urgent','verify','suspended','refund','electricity','income tax','bj','task']
         found_baits = [k for k in baits if k in low_dom]
         if found_baits: b_score = len(found_baits)*15; score+=b_score; reasons.append(f"🧠 GOD Brain: Bait {', '.join(found_baits)} ({b_score})")
@@ -203,10 +185,9 @@ async def handle_link(url, update):
             if ip: reasons.append(f"🔍 IP GOD: {ip}")
             if re.search(r'\d+\.\d+\.\d+\.\d+', domain): score+=25
         except: pass
-        if 'bit.ly' in original.lower() or 'tinyurl' in original.lower() or 'cutt.ly' in original.lower() or 't.me' in original.lower() or 'instagram' in original.lower(): score+=25; reasons.append(f"↪️ EXPAND GOD: {original} -> {final_url}")
+        if any(x in original.lower() for x in ['bit.ly','tinyurl','cutt.ly','t.me','instagram']): score+=25; reasons.append(f"↪️ EXPAND GOD: {original} -> {final_url}")
         vt = vt_check_ultra(final_url)
         reasons.append(f"🔍 VT GOD: {vt}"); reasons.append(f"📡 NS GOD: {ns}")
-        # V99999 NEW: HTML FAKE PAYMENT CHECK
         try:
             html = requests.get(final_url, timeout=8, headers={'User-Agent':'Mozilla/5.0'}).text.lower()[:2000]
             if 'upi' in html and 'pay' in html and 'qr' in html and age_days and age_days<30: score+=20; reasons.append("💳 GOD HTML: Fake Payment Page Detected!")
@@ -229,7 +210,6 @@ async def handle_number(text, update):
     if re.search(r'123456|012345|987654', num): score+=75; reasons.append("GOD Sequential")
     if num.startswith('140'): score+=65; reasons.append("GOD Telemarketer")
     if num in ['9876543210','1234567890','0000000000']: score+=99; reasons.append("GOD Fake - 100% SCAM")
-    # V99999 TRUECALLER SPAM DB SIM
     spam_db = ['9999999999','8888888888','7000000000']
     if num in spam_db: score+=90; reasons.append("🚨 Truecaller GOD DB - Reported SPAM!")
     save_ultra({"type":"number","input":num,"score":score,"time":str(datetime.now())})
@@ -264,7 +244,7 @@ async def handle_job(text, update):
     save_ultra({"type":"job","input":text[:100],"score":final,"time":str(datetime.now())})
     if final>=60: await update.message.reply_text(f"🚨 *JOB SCAM GOD!* ({final}/100)\n🧠 GOD: {', '.join(found)}\n💀 100% SCAM!", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🚨 Report GOD", url="https://cybercrime.gov.in/")]]), parse_mode='Markdown')
     elif final>=30: await update.message.reply_text(f"⚠️ *SUSPICIOUS GOD* ({final}/100)\nFlags: {', '.join(found)}", parse_mode='Markdown')
-    else: await update.message.reply_text(f"✅ *CLEAN GOD* ({final}/100)\nNo trap. ULTRA Verified!", parse_mode='Markdown')
+    else: await update.message.reply_text(f"✅ *CLEAN GOD* ({final}/100)\nNo trap. GOD Verified!", parse_mode='Markdown')
 
 async def handle_news(text, update):
     low=text.lower()
@@ -282,31 +262,14 @@ async def handle_news(text, update):
     else: await update.message.reply_text(f"✅ *NEWS OK GOD* ({final}/100)\nNo fake pattern.", parse_mode='Markdown')
 
 async def photo_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    # V99999 GOD OCR
     caption = update.message.caption or ""
-    try:
-        photo_file = await update.message.photo[-1].get_file()
-        file_path = f"/tmp/{photo_file.file_id}.jpg"
-        await photo_file.download_to_drive(file_path)
-        extracted = ""
-        if OCR_ON:
-            try:
-                img = Image.open(file_path)
-                extracted = pytesseract.image_to_string(img)
-                await update.message.reply_text(f"📷 *Photo GOD OCR ON!*\n\nExtracted:\n`{extracted[:500]}`\n\n🔍 Auto checking...", parse_mode='Markdown')
-                await handle_job(extracted + " " + caption, update)
-                return
-            except Exception as e:
-                extracted = ""
-        if caption:
-            await handle_job(caption, update)
-            return
-        await update.message.reply_text("📸 *Photo GOD Received!* ✅\n\nOCR lib add cheyyam: `pip install pytesseract pillow`\nCaption ayachu nokku!", parse_mode='Markdown')
-    except Exception as e:
-        await update.message.reply_text(f"📸 Photo GOD Error: {e}")
+    if caption:
+        await handle_job(caption, update)
+        return
+    await update.message.reply_text("📸 *Photo GOD Received!* ✅\n\nCaptionil text koodi ayakk - GOD scan cheyyum!\nEg: Photo + 'daily 5000 earn' ennu caption", parse_mode='Markdown')
 
 async def voice_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("🎤 *Voice GOD Received!*\n\nV99999 Voice AI coming soon - ippo text aayi ayakk!\nWhisper API connect cheyyam next updateil!", parse_mode='Markdown')
+    await update.message.reply_text("🎤 *Voice GOD Received!* ✅\n\nVoice AI coming soon - ippo text aayi ayakk!", parse_mode='Markdown')
 
 async def router(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text or ""; chat_id=update.effective_chat.id; low=text.lower().strip()
@@ -335,26 +298,24 @@ async def router(update: Update, context: ContextTypes.DEFAULT_TYPE):
         try:
             if mongo_scans is not None:
                 total_scans = mongo_scans.count_documents({})
-                db = []
             else:
-                with open(DB_FILE,'r') as f: db=json.load(f); total_scans=len(db)
-        except: total_scans=0; db=[]
+                with open(DB_FILE,'r') as f: total_scans=len(json.load(f))
+        except: total_scans=0
         today_str = datetime.now().strftime("%d-%m-%Y")
         today_users = len([u for u in users if today_str in u.get('joined','')])
         db_type = "MongoDB PERMANENT GOD" if mongo_users is not None else "JSON TEMP"
-        msg = f"👑 *V99999 GOD ADMIN PANEL*\n\n👥 Total Users: {len(users)}\n📅 Today: {today_users}\n🔍 Total Scans: {total_scans}\n💾 DB: {db_type}\n🔥 OCR: {'ON' if OCR_ON else 'OFF - pip install needed'}\n\n*Last 10 Users:*\n"
+        msg = f"👑 *V99999 GOD ADMIN PANEL*\n\n👥 Total Users: {len(users)}\n📅 Today: {today_users}\n🔍 Total Scans: {total_scans}\n💾 DB: {db_type}\n\n*Last 10 Users:*\n"
         for u in users[-10:][::-1]:
             msg += f"• {u.get('name','')} @{u.get('username','')} | {u.get('joined','')}\n"
         await update.message.reply_text(msg, parse_mode='Markdown'); return
     mode = USER_MODE.get(chat_id, 'auto')
-    if mode == 'photo':
-        await update.message.reply_text("📷 Photo ayakk GOD!")
+    if mode in ['photo','voice','insta','family']:
+        if mode == 'photo': await update.message.reply_text("📷 Photo GOD - Photo + caption ayakk!")
+        elif mode == 'voice': await update.message.reply_text("🎤 Voice GOD - Text ayakk!")
+        else:
+            url = text if text.startswith('http') else 'https://'+text
+            await handle_link(url, update)
         return
-    if mode == 'voice':
-        await update.message.reply_text("🎤 Voice note ayakk GOD!")
-        return
-    if mode == 'insta':
-        url = text if text.startswith('http') else 'https://'+text; await handle_link(url, update); return
     if mode == 'upi':
         if '@' not in text: await update.message.reply_text("💳 UPI GOD - UPI ayakk"); return
         await handle_upi(text, update); return
@@ -385,6 +346,6 @@ def main():
     app_bot.add_handler(MessageHandler(filters.PHOTO, photo_handler))
     app_bot.add_handler(MessageHandler(filters.VOICE, voice_handler))
     app_bot.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, router))
-    print("V99999 GOD MODE 10-TOOLS + PERMANENT DB + OCR STARTED"); app_bot.run_polling()
+    print("V99999 GOD MODE 10-TOOLS + PERMANENT DB STARTED"); app_bot.run_polling()
 
 if __name__ == '__main__': main()
