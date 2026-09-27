@@ -5,9 +5,9 @@ from urllib.parse import urlparse
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, MessageHandler, CallbackQueryHandler, filters, ContextTypes
 
-# FULL POWER LIBS - V100002 GOD
+# FULL POWER LIBS - V100003 GOD FIXED
 try:
-    from PIL import Image
+    from PIL import Image, ImageOps, ImageEnhance
     import pytesseract
     from bs4 import BeautifulSoup
     from pymongo import MongoClient
@@ -15,35 +15,40 @@ try:
 except Exception as e:
     print(f"Lib missing: {e} - fallback mode")
     FULL_POWER = False
-    from PIL import Image
+    from PIL import Image, ImageOps, ImageEnhance
     from pymongo import MongoClient
 
 app = Flask(__name__)
 @app.route('/')
-def home(): return "Scam Guard India V100002 GOD - Stats Public + OCR Fixed"
+def home(): return "Scam Guard India V100003 GOD - STATS PUBLIC FIXED + OCR ULTRA"
 def run_flask():
     port = int(os.environ.get("PORT", 10000))
     app.run(host='0.0.0.0', port=port)
 
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
 VT_KEY = os.environ.get("VT_API_KEY")
-ADMIN_ID = int(os.environ.get("ADMIN_ID", "6331679163"))
-MONGO_URI = os.environ.get("MONGO_URI")
+# FIX 1: Safe ADMIN_ID + both MONGO names
+try:
+    ADMIN_ID = int(str(os.environ.get("ADMIN_ID", "6331679163")).strip())
+except:
+    ADMIN_ID = 6331679163
+
+MONGO_URI = os.environ.get("MONGO_URI") or os.environ.get("MONGODB_URI") or os.environ.get("MONGO_URL")
 
 USER_LANG = {}
 USER_MODE = {}
-DB_FILE = "scam_db_v100002.json"
-USERS_FILE = "users_db_v100002.json"
+DB_FILE = "scam_db_v100003.json"
+USERS_FILE = "users_db_v100003.json"
 
 mongo_users = None
 mongo_scans = None
 if MONGO_URI:
     try:
         client = MongoClient(MONGO_URI)
-        dbm = client["scam_guard_v100002"]
+        dbm = client["scam_guard_v100003"]
         mongo_users = dbm["users"]
         mongo_scans = dbm["scans"]
-        print("MONGODB V100002 PERMANENT CONNECTED!")
+        print("MONGODB V100003 CONNECTED!")
     except Exception as e:
         print(f"Mongo Error: {e}")
 
@@ -87,28 +92,28 @@ def load_users_ultra():
 
 TEXTS = {
     'en': {
-        'welcome': "🛡️ *Welcome to Scam Guard India V100002 GOD* 🛡️\n\n🔥 10 TOOLS | 4 LANGUAGES | AGE REAL | OCR GOD\nSelect language:",
-        'ask_tool': "✅ *V100002 GOD Loaded! 10 TOOLS Active*\n\n👇 *What to check?*",
+        'welcome': "🛡️ *Welcome to Scam Guard India V100003 GOD* 🛡️\n\n🔥 10 TOOLS | 4 LANGUAGES | AGE REAL | OCR ULTRA\nSelect language:",
+        'ask_tool': "✅ *V100003 GOD Loaded! 10 TOOLS Active*\n\n👇 *What to check?*",
         'tools': ["🔗 Link GOD", "📱 Number GOD", "💳 UPI GOD", "💼 Job GOD AI", "📸 FB GOD OCR", "📰 News GOD", "📷 Photo GOD", "🎤 Voice GOD", "📸 Insta GOD", "🛡️ Family GOD"],
-        'prompts': {'link': "🔗 *Link GOD V100002*\nSend link - Age + Expand + VT + HTML Scan", 'number': "📱 *Number GOD V100002*\nSend 10 digit", 'upi': "💳 *UPI GOD V100002*\nSend UPI ID", 'job': "💼 *Job GOD AI V100002*\nForward job message", 'ad': "📸 *FB GOD OCR V100002*\nSend screenshot photo - Real OCR", 'news': "📰 *News GOD V100002*\nForward news", 'photo': "📷 *Photo GOD V100002*\nSend photo - Real OCR text", 'voice': "🎤 *Voice GOD V100002*\nSend voice as text", 'insta': "📸 *Insta GOD V100002*\nSend Insta Reel link", 'family': "🛡️ *Family Shield V100002*\nFamily protection tips"}
+        'prompts': {'link': "🔗 *Link GOD V100003*\nSend link - Age + Expand + VT + HTML Scan", 'number': "📱 *Number GOD V100003*\nSend 10 digit", 'upi': "💳 *UPI GOD V100003*\nSend UPI ID", 'job': "💼 *Job GOD AI V100003*\nForward job message", 'ad': "📸 *FB GOD OCR V100003*\nSend screenshot photo - Real OCR", 'news': "📰 *News GOD V100003*\nForward news", 'photo': "📷 *Photo GOD V100003*\nSend photo - Real OCR text", 'voice': "🎤 *Voice GOD V100003*\nSend voice as text", 'insta': "📸 *Insta GOD V100003*\nSend Insta Reel link", 'family': "🛡️ *Family Shield V100003*\nFamily protection tips"}
     },
     'ml': {
-        'welcome': "🛡️ *Scam Guard V100002 GOD* 🛡️\n\n🔥 10 TOOLS | 4 ഭാഷ | AGE REAL | OCR GOD\nഭാഷ തിരഞ്ഞെടുക്കൂ:",
-        'ask_tool': "✅ *V100002 GOD Loaded! 10 TOOLS*\n\n👇 *എന്ത് പരിശോധിക്കണം?*",
+        'welcome': "🛡️ *Scam Guard V100003 GOD* 🛡️\n\n🔥 10 TOOLS | 4 ഭാഷ | AGE REAL | OCR ULTRA\nഭാഷ തിരഞ്ഞെടുക്കൂ:",
+        'ask_tool': "✅ *V100003 GOD Loaded! 10 TOOLS*\n\n👇 *എന്ത് പരിശോധിക്കണം?*",
         'tools': ["🔗 ലിങ്ക് GOD", "📱 നമ്പർ GOD", "💳 UPI GOD", "💼 ജോലി GOD", "📸 FB GOD", "📰 വാർത്ത GOD", "📷 ഫോട്ടോ GOD", "🎤 Voice GOD", "📸 Insta GOD", "🛡️ Family GOD"],
-        'prompts': {'link': "🔗 *ലിങ്ക് GOD V100002*\nLink ayakk - Age kanikkum", 'number': "📱 *നമ്പർ GOD V100002*", 'upi': "💳 *UPI GOD V100002*", 'job': "💼 *ജോലി GOD V100002*", 'ad': "📸 *FB GOD V100002*", 'news': "📰 *വാർത്ത GOD V100002*", 'photo': "📷 *ഫോട്ടോ GOD V100002* - Photo ayakk - OCR", 'voice': "🎤 *Voice GOD*", 'insta': "📸 *Insta GOD*", 'family': "🛡️ *Family GOD*"}
+        'prompts': {'link': "🔗 *ലിങ്ക് GOD V100003*\nLink ayakk - Age kanikkum", 'number': "📱 *നമ്പർ GOD V100003*", 'upi': "💳 *UPI GOD V100003*", 'job': "💼 *ജോലി GOD V100003*", 'ad': "📸 *FB GOD V100003*", 'news': "📰 *വാർത്ത GOD V100003*", 'photo': "📷 *ഫോട്ടോ GOD V100003* - Photo ayakk - OCR", 'voice': "🎤 *Voice GOD*", 'insta': "📸 *Insta GOD*", 'family': "🛡️ *Family GOD*"}
     },
     'ta': {
-        'welcome': "🛡️ *Scam Guard V100002 GOD* 🛡️\n\n🔥 10 TOOLS | 4 மொழிகள் | AGE REAL\nமொழியை தேர்ந்தெடுக்கவும்:",
-        'ask_tool': "✅ *V100002 GOD Loaded! 10 TOOLS*\n\n👇 *என்ன சரிபார்க்க வேண்டும்?*",
+        'welcome': "🛡️ *Scam Guard V100003 GOD* 🛡️\n\n🔥 10 TOOLS | 4 மொழிகள் | AGE REAL\nமொழியை தேர்ந்தெடுக்கவும்:",
+        'ask_tool': "✅ *V100003 GOD Loaded! 10 TOOLS*\n\n👇 *என்ன சரிபார்க்க வேண்டும்?*",
         'tools': ["🔗 லிங்க் GOD", "📱 நம்பர் GOD", "💳 UPI GOD", "💼 வேலை GOD", "📸 FB GOD", "📰 செய்தி GOD", "📷 போட்டோ GOD", "🎤 Voice GOD", "📸 Insta GOD", "🛡️ Family GOD"],
-        'prompts': {'link': "🔗 *லிங்க் GOD V100002*", 'number': "📱 *நம்பர் GOD*", 'upi': "💳 *UPI GOD*", 'job': "💼 *வேலை GOD*", 'ad': "📸 *FB GOD OCR*", 'news': "📰 *செய்தி GOD*", 'photo': "📷 *போட்டோ GOD*", 'voice': "🎤 *Voice GOD*", 'insta': "📸 *Insta GOD*", 'family': "🛡️ *Family GOD*"}
+        'prompts': {'link': "🔗 *லிங்க் GOD V100003*", 'number': "📱 *நம்பர் GOD*", 'upi': "💳 *UPI GOD*", 'job': "💼 *வேலை GOD*", 'ad': "📸 *FB GOD OCR*", 'news': "📰 *செய்தி GOD*", 'photo': "📷 *போட்டோ GOD*", 'voice': "🎤 *Voice GOD*", 'insta': "📸 *Insta GOD*", 'family': "🛡️ *Family GOD*"}
     },
     'hi': {
-        'welcome': "🛡️ *Scam Guard V100002 GOD* 🛡️\n\n🔥 10 TOOLS | 4 भाषाएँ | AGE REAL\nभाषा चुनें:",
-        'ask_tool': "✅ *V100002 GOD Loaded! 10 TOOLS*\n\n👇 *क्या जांचना है?*",
+        'welcome': "🛡️ *Scam Guard V100003 GOD* 🛡️\n\n🔥 10 TOOLS | 4 भाषाएँ | AGE REAL\nभाषा चुनें:",
+        'ask_tool': "✅ *V100003 GOD Loaded! 10 TOOLS*\n\n👇 *क्या जांचना है?*",
         'tools': ["🔗 लिंक GOD", "📱 नंबर GOD", "💳 UPI GOD", "💼 जॉब GOD", "📸 FB GOD", "📰 खबर GOD", "📷 फोटो GOD", "🎤 Voice GOD", "📸 Insta GOD", "🛡️ Family GOD"],
-        'prompts': {'link': "🔗 *लिंक GOD V100002*", 'number': "📱 *नंबर GOD*", 'upi': "💳 *UPI GOD*", 'job': "💼 *जॉब GOD*", 'ad': "📸 *FB GOD OCR*", 'news': "📰 *खबर GOD*", 'photo': "📷 *फोटो GOD*", 'voice': "🎤 *Voice GOD*", 'insta': "📸 *Insta GOD*", 'family': "🛡️ *Family GOD*"}
+        'prompts': {'link': "🔗 *लिंक GOD V100003*", 'number': "📱 *नंबर GOD*", 'upi': "💳 *UPI GOD*", 'job': "💼 *जॉब GOD*", 'ad': "📸 *FB GOD OCR*", 'news': "📰 *खबर GOD*", 'photo': "📷 *फोटो GOD*", 'voice': "🎤 *Voice GOD*", 'insta': "📸 *Insta GOD*", 'family': "🛡️ *Family GOD*"}
     }
 }
 
@@ -206,7 +211,7 @@ async def handle_link(url, update):
         TRUSTED_GOD = ['google.com','google.co.in','youtube.com','facebook.com','instagram.com','whatsapp.com','wikipedia.org','amazon.in','amazon.com','flipkart.com','github.com','telegram.org','apple.com','microsoft.com']
         if any(t in low_dom for t in TRUSTED_GOD):
             vt = vt_check_ultra(final_url)
-            await update.message.reply_text(f"🛡️ *LINK V100002 GOD*\n✅ GOD SAFE - TRUSTED (0/100)\n🌐 {domain}\n📅 Age GOD: {age_txt}\n✅ Whitelist - 100% Safe!\n🔍 VT GOD: {vt}\n📡 NS GOD: {ns}\n💾 PERMANENT DB", parse_mode='Markdown')
+            await update.message.reply_text(f"🛡️ *LINK V100003 GOD*\n✅ GOD SAFE - TRUSTED (0/100)\n🌐 {domain}\n📅 Age GOD: {age_txt}\n✅ Whitelist - 100% Safe!\n🔍 VT GOD: {vt}\n📡 NS GOD: {ns}\n💾 PERMANENT DB", parse_mode='Markdown')
             return
         score=0; reasons=[f"📅 Age GOD: {age_txt}"]
         gambling_list = ['yono','rummy','teenpatti','casino','aviator','betting','dream11','winzo','mpl','1xbet','bet365','lottery','daman','91club','tiranga','color','predict','wingo','bjtasks','bjtaks','task.shop','earning task','bitly','reel','instagram.com/','ig.me']
@@ -229,7 +234,7 @@ async def handle_link(url, update):
         status = "💀 GOD CONFIRMED SCAM" if final_score >= 85 else "🚨 GOD RISKY" if final_score >= 70 else "🚨 SCAM LIKELY" if final_score >= 50 else "⚠️ SUSPICIOUS" if final_score >= 25 else "✅ GOD SAFE"
         save_ultra({"type":"link","input":original,"final":final_url,"score":final_score,"time":str(datetime.now())})
         kb = InlineKeyboardMarkup([[InlineKeyboardButton("🚨 Report GOD", url="https://cybercrime.gov.in/")]]) if final_score>=25 else None
-        await update.message.reply_text(f"🛡️ *LINK V100002 GOD*\n{status} ({final_score}/100)\n🔗 {original}\n🎯 {final_url}\n🌐 {domain}\n\n"+"\n".join(reasons), reply_markup=kb, parse_mode='Markdown')
+        await update.message.reply_text(f"🛡️ *LINK V100003 GOD*\n{status} ({final_score}/100)\n🔗 {original}\n🎯 {final_url}\n🌐 {domain}\n\n"+"\n".join(reasons), reply_markup=kb, parse_mode='Markdown')
     except Exception as e: await update.message.reply_text(f"Link error GOD: {e}")
 
 async def handle_number(text, update):
@@ -243,7 +248,7 @@ async def handle_number(text, update):
     if num in ['9999999999','8888888888','7000000000','1234567890','9876543210']: score+=90; reasons.append("🚨 Spam DB GOD")
     save_ultra({"type":"number","input":num,"score":score,"time":str(datetime.now())})
     msg = f"🚨 SPAM GOD ({score}/100) {', '.join(reasons)}" if score>=60 else f"✅ Valid GOD ({score}/100)"
-    await update.message.reply_text(f"📱 *NUMBER V100002 GOD*\n+91 {num}\n{msg}", parse_mode='Markdown')
+    await update.message.reply_text(f"📱 *NUMBER V100003 GOD*\n+91 {num}\n{msg}", parse_mode='Markdown')
 
 async def handle_upi(text, update):
     upis = re.findall(r'[\w.\-]+@[\w]+', text.lower())
@@ -254,8 +259,8 @@ async def handle_upi(text, update):
         found = [k for k in ['refund','lucky','offer','prize','lottery','army','amazon','flipkart','reward','kyc','verify'] if k in upi]
         score = len(found)*40 + (30 if len(handle)<=3 else 0) + (25 if b not in banks else 0)
         save_ultra({"type":"upi","input":upi,"score":score,"time":str(datetime.now())})
-        if score>=30: await update.message.reply_text(f"🚨 *SCAM UPI V100002!* ({min(score,100)}/100)\n💳 `{upi}`\n🏦 {bank}\n🧠 {', '.join(found)}\n❌ Pay cheyyaruth!", parse_mode='Markdown')
-        else: await update.message.reply_text(f"✅ *UPI SAFE V100002*\n💳 `{upi}`\n🏦 {bank}\n📊 {score}/100", parse_mode='Markdown')
+        if score>=30: await update.message.reply_text(f"🚨 *SCAM UPI V100003!* ({min(score,100)}/100)\n💳 `{upi}`\n🏦 {bank}\n🧠 {', '.join(found)}\n❌ Pay cheyyaruth!", parse_mode='Markdown')
+        else: await update.message.reply_text(f"✅ *UPI SAFE V100003*\n💳 `{upi}`\n🏦 {bank}\n📊 {score}/100", parse_mode='Markdown')
 
 async def handle_job(text, update):
     low=text.lower(); traps = {'registration fee':50,'pay to join':60,'investment':45,'telegram task':60,'earn daily':45,'fee':30,'security deposit':60,'daily 3000':50,'daily 5000':55,'daily 8000':65,'work from home typing':45,'bj task':70,'bjtasks':70,'task shop':70,'veetilirunnu joli':60,'veetil irunnu':50,'dinasam 5000':55,'panam sambadikkam':60}
@@ -266,9 +271,9 @@ async def handle_job(text, update):
     if sal and int(sal.group(1))>=3000: score+=50; found.append(f"₹{sal.group(1)}/day UNREAL")
     final = min(score,100)
     save_ultra({"type":"job","input":text[:100],"score":final,"time":str(datetime.now())})
-    if final>=60: await update.message.reply_text(f"🚨 *JOB SCAM V100002!* ({final}/100)\n🧠 {', '.join(found)}\n💀 100% SCAM!", parse_mode='Markdown')
-    elif final>=30: await update.message.reply_text(f"⚠️ *SUSPICIOUS V100002* ({final}/100)\n{', '.join(found)}", parse_mode='Markdown')
-    else: await update.message.reply_text(f"✅ *CLEAN V100002* ({final}/100)", parse_mode='Markdown')
+    if final>=60: await update.message.reply_text(f"🚨 *JOB SCAM V100003!* ({final}/100)\n🧠 {', '.join(found)}\n💀 100% SCAM!", parse_mode='Markdown')
+    elif final>=30: await update.message.reply_text(f"⚠️ *SUSPICIOUS V100003* ({final}/100)\n{', '.join(found)}", parse_mode='Markdown')
+    else: await update.message.reply_text(f"✅ *CLEAN V100003* ({final}/100)", parse_mode='Markdown')
 
 async def handle_news(text, update):
     low=text.lower()
@@ -278,80 +283,120 @@ async def handle_news(text, update):
         if k in low: score+=v; found.append(k)
     final = min(score,100)
     save_ultra({"type":"news","input":text[:100],"score":final,"time":str(datetime.now())})
-    if final>=70: await update.message.reply_text(f"🚨 *FAKE NEWS V100002!* ({final}/100)\n🧠 {', '.join(found)}\n💀 100% FAKE!", parse_mode='Markdown')
-    else: await update.message.reply_text(f"✅ *NEWS OK V100002* ({final}/100)", parse_mode='Markdown')
+    if final>=70: await update.message.reply_text(f"🚨 *FAKE NEWS V100003!* ({final}/100)\n🧠 {', '.join(found)}\n💀 100% FAKE!", parse_mode='Markdown')
+    else: await update.message.reply_text(f"✅ *NEWS OK V100003* ({final}/100)", parse_mode='Markdown')
 
-# --- V100002 FIXED PHOTO HANDLER - ALIYA GOD ---
+# --- V100003 ULTRA PHOTO HANDLER ---
 async def photo_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     try:
-        photo = update.message.photo[-1]
-        file = await context.bot.get_file(photo.file_id)
-        file_path = f"/tmp/{photo.file_id}.jpg"
-        await file.download_to_drive(file_path)
+        photo = update.message.photo[-1] if update.message.photo else None
+        if not photo and update.message.document:
+            # File as document
+            file = await context.bot.get_file(update.message.document.file_id)
+            file_path = f"/tmp/{update.message.document.file_id}.jpg"
+            await file.download_to_drive(file_path)
+        else:
+            file = await context.bot.get_file(photo.file_id)
+            file_path = f"/tmp/{photo.file_id}.jpg"
+            await file.download_to_drive(file_path)
+
         ocr_text = ""
         caption_text = update.message.caption or ""
         if FULL_POWER:
             try:
                 img = Image.open(file_path)
-                img = img.convert('L')
-                img = img.resize((img.width*2, img.height*2))
-                ocr_text = pytesseract.image_to_string(img, lang='eng').strip()
-                print(f"OCR V100002: {ocr_text[:150]}")
+                # ULTRA PREPROCESS for blur
+                img = ImageOps.grayscale(img)
+                w, h = img.size
+                img = img.resize((w*3, h*3), Image.LANCZOS)
+                enhancer = ImageEnhance.Contrast(img)
+                img = enhancer.enhance(2.0)
+                img = img.point(lambda x: 0 if x < 140 else 255) # threshold
+                ocr_text = pytesseract.image_to_string(img, lang='eng', config='--psm 6 --oem 3').strip()
+                print(f"OCR V100003: {ocr_text[:300]}")
             except Exception as e:
-                print(f"OCR Error V100002: {e}")
+                print(f"OCR Error V100003: {e}")
                 ocr_text = ""
-        final_text = ocr_text if ocr_text else caption_text
-        if final_text.strip():
-            await update.message.reply_text(f"📸 *Photo OCR V100002 GOD*\n📝 `{final_text[:600]}`\n\n🔍 Scanning...", parse_mode='Markdown')
-            if 'http' in final_text.lower() or 'www.' in final_text.lower():
-                await handle_link(final_text, update)
+
+        final_text = (ocr_text + " " + caption_text).strip()
+        if len(final_text) > 10:
+            await update.message.reply_text(f"📸 *Photo OCR V100003 GOD*\n📝 `{final_text[:800]}`\n\n🔍 Scanning...", parse_mode='Markdown')
+            if 'http' in final_text.lower() or 'www.' in final_text.lower() or '.' in final_text:
+                # try extract url
+                urls = re.findall(r'https?://\S+|www\.\S+|\S+\.\S+', final_text)
+                if urls:
+                    await handle_link(urls[0], update)
+                else:
+                    await handle_job(final_text, update)
             else:
                 await handle_job(final_text, update)
         else:
-            await update.message.reply_text("📸 *Photo V100002 GOD*\n⚠️ Text blur aanu, HD screenshot ayakk!", parse_mode='Markdown')
-    except Exception as e: await update.message.reply_text(f"Photo error V100002: {e}")
+            await update.message.reply_text("📸 *Photo V100003 GOD*\n⚠️ Text blur aanu, HD screenshot ayakk! Try crop + document mode", parse_mode='Markdown')
+    except Exception as e:
+        print(f"Photo error: {e}")
+        await update.message.reply_text(f"Photo error V100003: {e}")
 
 async def voice_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("🎤 *Voice GOD V100002* - Text aayi ayakk!", parse_mode='Markdown')
+    await update.message.reply_text("🎤 *Voice GOD V100003* - Text aayi ayakk!", parse_mode='Markdown')
 
-# --- V100002 FIXED ROUTER - STATS PUBLIC ---
+# --- STATS / USERS / ID - FIXED ---
+async def stats_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    users = load_users_ultra()
+    try:
+        if mongo_scans is not None:
+            total_scans = mongo_scans.count_documents({})
+            clean = mongo_scans.count_documents({"score": {"$lt": 25}})
+            scams = mongo_scans.count_documents({"score": {"$gte": 50}})
+        else:
+            with open(DB_FILE,'r') as f:
+                db = json.load(f)
+                total_scans=len(db)
+                clean = len([x for x in db if x.get('score',0)<25])
+                scams = len([x for x in db if x.get('score',0)>=50])
+    except Exception as e:
+        print(f"Stats error {e}")
+        total_scans=0; clean=0; scams=0
+
+    await update.message.reply_text(
+        f"📊 *Scam Guard V100003 STATS GOD*\n\n"
+        f"👥 Total Users: {len(users)}\n"
+        f"🔍 Total Scans: {total_scans}\n"
+        f"✅ Clean: {clean}\n"
+        f"🚨 Scams Caught: {scams}\n"
+        f"⚙️ Version: V100003 GOD FIXED\n"
+        f"💾 DB: {'MongoDB PERMANENT' if mongo_users else 'JSON'}\n"
+        f"🔥 FULL_POWER: {FULL_POWER}\n"
+        f"👑 ADMIN: {ADMIN_ID}",
+        parse_mode='Markdown'
+    )
+
+async def id_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text(
+        f"🆔 *Your ID V100003*\n"
+        f"Your ID: `{update.effective_user.id}`\n"
+        f"Admin ID set: `{ADMIN_ID}`\n"
+        f"Match: {'✅ YES - You are Admin' if update.effective_user.id == ADMIN_ID else '❌ No'}\n"
+        f"Mongo: {'✅ Connected' if mongo_users else '❌ JSON mode'}\n"
+        f"FULL_POWER: {FULL_POWER}",
+        parse_mode='Markdown'
+    )
+
+async def users_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if update.effective_user.id!= ADMIN_ID:
+        await update.message.reply_text(f"❌ Admin only! You: {update.effective_user.id} Admin: {ADMIN_ID}")
+        return
+    users = load_users_ultra()
+    # get total scans safely
+    try:
+        total_scans = mongo_scans.count_documents({}) if mongo_scans else len(json.load(open(DB_FILE)))
+    except:
+        total_scans = 0
+    await update.message.reply_text(f"👑 *V100003 ADMIN*\n👥 Users: {len(users)}\n🔍 Scans: {total_scans}\n💾 DB: {'MongoDB' if mongo_users else 'JSON'}\nFULL_POWER: {FULL_POWER}", parse_mode='Markdown')
+
 async def router(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text or ""; chat_id=update.effective_chat.id; low=text.lower().strip()
 
-    if low.startswith('/stats'):
-        users = load_users_ultra()
-        try:
-            if mongo_scans is not None:
-                total_scans = mongo_scans.count_documents({})
-                clean = mongo_scans.count_documents({"score": {"$lt": 25}})
-                scams = mongo_scans.count_documents({"score": {"$gte": 50}})
-            else:
-                with open(DB_FILE,'r') as f:
-                    db = json.load(f)
-                    total_scans=len(db)
-                    clean = len([x for x in db if x.get('score',0)<25])
-                    scams = len([x for x in db if x.get('score',0)>=50])
-        except: total_scans=0; clean=0; scams=0
-        await update.message.reply_text(
-            f"📊 *Scam Guard V100002 STATS GOD*\n\n"
-            f"👥 Total Users: {len(users)}\n"
-            f"🔍 Total Scans: {total_scans}\n"
-            f"✅ Clean: {clean}\n"
-            f"🚨 Scams Caught: {scams}\n"
-            f"⚙️ Version: V100002 GOD\n"
-            f"💾 DB: {'MongoDB PERMANENT' if mongo_users else 'JSON'}\n"
-            f"🔥 FULL_POWER: {FULL_POWER}",
-            parse_mode='Markdown'
-        )
-        return
-
-    if low.startswith('/users'):
-        if update.effective_user.id!= ADMIN_ID:
-            await update.message.reply_text("❌ Admin only!")
-            return
-        users = load_users_ultra()
-        await update.message.reply_text(f"👑 *V100002 ADMIN*\n👥 Users: {len(users)}\n🔍 Scans: {total_scans if 'total_scans' in locals() else len(users)}\n💾 DB: {'MongoDB' if mongo_users else 'JSON'}\nFULL_POWER: {FULL_POWER}", parse_mode='Markdown')
-        return
+    if low.startswith('/id'): await id_cmd(update, context); return
 
     if low in ['hi','hello','hai','hey','/start','start','menu','help','god','ultra','how']:
         if low in ['/start','start','menu','help','god','ultra']:
@@ -384,13 +429,15 @@ def main():
     loop = asyncio.new_event_loop(); asyncio.set_event_loop(loop)
     app_bot = Application.builder().token(BOT_TOKEN).build()
     app_bot.add_handler(CommandHandler("start", start))
-    app_bot.add_handler(CommandHandler("stats", router))
-    app_bot.add_handler(CommandHandler("users", router))
+    app_bot.add_handler(CommandHandler("stats", stats_cmd))
+    app_bot.add_handler(CommandHandler("id", id_cmd))
+    app_bot.add_handler(CommandHandler("users", users_cmd))
     app_bot.add_handler(CallbackQueryHandler(lang_callback, pattern="^lang_"))
     app_bot.add_handler(CallbackQueryHandler(tool_callback, pattern="^tool_"))
     app_bot.add_handler(MessageHandler(filters.PHOTO, photo_handler))
+    app_bot.add_handler(MessageHandler(filters.Document.IMAGE, photo_handler)) # NEW - File as image
     app_bot.add_handler(MessageHandler(filters.VOICE, voice_handler))
     app_bot.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, router))
-    print("V100002 GOD MODE STARTED - STATS PUBLIC + OCR FIXED"); app_bot.run_polling()
+    print(f"V100003 GOD MODE STARTED - ADMIN {ADMIN_ID} - STATS PUBLIC + OCR ULTRA"); app_bot.run_polling()
 
 if __name__ == '__main__': main()
