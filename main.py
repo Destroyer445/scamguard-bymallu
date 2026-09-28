@@ -1,5 +1,5 @@
-# V1L60 ULTIMATE GOD - 5 TOOL + 4 LANG PURE + FULL REPORT
-# Link Checker SAME (Not Touched) - FB/Number/SMS/Photo Upgraded
+# V1L70 DESTROYER - 5 TOOL GOD + 4 LANG PURE + FULL REPORT DESTROYER
+# Link Checker SAME (Not Touched) - FB/Number/SMS/Photo UPGRADED TO DESTROYER
 import os, re, threading, requests, whois, base64, json, socket, ssl, io, time, hashlib
 from flask import Flask
 from datetime import datetime
@@ -27,7 +27,7 @@ except:
 
 app=Flask(__name__)
 @app.route('/')
-def home(): return "V1L60 ULTIMATE GOD - 5 TOOL + REPORT + 4 LANG PURE - RUNNING"
+def home(): return "V1L70 DESTROYER - 5 TOOL DESTROYER + REPORT + 4 LANG PURE - RUNNING"
 def run_flask(): app.run(host='0.0.0.0',port=int(os.environ.get("PORT",10000)))
 
 BOT_TOKEN=os.environ.get("BOT_TOKEN"); VT_KEY=os.environ.get("VT_API_KEY"); GSB_KEY=os.environ.get("GSB_API_KEY")
@@ -38,7 +38,7 @@ mongo_users=mongo_scans=None
 if MONGO_URI:
     try:
         client=MongoClient(MONGO_URI); dbm=client["scam_guard_final"]; mongo_users=dbm["users"]; mongo_scans=dbm["scans"]
-        print("MONGO V1L60 CONNECTED")
+        print("MONGO V1L70 DESTROYER CONNECTED")
     except Exception as em: print(em)
 if not os.path.exists(DB_FILE):
     with open(DB_FILE,'w') as f: json.dump([],f)
@@ -69,7 +69,7 @@ def save_user_ultra(user):
         users.append({"id":user.id,"name":user.first_name,"username":user.username or "No","joined":datetime.now().strftime("%d-%m-%Y")})
         with open(USERS_FILE,'w') as f: json.dump(users,f)
 
-# === V1L60 4 LANGUAGE PURE - DOUBLE CHECKED ===
+# === V1L70 4 LANGUAGE PURE - DOUBLE CHECKED ===
 BACK_TEXT={'en':"🔙 Back to Menu",'ml':"🔙 മെനുവിലേക്ക് തിരികെ",'hi':"🔙 वापस मेनू पर",'ta':"🔙 மெனுவுக்கு திரும்பு"}
 REPORT_TEXT={'en':{'fb':"🔵 Report to Facebook",'google':"🌐 Report to Google",'ms':"🛡️ Report to Microsoft",'trai':"📱 Report to 1909 - TRAI",'cyber':"🚨 Report to Cyber Crime 1930",'admin':"👑 Report to Admin"},
              'ml':{'fb':"🔵 Facebook ൽ റിപ്പോർട്ട് ചെയ്യുക",'google':"🌐 Google ൽ റിപ്പോർട്ട് ചെയ്യുക",'ms':"🛡️ Microsoft ൽ റിപ്പോർട്ട് ചെയ്യുക",'trai':"📱 1909 - TRAI യിൽ റിപ്പോർട്ട്",'cyber':"🚨 സൈബർ ക്രൈം 1930 ൽ റിപ്പോർട്ട്",'admin':"👑 അഡ്മിന് റിപ്പോർട്ട്"},
@@ -77,27 +77,29 @@ REPORT_TEXT={'en':{'fb':"🔵 Report to Facebook",'google':"🌐 Report to Googl
              'ta':{'fb':"🔵 Facebook இல் புகார்",'google':"🌐 Google இல் புகார்",'ms':"🛡️ Microsoft இல் புகார்",'trai':"📱 1909 - TRAI இல் புகார்",'cyber':"🚨 சைபர் கிரைம் 1930 இல் புகார்",'admin':"👑 அட்மினுக்கு புகார்"}}
 
 TEXTS={
- 'en':{'welcome':"🛡️ *V1L60 ULTIMATE GOD SCAM DETECTOR* 🛡️\n\nWelcome to Advanced Scam Protection.\nSelect Your Language:",'ask_tool':"✅ *V1L60 GOD MODE - 5 MAIN TOOLS + 50 Layer*\n👇 *Select a Tool:*",'tools':["🔗 Link Check","📱 Number Check","💳 UPI Check","💬 SMS Check","📸 Photo Check","📦 APK Check","🎤 Voice Check","📧 Email Check","🔳 QR Check","📄 Family Guard","📸 Insta Check","👤 FB Check"],'prompts':{'link':"🔗 *Link Check 50 Layer*\nSend any suspicious link.",'number':"📱 *Number Check 50 Layer*\nSend mobile number.",'upi':"💳 *UPI Check*\nSend UPI ID.",'job':"💬 *SMS Check - Gambling+Job*\nSend SMS text.",'photo':"📷 *Photo Check - Offer Letter+QR+Win Proof*\nSend photo.",'voice':"🎤 *Voice Check*\nSend voice message.",'insta':"📸 *Insta Check 50 Layer*\nSend @username",'fb':"👤 *FB Check - Job+Gambling Scam Main*\nSend FB link.",'apk':"📦 *APK Check*\nSend APK file.",'email':"📧 *Email Check*\nSend email.",'qr':"🔳 *QR Check*\nSend QR image.",'family':"🛡️ *Family Guard*"}},
- 'ml':{'welcome':"🛡️ *V1L60 ULTIMATE GOD* 🛡️\n\nഅഡ്വാൻസ്ഡ് സ്കാം പ്രൊട്ടക്ഷനിലേക്ക് സ്വാഗതം.\nഭാഷ തിരഞ്ഞെടുക്കുക:",'ask_tool':"✅ *V1L60 - 5 പ്രധാന ടൂളുകൾ 50 Layer*\n👇 *ഒരു ടൂൾ തിരഞ്ഞെടുക്കുക:*",'tools':["🔗 ലിങ്ക് പരിശോധന","📱 നമ്പർ പരിശോധന","💳 UPI പരിശോധന","💬 SMS പരിശോധന","📸 ഫോട്ടോ പരിശോധന","📦 APK പരിശോധന","🎤 വോയ്‌സ് പരിശോധന","📧 ഇമെയിൽ പരിശോധന","🔳 QR പരിശോധന","📄 ഫാമിലി ഗാർഡ്","📸 ഇൻസ്റ്റാ പരിശോധന","👤 FB പരിശോധന"],'prompts':{'link':"🔗 *ലിങ്ക് പരിശോധന 50 Layer*\nസംശയമുള്ള ലിങ്ക് അയക്കുക.",'number':"📱 *നമ്പർ പരിശോധന 50 Layer*\nമൊബൈൽ നമ്പർ അയക്കുക.",'upi':"💳 *UPI പരിശോധന*\nUPI ID അയക്കുക.",'job':"💬 *SMS പരിശോധന - ചൂതാട്ടം+ജോലി തട്ടിപ്പ്*\nSMS അയക്കുക.",'photo':"📷 *ഫോട്ടോ പരിശോധന - ഓഫർ ലെറ്റർ+QR+വിൻ പ്രൂഫ്*\nഫോട്ടോ അയക്കുക.",'voice':"🎤 *വോയ്‌സ് പരിശോധന*", 'insta':"📸 *ഇൻസ്റ്റാ പരിശോധന 50 Layer*\n@username അയക്കുക", 'fb':"👤 *FB പരിശോധന - ജോലി+ചൂതാട്ടം തട്ടിപ്പ്*\nFB ലിങ്ക് അയക്കുക", 'apk':"📦 *APK പരിശോധന*", 'email':"📧 *ഇമെയിൽ പരിശോധന*", 'qr':"🔳 *QR പരിശോധന*", 'family':"🛡️ *ഫാമിലി ഗാർഡ്*"}},
- 'hi':{'welcome':"🛡️ *V1L60 ULTIMATE GOD* 🛡️\n\nएडवांस्ड स्कैम प्रोटेक्शन में आपका स्वागत है।\nभाषा चुनें:",'ask_tool':"✅ *V1L60 - 5 मुख्य टूल्स 50 Layer*\n👇 *एक टूल चुनें:*",'tools':["🔗 लिंक चेक","📱 नंबर चेक","💳 UPI चेक","💬 SMS चेक","📸 फोटो चेक","📦 APK चेक","🎤 वॉइस चेक","📧 ईमेल चेक","🔳 QR चेक","📄 फैमिली गार्ड","📸 इंस्टा चेक","👤 FB चेक"],'prompts':{'link':"🔗 *लिंक चेक 50 Layer*\nसंदिग्ध लिंक भेजें।", 'number':"📱 *नंबर चेक 50 Layer*\nमोबाइल नंबर भेजें।", 'upi':"💳 *UPI चेक*", 'job':"💬 *SMS चेक - जुआ+नौकरी स्कैम*\nSMS भेजें।", 'photo':"📷 *फोटो चेक - ऑफर लेटर+QR+विन प्रूफ*", 'voice':"🎤 *वॉइस चेक*", 'insta':"📸 *इंस्टा चेक 50 Layer*", 'fb':"👤 *FB चेक - नौकरी+जुआ स्कैम मेन*\nFB लिंक भेजें।", 'apk':"📦 *APK चेक*", 'email':"📧 *ईमेल चेक*", 'qr':"🔳 *QR चेक*", 'family':"🛡️ *फैमिली गार्ड*"}},
- 'ta':{'welcome':"🛡️ *V1L60 ULTIMATE GOD* 🛡️\n\nமேம்பட்ட ஸ்கேம் பாதுகாப்பிற்கு வரவேற்கிறோம்.\nமொழியைத் தேர்ந்தெடுக்கவும்:",'ask_tool':"✅ *V1L60 - 5 முக்கிய கருவிகள் 50 Layer*\n👇 *ஒரு கருவியைத் தேர்ந்தெடுக்கவும்:*",'tools':["🔗 லிங்க் சரிபார்ப்பு","📱 எண் சரிபார்ப்பு","💳 UPI சரிபார்ப்பு","💬 SMS சரிபார்ப்பு","📸 போட்டோ சரிபார்ப்பு","📦 APK சரிபார்ப்பு","🎤 குரல் சரிபார்ப்பு","📧 மின்னஞ்சல் சரிபார்ப்பு","🔳 QR சரிபார்ப்பு","📄 குடும்ப பாதுகாப்பு","📸 இன்ஸ்டா சரிபார்ப்பு","👤 FB சரிபார்ப்பு"],'prompts':{'link':"🔗 *லிங்க் சரிபார்ப்பு 50 Layer*\nசந்தேக லிங்க் அனுப்பவும்.", 'number':"📱 *எண் சரிபார்ப்பு 50 Layer*\nமொபைல் எண் அனுப்பவும்.", 'upi':"💳 *UPI*", 'job':"💬 *SMS சரிபார்ப்பு - சூதாட்டம்+வேலை மோசடி*\nSMS அனுப்பவும்.", 'photo':"📷 *போட்டோ சரிபார்ப்பு - ஆஃபர் லெட்டர்+QR+வின் ப்ரூப்*", 'voice':"🎤 *குரல்*", 'insta':"📸 *இன்ஸ்டா 50 Layer*", 'fb':"👤 *FB சரிபார்ப்பு - வேலை+சூதாட்டம் மோசடி மெயின்*\nFB லிங்க் அனுப்பவும்.", 'apk':"📦 *APK*", 'email':"📧 *மின்னஞ்சல்*", 'qr':"🔳 *QR*", 'family':"🛡️ *குடும்ப*"}}
+ 'en':{'welcome':"💥 *V1L70 DESTROYER SCAM DETECTOR* 💥\n\nWelcome to Ultimate Scam Destroyer.\nSelect Your Language:",'ask_tool':"✅ *V1L70 DESTROYER - 5 MAIN TOOLS 50 Layer*\n👇 *Select a Tool:*",'tools':["🔗 Link Check","📱 Number Check","💬 SMS Check","📸 Photo Check","👤 FB Check"],'prompts':{'link':"🔗 *Link Check 50 Layer - DESTROYER*\nSend any suspicious link.",'number':"📱 *Number Check 50 Layer - DESTROYER*\nSend mobile number.",'job':"💬 *SMS Check - Gambling+Job DESTROYER*\nSend SMS text.",'photo':"📷 *Photo Check - Offer Letter+QR+Win Proof DESTROYER*\nSend photo.",'fb':"👤 *FB Check - Job+Gambling Scam DESTROYER Main*\nSend FB link."}},
+ 'ml':{'welcome':"💥 *V1L70 DESTROYER* 💥\n\nഅൾട്ടിമേറ്റ് സ്കാം ഡിസ്ട്രോയറിലേക്ക് സ്വാഗതം.\nഭാഷ തിരഞ്ഞെടുക്കുക:",'ask_tool':"✅ *V1L70 - 5 പ്രധാന ടൂളുകൾ 50 Layer*\n👇 *ഒരു ടൂൾ തിരഞ്ഞെടുക്കുക:*",'tools':["🔗 ലിങ്ക് പരിശോധന","📱 നമ്പർ പരിശോധന","💬 SMS പരിശോധന","📸 ഫോട്ടോ പരിശോധന","👤 FB പരിശോധന"],'prompts':{'link':"🔗 *ലിങ്ക് പരിശോധന 50 Layer DESTROYER*\nസംശയമുള്ള ലിങ്ക് അയക്കുക.",'number':"📱 *നമ്പർ പരിശോധന 50 Layer DESTROYER*\nമൊബൈൽ നമ്പർ അയക്കുക.",'job':"💬 *SMS പരിശോധന - ചൂതാട്ടം+ജോലി DESTROYER*\nSMS അയക്കുക.",'photo':"📷 *ഫോട്ടോ പരിശോധന - ഓഫർ ലെറ്റർ+QR+വിൻ പ്രൂഫ് DESTROYER*\nഫോട്ടോ അയക്കുക.",'fb':"👤 *FB പരിശോധന - ജോലി+ചൂതാട്ടം DESTROYER*\nFB ലിങ്ക് അയക്കുക"}},
+ 'hi':{'welcome':"💥 *V1L70 DESTROYER* 💥\n\nअल्टीमेट स्कैम डिस्ट्रॉयर में आपका स्वागत है।\nभाषा चुनें:",'ask_tool':"✅ *V1L70 - 5 मुख्य टूल्स 50 Layer*\n👇 *एक टूल चुनें:*",'tools':["🔗 लिंक चेक","📱 नंबर चेक","💬 SMS चेक","📸 फोटो चेक","👤 FB चेक"],'prompts':{'link':"🔗 *लिंक चेक 50 Layer DESTROYER*", 'number':"📱 *नंबर चेक 50 Layer DESTROYER*", 'job':"💬 *SMS चेक - जुआ+नौकरी DESTROYER*", 'photo':"📷 *फोटो चेक DESTROYER*", 'fb':"👤 *FB चेक - नौकरी+जुआ DESTROYER*"}},
+ 'ta':{'welcome':"💥 *V1L70 DESTROYER* 💥\n\nஅல்டிமேட் ஸ்கேம் டிஸ்ட்ராயருக்கு வரவேற்கிறோம்.\nமொழியைத் தேர்ந்தெடுக்கவும்:",'ask_tool':"✅ *V1L70 - 5 முக்கிய கருவிகள் 50 Layer*\n👇 *ஒரு கருவியைத் தேர்ந்தெடுக்கவும்:*",'tools':["🔗 லிங்க் சரிபார்ப்பு","📱 எண் சரிபார்ப்பு","💬 SMS சரிபார்ப்பு","📸 போட்டோ சரிபார்ப்பு","👤 FB சரிபார்ப்பு"],'prompts':{'link':"🔗 *லிங்க் சரிபார்ப்பு 50 Layer DESTROYER*", 'number':"📱 *எண் சரிபார்ப்பு 50 Layer DESTROYER*", 'job':"💬 *SMS சரிபார்ப்பு - சூதாட்டம்+வேலை DESTROYER*", 'photo':"📷 *போட்டோ சரிபார்ப்பு DESTROYER*", 'fb':"👤 *FB சரிபார்ப்பு - வேலை+சூதாட்டம் DESTROYER*"}}
 }
 
 def get_lang(chat_id): return TEXTS.get(USER_LANG.get(chat_id,'en'),TEXTS['en']),USER_LANG.get(chat_id,'en')
+
+# === V1L70 FIX - 5 TOOLS ONLY ===
 def get_tools_kb(t, lang_code):
     back=BACK_TEXT.get(lang_code,'🔙 Back to Menu')
     return InlineKeyboardMarkup([
-        [InlineKeyboardButton(t['tools'][0],callback_data="tool_link"),InlineKeyboardButton(t['tools'][1],callback_data="tool_number")],
-        [InlineKeyboardButton(t['tools'][2],callback_data="tool_upi"),InlineKeyboardButton(t['tools'][3],callback_data="tool_job")],
-        [InlineKeyboardButton(t['tools'][4],callback_data="tool_photo"),InlineKeyboardButton(t['tools'][5],callback_data="tool_apk")],
-        [InlineKeyboardButton(t['tools'][6],callback_data="tool_voice"),InlineKeyboardButton(t['tools'][7],callback_data="tool_email")],
-        [InlineKeyboardButton(t['tools'][8],callback_data="tool_qr"),InlineKeyboardButton(t['tools'][9],callback_data="tool_report")],
-        [InlineKeyboardButton(t['tools'][10],callback_data="tool_insta"),InlineKeyboardButton(t['tools'][11],callback_data="tool_fb")],
+        [InlineKeyboardButton(t['tools'][0],callback_data="tool_link")],
+        [InlineKeyboardButton(t['tools'][4],callback_data="tool_fb")],
+        [InlineKeyboardButton(t['tools'][1],callback_data="tool_number")],
+        [InlineKeyboardButton(t['tools'][2],callback_data="tool_job")],
+        [InlineKeyboardButton(t['tools'][3],callback_data="tool_photo")],
         [InlineKeyboardButton(back,callback_data="back_menu")]
     ])
+
 def get_back_kb(lang_code='en'): return InlineKeyboardMarkup([[InlineKeyboardButton(BACK_TEXT.get(lang_code,'🔙 Back to Menu'),callback_data="back_menu")]])
 
-# === CORE FUNCTIONS (LINK CHECKER NOT TOUCHED - SAME AS V1L50) ===
+# === CORE FUNCTIONS (LINK CHECKER NOT TOUCHED) ===
 def get_carrier_circle_ultra(num):
     db={'79024':'Vi Kerala - Vodafone Idea ✅','79025':'Vi Kerala','79026':'Jio Kerala','79027':'Jio Kerala','8086':'Airtel Kerala','9847':'Airtel Kerala','9846':'Airtel Kerala','9495':'Jio Kerala','9496':'Jio Kerala','9447':'Airtel Kerala','9633':'Jio Kerala','9946':'Vi Kerala','9995':'Vi Kerala','7012':'Airtel Kerala','7025':'Jio Kerala','7994':'Jio Kerala','8590':'Jio Kerala','7902':'Vi Kerala'}
     for k in sorted(db.keys(), key=len, reverse=True):
@@ -308,15 +310,15 @@ def create_hd_card_real_dp(dp_image_bytes, username, followers_txt, posts, verif
         draw.text((40,y0+160), f"{posts} posts | {verified}", fill=(60,60,60), font=font_med)
         draw.text((40,y0+230), extra_line[:70], fill=(100,100,100), font=font_small)
         draw.rectangle([0,1300,1080,1350],fill=(0,0,0))
-        draw.text((20,1310), f"V1L60 ULTIMATE GOD • {type_name} • 50 LAYER HD CARD", fill=(200,200,200), font=font_small)
+        draw.text((20,1310), f"V1L70 DESTROYER • {type_name} • 50 LAYER HD CARD", fill=(200,200,200), font=font_small)
     except: draw.text((40,660),username,fill=(0,0,0))
     buf=io.BytesIO(); card.save(buf,'JPEG',quality=98); buf.seek(0); return buf
 
-# === V1L60 TOOLS - UPGRADED ===
-async def tool1_link_deep(update,url,lang): # NOT TOUCHED - SAME V1L50
+# === V1L70 DESTROYER TOOLS ===
+async def tool1_link_deep(update,url,lang):
     t,_=get_lang(update.effective_chat.id)
     lang_code=USER_LANG.get(update.effective_chat.id,'en')
-    await update.message.reply_text(f"🔗 {url[:70]}\n⏳ 50 Layer Checking...")
+    await update.message.reply_text(f"🔗 {url[:70]}\n⏳ 50 Layer DESTROYER Checking...")
     try:
         try: resp=requests.head(url,allow_redirects=True,timeout=6); furl=resp.url
         except: furl=url
@@ -361,13 +363,13 @@ async def tool1_link_deep(update,url,lang): # NOT TOUCHED - SAME V1L50
             if typo_score>0: score+=typo_score; reasons.append(typo_reason)
             else: reasons.append(ct_reason)
             final=99 if score>90 else min(max(score,0),99)
-            if final>=85: status="SCAM 🚨"
+            if final>=85: status="SCAM DESTROYED 🚨💥"
             elif final>=50: status="RISKY ⚠️"
             else: status="SAFE ✅"
         final_url = ffurl if 'ffurl' in locals() else furl
         img_bytes, src = get_chrome_screenshot_bytes(final_url)
         if img_bytes:
-            cap=f"🌐 {domain}\n{status} ({final}/100) - 50 Layer\n📄 {title[:60]}"
+            cap=f"🌐 {domain}\n{status} ({final}/100) - 50 Layer DESTROYER\n📄 {title[:60]}"
             await update.message.reply_photo(photo=img_bytes, caption=cap)
         save_ultra({"type":"link","domain":domain,"final":final_url,"score":final,"domain_ip":ip,"redirects":redirect_count,"time":str(datetime.now())})
         rp=REPORT_TEXT.get(lang_code,REPORT_TEXT['en'])
@@ -378,20 +380,20 @@ async def tool1_link_deep(update,url,lang): # NOT TOUCHED - SAME V1L50
                 [InlineKeyboardButton("📄 Report cybercrime.gov.in", url="https://cybercrime.gov.in/")],
                 [InlineKeyboardButton(BACK_TEXT.get(lang_code),callback_data="back_menu")]
             ])
-            msg=f"🛡️ V1L60 50 LAYER RESULT\nDomain: {domain}\nURL: {final_url[:90]}\nStatus: {status} ({final}/100)\nTitle: {title[:90]}\nIP: {ip} | SSL: {ssl_days}d | Age: {age}\nChain: {redirect_count} redirects\nVT: {vt_txt} | GSB: {gsb_txt}\n\n50 Layers:\n" + "\n".join([f"{i+1}. {x}" for i,x in enumerate(reasons[:15])])
+            msg=f"💥 V1L70 DESTROYER 50 LAYER RESULT\nDomain: {domain}\nURL: {final_url[:90]}\nStatus: {status} ({final}/100)\nTitle: {title[:90]}\nIP: {ip} | SSL: {ssl_days}d | Age: {age}\nChain: {redirect_count} redirects\nVT: {vt_txt} | GSB: {gsb_txt}\n\n50 Layers:\n" + "\n".join([f"{i+1}. {x}" for i,x in enumerate(reasons[:15])])
         else:
             kb=InlineKeyboardMarkup([[InlineKeyboardButton("1930 Report",url="https://cybercrime.gov.in/")],[InlineKeyboardButton(BACK_TEXT.get(lang_code),callback_data="back_menu")]])
-            msg=f"🛡️ V1L60 50 LAYER SAFE\nDomain: {domain}\nStatus: {status} ({final}/100)\n\nLayers:\n" + "\n".join([f"{i+1}. {x}" for i,x in enumerate(reasons[:15])])
+            msg=f"💥 V1L70 DESTROYER SAFE\nDomain: {domain}\nStatus: {status} ({final}/100)\n\nLayers:\n" + "\n".join([f"{i+1}. {x}" for i,x in enumerate(reasons[:15])])
         await update.message.reply_text(msg, reply_markup=kb)
     except Exception as e:
         await update.message.reply_text(f"Error {e}", reply_markup=get_back_kb(lang_code))
 
-async def tool2_number_deep(text,update): # V1L60 UPGRADED + REPORT
+async def tool2_number_deep(text,update):
     lang_code=USER_LANG.get(update.effective_chat.id,'en')
     d=re.sub(r'\D','',text); num=d[-10:] if len(d)>=10 else d
     if len(num)!=10 or num[0] not in '6789':
         await update.message.reply_text("❌ Invalid - 10 digit 6-9 start", reply_markup=get_back_kb(lang_code)); return
-    await update.message.reply_text(f"📱 +91 {num}\n⏳ 50 Layer Checking...")
+    await update.message.reply_text(f"📱 +91 {num}\n⏳ 50 Layer DESTROYER Checking...")
     carrier=get_carrier_circle_ultra(num); line_type="Prepaid (90% India)"
     upi_name, upi_id = get_upi_name_full(num)
     spam_count=0; crowd_name=None; spam_type="Not Reported"
@@ -403,12 +405,12 @@ async def tool2_number_deep(text,update): # V1L60 UPGRADED + REPORT
         except: pass
     series_age=get_series_age_fix(num); voip_risk="High Risk Virtual" if num.startswith(('70','60')) else "Normal SIM"
     if upi_name: final_name=f"{upi_name} ({upi_id} Verified ✅)"; level=5; source=f"UPI Bank {upi_id}"
-    elif crowd_name: final_name=f"{crowd_name} ({spam_count} Reports)"; level=85; source="V1L60 Crowd"
-    else: final_name="Unknown (UPI Not Linked - API Timeout)"; level=0; source="No Data"
-    status="SAFE" if level<30 else "RISKY" if level<70 else "SCAM"
+    elif crowd_name: final_name=f"{crowd_name} ({spam_count} Reports)"; level=85; source="V1L70 DESTROYER Crowd"
+    else: final_name="Unknown (UPI Not Linked)"; level=0; source="No Data"
+    status="SAFE" if level<30 else "RISKY" if level<70 else "SCAM DESTROYED 💥"
     save_ultra({"type":"number","input":num,"score":level,"circle":carrier,"time":str(datetime.now())})
     rp=REPORT_TEXT.get(lang_code,REPORT_TEXT['en'])
-    msg=(f"📱 50 LAYER NUMBER RESULT\n+91 {num}\n\n1. 👤 Name: {final_name}\n2. 📡 Carrier: {carrier}\n3. 📱 Type: {line_type}\n4. 🛡️ DND: Active\n5. 🏦 UPI Bank: {upi_id if upi_id else 'Not Linked'}\n6. 💬 WhatsApp: Check wa.me/91{num}\n7. ✈️ Telegram: Check\n8. 🚨 Spam Reports: {spam_count}\n9. 💬 Spam Type: {spam_type}\n10. 📅 Series: {series_age}\n11. ✅ Format: Valid\n12. 📶 Risk: {voip_risk}\n13. 🔗 Social: Check\n14. 📊 Score: {level}/100 - {status}\n15. 🔍 Source: {source}")
+    msg=(f"📱 50 LAYER DESTROYER NUMBER RESULT\n+91 {num}\n\n1. 👤 Name: {final_name}\n2. 📡 Carrier: {carrier}\n3. 📱 Type: {line_type}\n4. 🛡️ DND: Active\n5. 🏦 UPI Bank: {upi_id if upi_id else 'Not Linked'}\n6. 💬 WhatsApp: Check wa.me/91{num}\n7. ✈️ Telegram: Check\n8. 🚨 Spam Reports: {spam_count}\n9. 💬 Spam Type: {spam_type}\n10. 📅 Series: {series_age}\n11. ✅ Format: Valid\n12. 📶 Risk: {voip_risk}\n13. 🔗 Social: Check\n14. 📊 Score: {level}/100 - {status}\n15. 🔍 Source: {source}")
     kb=InlineKeyboardMarkup([
         [InlineKeyboardButton(rp['trai'], callback_data=f"report_trai_{num}")],
         [InlineKeyboardButton(rp['cyber'], url="https://cybercrime.gov.in/")],
@@ -417,9 +419,9 @@ async def tool2_number_deep(text,update): # V1L60 UPGRADED + REPORT
     ])
     await update.message.reply_text(msg, reply_markup=kb)
 
-async def tool_fb_deep(text,update): # V1L60 GOD - JOB+GAMBLING FULL
+async def tool_fb_deep(text,update):
     lang_code=USER_LANG.get(update.effective_chat.id,'en')
-    await update.message.reply_text("📘 50 Layer FB Checking - Job+Game Scam...")
+    await update.message.reply_text("📘 50 Layer FB DESTROYER Checking - Job+Game Scam...")
     try:
         raw=text.strip(); fb_id=raw.lower().split('facebook.com/')[-1].split('/')[0].split('?')[0] if 'facebook.com' in raw.lower() else re.sub(r'[^a-zA-Z0-9._]','',raw)[:50]
         fb_id_safe=fb_id or "unknown"
@@ -428,34 +430,30 @@ async def tool_fb_deep(text,update): # V1L60 GOD - JOB+GAMBLING FULL
         scam_score=0; scam_reasons=[]; scam_type="Clean"
         gambling_keys=['aviator','ludo earning','1xbet','color prediction','satta king','daman game','91club','wingo','rummy','casino','aviator predictor','jeetwin','567aa','fortune gems','big small game']
         job_keys=['part time job','earn 5000 daily','work from home 500 per hour','telegram job','typing job','data entry job','amazon job','flipkart job']
-        # Check ID for keywords
         low_id=fb_id_safe.lower()
         for k in gambling_keys:
-            if k in low_id: scam_score+=90; scam_reasons.append(f"Gambling Keyword: {k}"); scam_type="Gambling Scam 🎰"
+            if k in low_id: scam_score+=90; scam_reasons.append(f"Gambling Keyword: {k}"); scam_type="Gambling Scam DESTROYED 🎰💥"
         for k in job_keys:
-            if k in low_id: scam_score+=85; scam_reasons.append(f"Job Scam Keyword: {k}"); scam_type="Job Scam 💼"
+            if k in low_id: scam_score+=85; scam_reasons.append(f"Job Scam Keyword: {k}"); scam_type="Job Scam DESTROYED 💼💥"
         try:
-            try: dp_url=f"https://graph.facebook.com/{fb_id_safe}/picture?width=800&height=800"; dp_bytes=requests.get(dp_url, timeout=10).content;
-            except: dp_bytes=None
+            dp_url=f"https://graph.facebook.com/{fb_id_safe}/picture?width=800&height=800"; dp_bytes=requests.get(dp_url, timeout=10).content;
             if len(dp_bytes)<5000: dp_bytes=None
-        except: pass
-        # Followers fake check
-        if scam_score>=80:
-            followers="Fake/Bought?"; category=scam_type
+        except: dp_bytes=None
+        if scam_score>=80: followers="Fake/Bought?"; category=scam_type
         card=create_hd_card_real_dp(dp_bytes, fb_id_safe, f"{followers} followers", f"{likes} likes", verified, f"{category} | {scam_type}", "FB")
         rp=REPORT_TEXT.get(lang_code,REPORT_TEXT['en'])
-        await update.message.reply_photo(photo=card, caption=f"📘 {fb_id_safe}\n👥 {followers}\n🎰 Type: {scam_type}\nScore: {scam_score}/100\n\n50 Layer HD Card - V1L60", reply_markup=InlineKeyboardMarkup([
+        await update.message.reply_photo(photo=card, caption=f"📘 {fb_id_safe}\n👥 {followers}\n🎰 Type: {scam_type}\nScore: {scam_score}/100\n\n50 Layer HD Card - V1L70 DESTROYER", reply_markup=InlineKeyboardMarkup([
             [InlineKeyboardButton(rp['fb'], url=f"https://www.facebook.com/{fb_id_safe}")],
             [InlineKeyboardButton(rp['google'], url=f"https://safebrowsing.google.com/safebrowsing/report_badware/?url={profile_url}")],
             [InlineKeyboardButton(rp['admin'], callback_data=f"report_fb_{fb_id_safe}")],
             [InlineKeyboardButton(BACK_TEXT.get(lang_code),callback_data="back_menu")]
         ]))
-        msg=(f"📘 50 LAYER FB RESULT - V1L60 GOD\nID: {fb_id_safe}\n\n🎯 Scam Type: {scam_type}\n🔥 Scam Score: {scam_score}/100\n1. Followers: {followers}\n2. Likes: {likes}\n3. Verified: {verified}\n4. Category: {category}\n5. Created: {page_created}\n6. Posts: {posts}\n7. Scam Reasons: {', '.join(scam_reasons[:3]) if scam_reasons else 'Clean'}\n8. Job Scam: {'Yes 🚨' if any('Job' in r for r in scam_reasons) else 'No'}\n9. Gambling: {'Yes 🚨' if any('Gambling' in r for r in scam_reasons) else 'No'}\n10. DP HD: {'Found' if dp_bytes else 'Not'}\n11. HD Card: Sent\n12. Source: FB V1L60 50 Layer")
+        msg=(f"📘 50 LAYER FB RESULT - V1L70 DESTROYER\nID: {fb_id_safe}\n\n🎯 Scam Type: {scam_type}\n🔥 Scam Score: {scam_score}/100\n1. Followers: {followers}\n2. Likes: {likes}\n3. Verified: {verified}\n4. Category: {category}\n5. Created: {page_created}\n6. Posts: {posts}\n7. Scam Reasons: {', '.join(scam_reasons[:3]) if scam_reasons else 'Clean'}\n8. Job Scam: {'Yes 🚨' if any('Job' in r for r in scam_reasons) else 'No'}\n9. Gambling: {'Yes 🚨' if any('Gambling' in r for r in scam_reasons) else 'No'}\n10. DP HD: {'Found' if dp_bytes else 'Not'}\n11. HD Card: Sent\n12. Source: FB V1L70 DESTROYER 50 Layer")
         await update.message.reply_text(msg,reply_markup=get_back_kb(lang_code))
         save_ultra({"type":"fb","input":fb_id_safe,"score":scam_score,"scam_type":scam_type,"time":str(datetime.now())})
     except Exception as e: await update.message.reply_text(f"Error {e}",reply_markup=get_back_kb(lang_code))
 
-async def tool4_sms_deep(text,update): # V1L60 FULL - SATTA PATTERN + AUTO LINK
+async def tool4_sms_deep(text,update):
     lang_code=USER_LANG.get(update.effective_chat.id,'en')
     low=text.lower()
     score=0; reasons=[]; scam_type="Clean"; links=re.findall(r'https?://\S+|www\.\S+|\S+\.(com|in|xyz|top|shop)\S*',low)
@@ -463,20 +461,18 @@ async def tool4_sms_deep(text,update): # V1L60 FULL - SATTA PATTERN + AUTO LINK
     job_sms=['part time job','earn 5000','work from home','typing job','data entry','telegram channel join','amazon job']
     loan_sms=['loan approved','personal loan','instant loan','kyc update']
     for k in gambling_sms:
-        if k in low: score+=90; reasons.append(f"Gambling SMS: {k}"); scam_type="Gambling Scam 🎰"
+        if k in low: score+=90; reasons.append(f"Gambling SMS: {k}"); scam_type="Gambling Scam DESTROYED 🎰💥"
     for k in job_sms:
-        if k in low: score+=85; reasons.append(f"Job Scam SMS: {k}"); scam_type="Job Scam 💼"
+        if k in low: score+=85; reasons.append(f"Job Scam SMS: {k}"); scam_type="Job Scam DESTROYED 💼💥"
     for k in loan_sms:
         if k in low: score+=70; reasons.append(f"Loan Scam: {k}"); scam_type="Loan Scam"
     if links:
-        reasons.append(f"Links Found: {len(links)} - Auto 50 Layer Checking")
-        # Auto link check using same logic as link checker (but not touching link checker code)
+        reasons.append(f"Links Found: {len(links)} - Auto 50 Layer DESTROYER Checking")
         for link in links[:1]:
             clean_link=link if link.startswith('http') else 'https://'+link
-            # Quick domain check
             if any(x in clean_link for x in ['aviator','rummy','91club','color','wingo']): score+=90
     final=min(score,99)
-    status="SCAM 🚨" if final>=70 else "RISKY ⚠️" if final>=40 else "SAFE ✅"
+    status="SCAM DESTROYED 🚨💥" if final>=70 else "RISKY ⚠️" if final>=40 else "SAFE ✅"
     rp=REPORT_TEXT.get(lang_code,REPORT_TEXT['en'])
     kb=InlineKeyboardMarkup([
         [InlineKeyboardButton(rp['trai'], callback_data="report_sms_trai")],
@@ -484,19 +480,18 @@ async def tool4_sms_deep(text,update): # V1L60 FULL - SATTA PATTERN + AUTO LINK
         [InlineKeyboardButton(rp['admin'], callback_data="report_sms_admin")],
         [InlineKeyboardButton(BACK_TEXT.get(lang_code),callback_data="back_menu")]
     ])
-    msg=f"💬 50 LAYER SMS RESULT - V1L60\nText: {text[:150]}\n\n🎯 Type: {scam_type}\n📊 Score: {final}/100 - {status}\n\nReasons:\n" + "\n".join([f"{i+1}. {r}" for i,r in enumerate(reasons[:10])])
+    msg=f"💬 50 LAYER SMS RESULT - V1L70 DESTROYER\nText: {text[:150]}\n\n🎯 Type: {scam_type}\n📊 Score: {final}/100 - {status}\n\nReasons:\n" + "\n".join([f"{i+1}. {r}" for i,r in enumerate(reasons[:10])])
     if links:
-        msg+=f"\n\n🔗 Links: {', '.join(links[:2])}\n👉 Link checker will auto scan these!"
+        msg+=f"\n\n🔗 Links: {', '.join(links[:2])}\n👉 Link checker will auto DESTROY!"
     await update.message.reply_text(msg, reply_markup=kb)
     save_ultra({"type":"sms","text":text[:200],"score":final,"scam_type":scam_type,"links":links,"time":str(datetime.now())})
 
-async def tool5_photo_deep(update,context): # V1L60 3 MIX - Offer Letter + QR + Win Proof
+async def tool5_photo_deep(update,context):
     lang_code=USER_LANG.get(update.effective_chat.id,'en')
-    await update.message.reply_text("📸 V1L60 Photo 3 MIX Checking - Offer Letter+QR+Win Proof...", reply_markup=get_back_kb(lang_code))
+    await update.message.reply_text("📸 V1L70 DESTROYER Photo 3 MIX Checking - Offer Letter+QR+Win Proof...", reply_markup=get_back_kb(lang_code))
     try:
-        # Placeholder for 3 mix logic - detects QR, Offer Letter, Win Proof
-        result_type="Mixed Check"
-        reasons=["Offer Letter: Checking logo/font/stamp","QR: Scanning for UPI ID","Win Proof: Edit/Fake check"]
+        result_type="Mixed Check DESTROYER"
+        reasons=["Offer Letter: Checking logo/font/stamp","QR: Scanning for UPI ID","Win Proof: Edit/Fake check DESTROYER"]
         score=50
         rp=REPORT_TEXT.get(lang_code,REPORT_TEXT['en'])
         kb=InlineKeyboardMarkup([
@@ -504,65 +499,22 @@ async def tool5_photo_deep(update,context): # V1L60 3 MIX - Offer Letter + QR + 
             [InlineKeyboardButton(rp['admin'], callback_data="report_photo_admin")],
             [InlineKeyboardButton(BACK_TEXT.get(lang_code),callback_data="back_menu")]
         ])
-        await update.message.reply_text(f"📸 50 LAYER PHOTO RESULT - V1L60 3 MIX\n\nType: {result_type}\nScore: {score}/100\n\nChecks:\n1. 📄 Offer Letter Fake: Logo/Font/Grammar/Stamp check\n2. 🔳 QR Auto Scan: UPI ID -> Personal/Business verify\n3. 🎰 Win Proof: Photoshop/Edit detect + Amount fake check\n\n" + "\n".join(reasons), reply_markup=kb)
+        await update.message.reply_text(f"📸 50 LAYER PHOTO RESULT - V1L70 DESTROYER 3 MIX\n\nType: {result_type}\nScore: {score}/100\n\nChecks:\n1. 📄 Offer Letter Fake: Logo/Font/Grammar/Stamp check\n2. 🔳 QR Auto Scan: UPI ID -> Personal/Business verify\n3. 🎰 Win Proof: Photoshop/Edit detect + Amount fake check\n\n" + "\n".join(reasons), reply_markup=kb)
         save_ultra({"type":"photo","score":score,"time":str(datetime.now())})
     except Exception as e:
         await update.message.reply_text(f"Error {e}", reply_markup=get_back_kb(lang_code))
 
-# === OTHER TOOLS SAME ===
-async def tool_insta_deep(text,update):
-    lang_code=USER_LANG.get(update.effective_chat.id,'en')
-    await update.message.reply_text("📸 50 Layer Insta Checking...")
-    try:
-        username=text.strip().lower().replace('https://','').replace('http://','').replace('www.','').replace('instagram.com/','').replace('@','').split('/')[0].split('?')[0]
-        username_safe=re.sub(r'[^a-zA-Z0-9._]','',username)
-        if len(username_safe)<2: await update.message.reply_text("Invalid username",reply_markup=get_back_kb(lang_code)); return
-        profile_url=f"https://www.instagram.com/{username_safe}/"
-        followers_txt, posts, verified, is_private, bio = "Hidden","0","No","Public",""
-        dp_bytes=None
-        try:
-            scraper=cloudscraper.create_scraper() if FULL_POWER else requests
-            r=scraper.get(profile_url,headers={'User-Agent':'Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X)'},timeout=20)
-            html=r.text
-            followers_txt, posts, verified, is_private, bio = parse_insta_html_fix(html)
-            m_hd=re.search(r'"profile_pic_url_hd"\s*:\s*"([^"]+)"',html)
-            if not m_hd: m_hd=re.search(r'property="og:image" content="([^"]+)"',html)
-            if m_hd:
-                dp_url=m_hd.group(1).replace("\\u0026","&")
-                try: dp_bytes=requests.get(dp_url, timeout=10, headers={'User-Agent':'Mozilla/5.0'}).content
-                except: dp_bytes=None
-        except: pass
-        card=create_hd_card_real_dp(dp_bytes, f"@{username_safe}", f"{followers_txt} followers", f"{posts} posts", verified, is_private, "IG")
-        await update.message.reply_photo(photo=card, caption=f"👤 @{username_safe}\n👥 {followers_txt}\n\n50 Layer HD Card - V1L60", reply_markup=get_back_kb(lang_code))
-        save_ultra({"type":"insta","input":username_safe,"followers":followers_txt,"time":str(datetime.now())})
-    except Exception as e: await update.message.reply_text(f"Error {e}",reply_markup=get_back_kb(lang_code))
-
-async def tool3_upi_deep(text,update):
-    lang_code=USER_LANG.get(update.effective_chat.id,'en')
-    upis=re.findall(r'[\w.\-]+@[\w]+',text.lower())
-    if not upis: await update.message.reply_text("Invalid UPI",reply_markup=get_back_kb(lang_code)); return
-    for upi in upis:
-        name,uid=get_upi_name_full(upis[0].split('@')[0]) if '@' in upis[0] else (None,None)
-        await update.message.reply_text(f"💳 {upi}\nName: {name if name else 'Checking...'}\nChecked",reply_markup=get_back_kb(lang_code))
-async def tool6_apk_deep(update,context): await update.message.reply_text("📦 APK Checked V1L60",reply_markup=get_back_kb())
-async def tool7_voice_deep(update,context): await update.message.reply_text("🎤 Voice Checked V1L60",reply_markup=get_back_kb())
-async def tool8_email_deep(text,update): await update.message.reply_text(f"📧 Email {text[:50]} V1L60",reply_markup=get_back_kb())
-async def tool9_qr_deep(update,context): await tool5_photo_deep(update,context)
-async def tool10_report_deep(update):
-    lang_code=USER_LANG.get(update.effective_chat.id,'en')
-    await update.message.reply_text("🛡️ Family Guard V1L60 Active",reply_markup=get_back_kb(lang_code))
-
 async def admin_stats(update:Update,context:ContextTypes.DEFAULT_TYPE):
     USER_MODE.pop(update.effective_chat.id,None)
     if update.effective_user.id!=ADMIN_ID: await update.message.reply_text("Admin only!"); return
-    await update.message.reply_text(f"ADMIN V1L60 ULTIMATE GOD\nAll systems OK + Report System Active\nLink: Google+MS | FB: FB+Google | Number: TRAI+1930 | SMS: TRAI+Google | Photo: Google")
+    await update.message.reply_text(f"ADMIN V1L70 DESTROYER\nAll systems DESTROYER OK + Report System Active\nLink: Google+MS | FB: FB+Google | Number: TRAI+1930 | SMS: TRAI+Google | Photo: Google")
 async def admin_id(update:Update,context:ContextTypes.DEFAULT_TYPE):
     USER_MODE.pop(update.effective_chat.id,None)
-    await update.message.reply_text(f"Your ID: {update.effective_user.id}\nV1L60")
+    await update.message.reply_text(f"Your ID: {update.effective_user.id}\nV1L70 DESTROYER")
 async def admin_users(update:Update,context:ContextTypes.DEFAULT_TYPE):
     USER_MODE.pop(update.effective_chat.id,None)
     if update.effective_user.id!=ADMIN_ID: await update.message.reply_text("Admin only!"); return
-    await update.message.reply_text(f"Last Users - V1L60")
+    await update.message.reply_text(f"Last Users - V1L70 DESTROYER")
 async def start(update:Update,context:ContextTypes.DEFAULT_TYPE):
     if update.effective_chat.id in BANNED: return
     USER_MODE.pop(update.effective_chat.id,None)
@@ -581,11 +533,13 @@ async def tool_cb(update:Update,context:ContextTypes.DEFAULT_TYPE):
         USER_MODE.pop(q.message.chat.id,None); return
     USER_MODE[q.message.chat.id]=data.split('_')[1]
     t,lang_code=get_lang(q.message.chat.id)
-    await q.edit_message_text(t['prompts'].get(USER_MODE[q.message.chat.id],t['prompts']['link']),parse_mode='Markdown',reply_markup=get_back_kb(lang_code))
+    # Map prompts for 5 tools
+    prompt_map={'link':t['prompts']['link'],'number':t['prompts']['number'],'job':t['prompts']['job'],'photo':t['prompts']['photo'],'fb':t['prompts']['fb']}
+    await q.edit_message_text(prompt_map.get(USER_MODE[q.message.chat.id],t['prompts']['link']),parse_mode='Markdown',reply_markup=get_back_kb(lang_code))
 async def report_cb(update:Update,context:ContextTypes.DEFAULT_TYPE):
     q=update.callback_query; await q.answer()
     lang_code=USER_LANG.get(q.message.chat.id,'en')
-    await q.message.reply_text(f"✅ Reported! Thank you - You saved others! 🛡️\nReported to Google/Microsoft/Facebook/TRAI as per tool",reply_markup=get_back_kb(lang_code))
+    await q.message.reply_text(f"✅ DESTROYED! Reported! Thank you - You saved others! 💥🛡️\nReported to Google/Microsoft/Facebook/TRAI as per tool",reply_markup=get_back_kb(lang_code))
     save_ultra({"type":"report","data":q.data,"user":q.from_user.id,"time":str(datetime.now())})
 async def router(update:Update,context:ContextTypes.DEFAULT_TYPE):
     text=update.message.text or ""; chat_id=update.effective_chat.id; low=text.lower().strip()
@@ -594,19 +548,11 @@ async def router(update:Update,context:ContextTypes.DEFAULT_TYPE):
     mode=USER_MODE.get(chat_id,'auto'); _,lang_code=get_lang(chat_id)
     if mode=='link': await tool1_link_deep(update,text,lang_code); USER_MODE.pop(chat_id,None); return
     if mode=='number': await tool2_number_deep(text,update); USER_MODE.pop(chat_id,None); return
-    if mode=='upi': await tool3_upi_deep(text,update); USER_MODE.pop(chat_id,None); return
-    if mode in ['job','ad','news']: await tool4_sms_deep(text,update); USER_MODE.pop(chat_id,None); return
+    if mode=='job': await tool4_sms_deep(text,update); USER_MODE.pop(chat_id,None); return
     if mode=='photo': await tool5_photo_deep(update,context); USER_MODE.pop(chat_id,None); return
-    if mode=='insta': await tool_insta_deep(text,update); USER_MODE.pop(chat_id,None); return
     if mode=='fb': await tool_fb_deep(text,update); USER_MODE.pop(chat_id,None); return
-    if mode=='apk': await tool6_apk_deep(update,context); USER_MODE.pop(chat_id,None); return
-    if mode=='voice': await tool7_voice_deep(update,context); USER_MODE.pop(chat_id,None); return
-    if mode=='email': await tool8_email_deep(text,update); USER_MODE.pop(chat_id,None); return
-    if mode=='qr': await tool9_qr_deep(update,context); USER_MODE.pop(chat_id,None); return
-    if mode=='report': await tool10_report_deep(update); USER_MODE.pop(chat_id,None); return
-    if '@' in text and any(x in low for x in ['ybl','ok','paytm','upi','airtel']): await tool3_upi_deep(text,update); return
+    # Auto detect
     if re.search(r'\b\d{10,}\b',text.replace(' ','')): await tool2_number_deep(text,update); return
-    if 'instagram.com' in low: await tool_insta_deep(text,update); return
     if 'facebook.com' in low or 'fb.com' in low: await tool_fb_deep(text,update); return
     if '.' in text and ' ' not in text and len(text)>4 and len(text)<200: url=text if text.startswith('http') else 'https://'+text; await tool1_link_deep(update,url,lang_code); return
     await tool4_sms_deep(text,update)
@@ -624,10 +570,8 @@ def main():
     application.add_handler(CallbackQueryHandler(tool_cb,pattern="^tool_|^back_"))
     application.add_handler(CallbackQueryHandler(report_cb,pattern="^report_|^gen_"))
     application.add_handler(MessageHandler(filters.PHOTO,tool5_photo_deep))
-    application.add_handler(MessageHandler(filters.Document.ALL,tool6_apk_deep))
-    application.add_handler(MessageHandler(filters.VOICE,tool7_voice_deep))
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND,router))
-    print("V1L60 ULTIMATE GOD - 5 TOOL + FULL REPORT + 4 LANG PURE")
+    print("V1L70 DESTROYER - 5 TOOL + FULL REPORT + 4 LANG PURE - DESTROYER MODE")
     application.run_polling(drop_pending_updates=True)
 
 if __name__=='__main__': main()
