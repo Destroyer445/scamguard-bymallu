@@ -2,10 +2,12 @@ python-telegram-bot==21.7
 Flask
 requests
 python-whois
-beautifulsoup4
-lxml
+pytesseract
+Pillow
 pymongo
 cloudscraper
-Pillow
-pytesseract
-pyzbar
+beautifulsoup4
+lxml
+easyocr
+torch
+torchvision
