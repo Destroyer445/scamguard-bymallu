@@ -9,5 +9,3 @@ cloudscraper
 beautifulsoup4
 lxml
 easyocr
-torch
-torchvision
