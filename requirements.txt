@@ -9,6 +9,3 @@ cloudscraper
 Pillow
 pytesseract
 pyzbar
-easyocr
-torch
-torchvision
