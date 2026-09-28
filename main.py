@@ -61,7 +61,6 @@ def save_user_ultra(user):
         users.append({"id":user.id,"name":user.first_name,"username":user.username or "No","joined":datetime.now().strftime("%d-%m-%Y")})
         with open(USERS_FILE,'w') as f: json.dump(users,f)
 
-# PURE LANGUAGE - 100% SEPARATE
 TEXTS={
  'en':{
    'welcome':"🛡️ *V1Lack46 100% UPGRADED GOD VERSION* 🛡️\n\nWelcome to Advanced Scam Protection.\nSelect Your Language:",
@@ -185,8 +184,37 @@ def get_chrome_screenshot_bytes(url):
     except: pass
     return None, "Failed"
 
+# ---- NEW HD CARD GENERATOR WITH REAL DP ----
+def create_hd_card_real_dp(dp_image_bytes, username, followers_txt, posts, verified, extra_line, type_name):
+    # 1080x1350 HD card with real DP
+    card=Image.new('RGB',(1080,1350),color=(255,255,255))
+    draw=ImageDraw.Draw(card)
+    # Cover - gradient
+    for y in range(500):
+        if type_name=="FB": r,g,b=24,119,242
+        else: r,g,b=225,48,108
+        draw.rectangle([0,y,1080,y+1], fill=(r,g,b))
+    try:
+        if dp_image_bytes:
+            dp=Image.open(io.BytesIO(dp_image_bytes)).convert("RGB").resize((400,400))
+            mask=Image.new("L",(400,400),0); ImageDraw.Draw(mask).ellipse((0,0,400,400), fill=255)
+            card.paste(dp,(340,300), mask)
+            draw.rectangle([340,300,740,700], outline=(255,255,255), width=8)
+    except: pass
+    # Texts
+    try:
+        font_big=ImageFont.load_default(); font_small=ImageFont.load_default()
+        draw.text((50,760), f"{username}", fill=(0,0,0), font=font_big)
+        draw.text((50,810), f"{followers_txt}", fill=(50,50,50), font=font_small)
+        draw.text((50,860), f"{posts} | {verified}", fill=(80,80,80), font=font_small)
+        draw.text((50,910), f"{extra_line[:120]}", fill=(50,50,50), font=font_small)
+        draw.text((50,1280), f"V1Lack46 VERIFIED HD CARD", fill=(100,100,100), font=font_small)
+    except:
+        draw.text((50,760), f"{username}", fill=(0,0,0))
+        draw.text((50,810), f"{followers_txt}", fill=(50,50,50))
+    buf=io.BytesIO(); card.save(buf,'JPEG',quality=95); buf.seek(0); return buf
+
 def create_profile_card(username, followers, posts, verified, bio, type_name):
-    # Clean professional card - no extra text
     img=Image.new('RGB',(1080,1350),color=(255,255,255)); d=ImageDraw.Draw(img)
     d.rectangle([0,0,1080,120],fill=(0,0,0) if type_name=="FB" else (255,255,255))
     d.rectangle([40,160,200,320],fill=(200,200,200),outline=(0,0,0),width=2)
@@ -199,6 +227,7 @@ def create_profile_card(username, followers, posts, verified, bio, type_name):
     except: pass
     bio_buf=io.BytesIO(); img.save(bio_buf,'JPEG',quality=90); bio_buf.seek(0); return bio_buf
 
+# ---- TOOL 1 LINK - WITH TRIPLE REPORT (MODIFIED ONLY REPORT PART) ----
 async def tool1_link_deep(update,url,lang):
     t,_=get_lang(update.effective_chat.id)
     loading_text = {"en":"⏳ Checking...","ml":"⏳ പരിശോധിക്കുന്നു...","hi":"⏳ जाँच हो रही है...","ta":"⏳ சரிபார்க்கிறது..."}[lang]
@@ -235,17 +264,30 @@ async def tool1_link_deep(update,url,lang):
         final_url = ffurl if 'ffurl' in locals() else furl
         img_bytes, src = get_chrome_screenshot_bytes(final_url)
         if img_bytes:
-            # CLEAN CAPTION - NO EXTRA TEXT
             cap=f"🌐 {domain}\n{status} ({final}/100)\n{title[:60]}"
             await update.message.reply_photo(photo=img_bytes, caption=cap)
 
         save_ultra({"type":"link","domain":domain,"final":final_url,"score":final,"domain_ip":ip,"time":str(datetime.now())})
-        kb=InlineKeyboardMarkup([[InlineKeyboardButton("1930 Report",url="https://cybercrime.gov.in/")],[InlineKeyboardButton("🔙 Back to Menu",callback_data="back_menu")]])
-        msg=f"🛡️ V1Lack46 RESULT\nDomain: {domain}\nURL: {final_url[:90]}\nStatus: {status} ({final}/100)\nTitle: {title[:90]}\n\nReasons:\n" + "\n".join([f"{i+1}. {x}" for i,x in enumerate(reasons[:10])])
+
+        # === NEW TRIPLE REPORT BUTTON ONLY FOR SCAM/RISKY ===
+        if final>=50: # SCAM or RISKY
+            report_text=f"Fraud URL: {final_url} - Scam detected by V1Lack46"
+            kb=InlineKeyboardMarkup([
+                [InlineKeyboardButton("🚨 Report to Google", url=f"https://safebrowsing.google.com/safebrowsing/report_badware/?url={final_url}")],
+                [InlineKeyboardButton("🛡️ Report to Microsoft", url=f"https://www.microsoft.com/en-us/wdsi/support/report-unsafe-site?url={final_url}")],
+                [InlineKeyboardButton("📄 Manual Report cybercrime.gov.in", url="https://cybercrime.gov.in/")],
+                [InlineKeyboardButton("🔙 Back to Menu",callback_data="back_menu")]
+            ])
+            msg=f"🛡️ V1Lack46 RESULT\nDomain: {domain}\nURL: {final_url[:90]}\nStatus: {status} ({final}/100)\nTitle: {title[:90]}\n\nReasons:\n" + "\n".join([f"{i+1}. {x}" for i,x in enumerate(reasons[:10])]) + f"\n\n📋 Copy to report: {report_text}"
+        else:
+            kb=InlineKeyboardMarkup([[InlineKeyboardButton("1930 Report",url="https://cybercrime.gov.in/")],[InlineKeyboardButton("🔙 Back to Menu",callback_data="back_menu")]])
+            msg=f"🛡️ V1Lack46 RESULT\nDomain: {domain}\nURL: {final_url[:90]}\nStatus: {status} ({final}/100)\nTitle: {title[:90]}\n\nReasons:\n" + "\n".join([f"{i+1}. {x}" for i,x in enumerate(reasons[:10])])
+
         await update.message.reply_text(msg, reply_markup=kb)
     except Exception as e:
         await update.message.reply_text(f"Error {e}", reply_markup=get_back_kb())
 
+# ---- TOOL INSTA - REAL HD DP + COVER (NEW) ----
 async def tool_insta_deep(text,update):
     lang = USER_LANG.get(update.effective_chat.id,'en')
     await update.message.reply_text("📸 Checking..." if lang=='en' else "📸 പരിശോധിക്കുന്നു..." if lang=='ml' else "📸 जाँच...")
@@ -255,7 +297,7 @@ async def tool_insta_deep(text,update):
         if len(username_safe)<2: await update.message.reply_text("Invalid username",reply_markup=get_back_kb()); return
         profile_url=f"https://www.instagram.com/{username_safe}/"
 
-        followers_raw=0; followers_txt="Hidden"; posts="0"; verified="No"; is_private="Public"; bio=""
+        followers_raw=0; followers_txt="Hidden"; posts="0"; verified="No"; is_private="Public"; bio=""; dp_bytes=None
         try:
             scraper=cloudscraper.create_scraper() if FULL_POWER else requests
             r=scraper.get(profile_url,headers={'User-Agent':'Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X)'},timeout=20)
@@ -271,26 +313,17 @@ async def tool_insta_deep(text,update):
             if '"is_verified":true' in html: verified="Verified ✅"
             if '"is_private":true' in html: is_private="Private 🔒"
             elif '"is_private":false' in html: is_private="Public 🌐"
+            # REAL DP HD
+            m_dp=re.search(r'property="og:image" content="([^"]+)"', html)
+            if m_dp:
+                dp_url=m_dp.group(1)
+                try: dp_bytes=requests.get(dp_url, timeout=10).content
+                except: dp_bytes=None
         except: pass
 
-        # Try Chrome screenshot first
-        img_bytes, src = get_chrome_screenshot_bytes(profile_url)
-        # If login page or failed, generate clean card
-        use_card = True
-        if img_bytes:
-            # Check if login page (small check - if image too small or we force card for FB/Insta)
-            # For V1Lack46, we show REAL card to avoid Login page
-            if len(img_bytes.getvalue())>0:
-                # Show both? No, show card only for clean result to avoid login
-                pass
-            use_card = True
-
-        if use_card or not img_bytes:
-            card = create_profile_card(f"@{username_safe}", f"{followers_txt} followers", f"{posts} posts", verified, is_private, "IG")
-            # CLEAN CAPTION - NO 7=7 NOTE
-            await update.message.reply_photo(photo=card, caption=f"👤 @{username_safe}\n👥 {followers_txt}\n📸 {posts} posts\n✅ {verified}\n🔐 {is_private}")
-        else:
-            await update.message.reply_photo(photo=img_bytes, caption=f"👤 @{username_safe}\n👥 {followers_txt}\n📸 {posts} posts")
+        # HD REAL CARD WITH REAL DP
+        card = create_hd_card_real_dp(dp_bytes, f"@{username_safe}", f"{followers_txt} followers", f"{posts} posts", verified, is_private, "IG")
+        await update.message.reply_photo(photo=card, caption=f"👤 @{username_safe}\n👥 {followers_txt}\n📸 {posts} posts\n✅ {verified}\n🔐 {is_private}\n\nHD Card with Real DP + Cover - V1Lack46", reply_markup=get_back_kb())
 
         save_ultra({"type":"insta","input":username_safe,"followers":followers_txt,"time":str(datetime.now())})
         msg=f"📸 INSTA RESULT\n@{username_safe}\nFollowers: {followers_txt}\nPosts: {posts}\nVerified: {verified}\nType: {is_private}"
@@ -298,6 +331,7 @@ async def tool_insta_deep(text,update):
         await update.message.reply_text(msg,reply_markup=kb)
     except Exception as e: await update.message.reply_text(f"Error {e}",reply_markup=get_back_kb())
 
+# ---- TOOL FB - REAL HD DP + COVER (NEW) ----
 async def tool_fb_deep(text,update):
     lang = USER_LANG.get(update.effective_chat.id,'en')
     await update.message.reply_text("📘 Checking..." if lang=='en' else "📘 പരിശോധിക്കുന്നു...")
@@ -305,8 +339,13 @@ async def tool_fb_deep(text,update):
         raw=text.strip(); fb_id = raw.lower().split('facebook.com/')[-1].split('/')[0].split('?')[0] if 'facebook.com' in raw.lower() else re.sub(r'[^a-zA-Z0-9._]','',raw)[:50]
         fb_id_safe=fb_id or "unknown"
         profile_url=raw if 'facebook.com' in raw.lower() else f"https://www.facebook.com/{fb_id_safe}"
-        likes="Unknown"; followers="Unknown"; posts="Unknown"; verified="No"; category="Page"
+        likes="Unknown"; followers="Unknown"; posts="Unknown"; verified="No"; category="Page"; dp_bytes=None
         try:
+            # REAL FB DP HD
+            try:
+                dp_url=f"https://graph.facebook.com/{fb_id_safe}/picture?width=800&height=800"
+                dp_bytes=requests.get(dp_url, timeout=10).content
+            except: dp_bytes=None
             scraper=cloudscraper.create_scraper() if FULL_POWER else requests
             r=scraper.get(f"https://mbasic.facebook.com/{fb_id_safe}",headers={'User-Agent':'Mozilla/5.0 (Linux; Android 12) Mobile'},timeout=15)
             soup=BeautifulSoup(r.text,'lxml'); full_text=soup.get_text(" ", strip=True)
@@ -320,18 +359,49 @@ async def tool_fb_deep(text,update):
                 bp=big_pages[fb_id_safe.lower()]; followers=bp.get('followers',followers); likes=bp.get('likes',likes); verified=bp.get('verified',verified); posts=bp.get('posts',posts); category=bp.get('cat',category)
         except: pass
 
-        card = create_profile_card(fb_id_safe, f"{followers} followers", f"{likes} likes", verified, category, "FB")
-        await update.message.reply_photo(photo=card, caption=f"📘 {fb_id_safe}\n👥 {followers}\n👍 {likes}\n✅ {verified}")
+        card = create_hd_card_real_dp(dp_bytes, fb_id_safe, f"{followers} followers", f"{likes} likes", verified, category, "FB")
+        await update.message.reply_photo(photo=card, caption=f"📘 {fb_id_safe}\n👥 {followers}\n👍 {likes}\n✅ {verified}\n\nHD Card with Real DP - V1Lack46", reply_markup=get_back_kb())
 
         msg=f"📘 FB RESULT\nID: {fb_id_safe}\nFollowers: {followers}\nLikes: {likes}\nVerified: {verified}\nCategory: {category}"
         kb=InlineKeyboardMarkup([[InlineKeyboardButton("View Page",url=profile_url)],[InlineKeyboardButton("Back to Menu",callback_data="back_menu")]])
         await update.message.reply_text(msg,reply_markup=kb)
     except Exception as e: await update.message.reply_text(f"Error {e}",reply_markup=get_back_kb())
 
+# ---- TOOL 2 NUMBER - FREE UPI NAME + CARRIER + CROWD (NEW) ----
 async def tool2_number_deep(text,update):
     d=re.sub(r'\D','',text); num=d[-10:] if len(d)>=10 else d
-    if len(num)!=10: await update.message.reply_text("Invalid number",reply_markup=get_back_kb()); return
-    await update.message.reply_text(f"📱 +91 {num}\nChecked (0/100)",reply_markup=get_back_kb())
+    if len(num)!=10 or num[0] not in '6789':
+        await update.message.reply_text("❌ Invalid number - 10 digit ayakk",reply_markup=get_back_kb()); return
+    await update.message.reply_text(f"📱 +91 {num}\n⏳ Checking FREE...")
+    # FREE CARRIER + CIRCLE
+    circles={'9846':'Kerala','9847':'Kerala','9995':'Kerala','7012':'Kerala','9495':'Kerala','9447':'Kerala','9633':'Kerala','9946':'Kerala','8086':'Kerala','9496':'Kerala','7902':'Kerala','7025':'Kerala'}
+    circle=circles.get(num[:4],'India')
+    if num.startswith(('70','96','69','60')): carrier="Jio"
+    elif num.startswith(('98','99','94','90')): carrier="Airtel / Jio"
+    else: carrier="Jio/Airtel/Vi"
+    # FREE UPI NAME - NO API KEY
+    upi_name=None
+    try:
+        r=requests.get(f"https://upi-verify-api.vercel.app/api/verify?upi={num}@ybl", timeout=5)
+        if r.status_code==200 and r.json().get('name'): upi_name=r.json().get('name')
+    except: upi_name=None
+    # CROWD DB
+    spam_count=0; crowd_name=None; spam_type="Not Reported"
+    if mongo_scans:
+        try:
+            spam_count=mongo_scans.count_documents({"type":"number","input":num})
+            last=mongo_scans.find_one({"type":"number","input":num}, sort=[("_id",-1)])
+            if last: crowd_name=last.get('user_name'); spam_type=last.get('spam_type','Loan Scam')
+        except: pass
+    if upi_name: final_name=f"{upi_name} (UPI Verified - PhonePe)"; source="UPI Bank FREE"
+    elif crowd_name: final_name=f"{crowd_name} ({spam_count} Reports)"; source="V1Lack46 Crowd"
+    else: final_name="Unknown - Be First to Report!"; source="No Data"
+    level=85 if spam_count>=10 else 60 if spam_count>=3 else 20 if spam_count>0 else 5
+    status="SCAM" if level>=70 else "RISKY" if level>=30 else "SAFE"
+    save_ultra({"type":"number","input":num,"score":level,"time":str(datetime.now()),"circle":circle})
+    msg=f"📱 +91 {num}\n\n👤 Name: {final_name}\n📡 Carrier: {carrier} - {circle} Circle\n🚨 Spam Score: {level//10}/10 ({spam_count} Reports)\n💬 Type: {spam_type}\nStatus: {status}\n🔍 Source: {source}"
+    kb=InlineKeyboardMarkup([[InlineKeyboardButton("✏️ Add Name & Report Spam", callback_data=f"report_num_{num}")],[InlineKeyboardButton("🔙 Back to Menu", callback_data="back_menu")]])
+    await update.message.reply_text(msg, reply_markup=kb)
 
 async def tool3_upi_deep(text,update):
     upis=re.findall(r'[\w.\-]+@[\w]+',text.lower())
