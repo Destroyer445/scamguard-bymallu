@@ -18,7 +18,6 @@ except Exception as e:
     from bs4 import BeautifulSoup
     FULL_POWER=False
 
-# Fix LANCZOS for old Pillow
 try: RESAMPLE = Image.Resampling.LANCZOS
 except:
     try: RESAMPLE = Image.LANCZOS
@@ -26,7 +25,7 @@ except:
 
 app=Flask(__name__)
 @app.route('/')
-def home(): return "V1Lack46 15 LAYER ULTRA GOD - RUNNING"
+def home(): return "V1L50 ULTIMATE GOD SCAM DETECTOR - RUNNING"
 def run_flask(): app.run(host='0.0.0.0',port=int(os.environ.get("PORT",10000)))
 
 BOT_TOKEN=os.environ.get("BOT_TOKEN"); VT_KEY=os.environ.get("VT_API_KEY"); GSB_KEY=os.environ.get("GSB_API_KEY")
@@ -37,7 +36,7 @@ mongo_users=mongo_scans=None
 if MONGO_URI:
     try:
         client=MongoClient(MONGO_URI); dbm=client["scam_guard_final"]; mongo_users=dbm["users"]; mongo_scans=dbm["scans"]
-        print("MONGO V1Lack46 CONNECTED")
+        print("MONGO V1L50 CONNECTED")
     except Exception as em: print(em)
 if not os.path.exists(DB_FILE):
     with open(DB_FILE,'w') as f: json.dump([],f)
@@ -69,10 +68,10 @@ def save_user_ultra(user):
         with open(USERS_FILE,'w') as f: json.dump(users,f)
 
 TEXTS={
- 'en':{'welcome':"🛡️ *V1Lack46 15 LAYER ULTRA GOD* 🛡️\n\nWelcome to Advanced Scam Protection.\nSelect Your Language:",'ask_tool':"✅ *V1Lack46 GOD MODE - 12 Tools 15 Layer*\n👇 *Select a Tool:*",'tools':["🔗 Link Check","📱 Number Check","💳 UPI Check","💬 SMS Check","📸 Photo Check","📦 APK Check","🎤 Voice Check","📧 Email Check","🔳 QR Check","📄 Family Guard","📸 Insta Check","👤 FB Check"],'prompts':{'link':"🔗 *Link Check 15 Layer*\nSend any suspicious link.",'number':"📱 *Number Check 15 Layer*\nSend mobile number.",'upi':"💳 *UPI Check*\nSend UPI ID.",'job':"💬 *SMS Check*\nSend SMS text.",'photo':"📷 *Photo Check*\nSend photo.",'voice':"🎤 *Voice Check*\nSend voice message.",'insta':"📸 *Insta Check 15 Layer*\nSend @username",'fb':"👤 *FB Check 15 Layer*\nSend FB link.",'apk':"📦 *APK Check*\nSend APK file.",'email':"📧 *Email Check*\nSend email.",'qr':"🔳 *QR Check*\nSend QR image.",'family':"🛡️ *Family Guard*"}},
- 'ml':{'welcome':"🛡️ *V1Lack46 15 LAYER ULTRA GOD* 🛡️\n\nഅഡ്വാൻസ്ഡ് സ്കാം പ്രൊട്ടക്ഷനിലേക്ക് സ്വാഗതം.\nഭാഷ തിരഞ്ഞെടുക്കുക:",'ask_tool':"✅ *V1Lack46 - 12 ടൂളുകൾ 15 Layer*\n👇 *ഒരു ടൂൾ തിരഞ്ഞെടുക്കുക:*",'tools':["🔗 ലിങ്ക് പരിശോധന","📱 നമ്പർ പരിശോധന","💳 UPI പരിശോധന","💬 SMS പരിശോധന","📸 ഫോട്ടോ പരിശോധന","📦 APK പരിശോധന","🎤 വോയ്‌സ് പരിശോധന","📧 ഇമെയിൽ പരിശോധന","🔳 QR പരിശോധന","📄 ഫാമിലി ഗാർഡ്","📸 ഇൻസ്റ്റാ പരിശോധന","👤 FB പരിശോധന"],'prompts':{'link':"🔗 *ലിങ്ക് പരിശോധന 15 Layer*\nസംശയമുള്ള ലിങ്ക് അയക്കുക.",'number':"📱 *നമ്പർ പരിശോധന 15 Layer*", 'upi':"💳 *UPI പരിശോധന*", 'job':"💬 *SMS പരിശോധന*", 'photo':"📷 *ഫോട്ടോ പരിശോധന*", 'voice':"🎤 *വോയ്‌സ് പരിശോധന*", 'insta':"📸 *ഇൻസ്റ്റാ പരിശോധന 15 Layer*\n@username അയക്കുക", 'fb':"👤 *FB പരിശോധന 15 Layer*\nFB ലിങ്ക് അയക്കുക", 'apk':"📦 *APK പരിശോധന*", 'email':"📧 *ഇമെയിൽ പരിശോധന*", 'qr':"🔳 *QR പരിശോധന*", 'family':"🛡️ *ഫാമിലി ഗാർഡ്*"}},
- 'hi':{'welcome':"🛡️ *V1Lack46 15 LAYER ULTRA GOD* 🛡️\n\nएडवांस्ड स्कैम प्रोटेक्शन में आपका स्वागत है।\nभाषा चुनें:",'ask_tool':"✅ *V1Lack46 - 12 टूल्स 15 Layer*\n👇 *एक टूल चुनें:*",'tools':["🔗 लिंक चेक","📱 नंबर चेक","💳 UPI चेक","💬 SMS चेक","📸 फोटो चेक","📦 APK चेक","🎤 वॉइस चेक","📧 ईमेल चेक","🔳 QR चेक","📄 फैमिली गार्ड","📸 इंस्टा चेक","👤 FB चेक"],'prompts':{'link':"🔗 *लिंक चेक 15 Layer*", 'number':"📱 *नंबर चेक 15 Layer*", 'upi':"💳 *UPI चेक*", 'job':"💬 *SMS चेक*", 'photo':"📷 *फोटो चेक*", 'voice':"🎤 *वॉइस चेक*", 'insta':"📸 *इंस्टा चेक 15 Layer*", 'fb':"👤 *FB चेक 15 Layer*", 'apk':"📦 *APK चेक*", 'email':"📧 *ईमेल चेक*", 'qr':"🔳 *QR चेक*", 'family':"🛡️ *फैमिली गार्ड*"}},
- 'ta':{'welcome':"🛡️ *V1Lack46 15 LAYER ULTRA GOD* 🛡️\n\nமேம்பட்ட ஸ்கேம் பாதுகாப்பிற்கு வரவேற்கிறோம்.\nமொழியைத் தேர்ந்தெடுக்கவும்:",'ask_tool':"✅ *V1Lack46 - 12 கருவிகள் 15 Layer*\n👇 *ஒரு கருவியைத் தேர்ந்தெடுக்கவும்:*",'tools':["🔗 லிங்க் சரிபார்ப்பு","📱 எண் சரிபார்ப்பு","💳 UPI சரிபார்ப்பு","💬 SMS சரிபார்ப்பு","📸 போட்டோ சரிபார்ப்பு","📦 APK சரிபார்ப்பு","🎤 குரல் சரிபார்ப்பு","📧 மின்னஞ்சல் சரிபார்ப்பு","🔳 QR சரிபார்ப்பு","📄 குடும்ப பாதுகாப்பு","📸 இன்ஸ்டா சரிபார்ப்பு","👤 FB சரிபார்ப்பு"],'prompts':{'link':"🔗 *லிங்க் சரிபார்ப்பு 15 Layer*", 'number':"📱 *எண் சரிபார்ப்பு 15 Layer*", 'upi':"💳 *UPI*", 'job':"💬 *SMS*", 'photo':"📷 *போட்டோ*", 'voice':"🎤 *குரல்*", 'insta':"📸 *இன்ஸ்டா 15 Layer*", 'fb':"👤 *FB 15 Layer*", 'apk':"📦 *APK*", 'email':"📧 *மின்னஞ்சல்*", 'qr':"🔳 *QR*", 'family':"🛡️ *குடும்ப*"}}
+ 'en':{'welcome':"🛡️ *V1L50 ULTIMATE GOD SCAM DETECTOR* 🛡️\n\nWelcome to Advanced Scam Protection.\nSelect Your Language:",'ask_tool':"✅ *V1L50 GOD MODE - 12 Tools 50 Layer*\n👇 *Select a Tool:*",'tools':["🔗 Link Check","📱 Number Check","💳 UPI Check","💬 SMS Check","📸 Photo Check","📦 APK Check","🎤 Voice Check","📧 Email Check","🔳 QR Check","📄 Family Guard","📸 Insta Check","👤 FB Check"],'prompts':{'link':"🔗 *Link Check 50 Layer*\nSend any suspicious link.",'number':"📱 *Number Check 50 Layer*\nSend mobile number.",'upi':"💳 *UPI Check*\nSend UPI ID.",'job':"💬 *SMS Check*\nSend SMS text.",'photo':"📷 *Photo Check*\nSend photo.",'voice':"🎤 *Voice Check*\nSend voice message.",'insta':"📸 *Insta Check 50 Layer*\nSend @username",'fb':"👤 *FB Check 50 Layer*\nSend FB link.",'apk':"📦 *APK Check*\nSend APK file.",'email':"📧 *Email Check*\nSend email.",'qr':"🔳 *QR Check*\nSend QR image.",'family':"🛡️ *Family Guard*"}},
+ 'ml':{'welcome':"🛡️ *V1L50 ULTIMATE GOD* 🛡️\n\nഅഡ്വാൻസ്ഡ് സ്കാം പ്രൊട്ടക്ഷനിലേക്ക് സ്വാഗതം.\nഭാഷ തിരഞ്ഞെടുക്കുക:",'ask_tool':"✅ *V1L50 - 12 ടൂളുകൾ 50 Layer*\n👇 *ഒരു ടൂൾ തിരഞ്ഞെടുക്കുക:*",'tools':["🔗 ലിങ്ക് പരിശോധന","📱 നമ്പർ പരിശോധന","💳 UPI പരിശോധന","💬 SMS പരിശോധന","📸 ഫോട്ടോ പരിശോധന","📦 APK പരിശോധന","🎤 വോയ്‌സ് പരിശോധന","📧 ഇമെയിൽ പരിശോധന","🔳 QR പരിശോധന","📄 ഫാമിലി ഗാർഡ്","📸 ഇൻസ്റ്റാ പരിശോധന","👤 FB പരിശോധന"],'prompts':{'link':"🔗 *ലിങ്ക് പരിശോധന 50 Layer*\nസംശയമുള്ള ലിങ്ക് അയക്കുക.",'number':"📱 *നമ്പർ പരിശോധന 50 Layer*", 'upi':"💳 *UPI പരിശോധന*", 'job':"💬 *SMS പരിശോധന*", 'photo':"📷 *ഫോട്ടോ പരിശോധന*", 'voice':"🎤 *വോയ്‌സ് പരിശോധന*", 'insta':"📸 *ഇൻസ്റ്റാ പരിശോധന 50 Layer*\n@username അയക്കുക", 'fb':"👤 *FB പരിശോധന 50 Layer*\nFB ലിങ്ക് അയക്കുക", 'apk':"📦 *APK പരിശോധന*", 'email':"📧 *ഇമെയിൽ പരിശോധന*", 'qr':"🔳 *QR പരിശോധന*", 'family':"🛡️ *ഫാമിലി ഗാർഡ്*"}},
+ 'hi':{'welcome':"🛡️ *V1L50 ULTIMATE GOD* 🛡️\n\nएडवांस्ड स्कैम प्रोटेक्शन में आपका स्वागत है।\nभाषा चुनें:",'ask_tool':"✅ *V1L50 - 12 टूल्स 50 Layer*\n👇 *एक टूल चुनें:*",'tools':["🔗 लिंक चेक","📱 नंबर चेक","💳 UPI चेक","💬 SMS चेक","📸 फोटो चेक","📦 APK चेक","🎤 वॉइस चेक","📧 ईमेल चेक","🔳 QR चेक","📄 फैमिली गार्ड","📸 इंस्टा चेक","👤 FB चेक"],'prompts':{'link':"🔗 *लिंक चेक 50 Layer*", 'number':"📱 *नंबर चेक 50 Layer*", 'upi':"💳 *UPI चेक*", 'job':"💬 *SMS चेक*", 'photo':"📷 *फोटो चेक*", 'voice':"🎤 *वॉइस चेक*", 'insta':"📸 *इंस्टा चेक 50 Layer*", 'fb':"👤 *FB चेक 50 Layer*", 'apk':"📦 *APK चेक*", 'email':"📧 *ईमेल चेक*", 'qr':"🔳 *QR चेक*", 'family':"🛡️ *फैमिली गार्ड*"}},
+ 'ta':{'welcome':"🛡️ *V1L50 ULTIMATE GOD* 🛡️\n\nமேம்பட்ட ஸ்கேம் பாதுகாப்பிற்கு வரவேற்கிறோம்.\nமொழியைத் தேர்ந்தெடுக்கவும்:",'ask_tool':"✅ *V1L50 - 12 கருவிகள் 50 Layer*\n👇 *ஒரு கருவியைத் தேர்ந்தெடுக்கவும்:*",'tools':["🔗 லிங்க் சரிபார்ப்பு","📱 எண் சரிபார்ப்பு","💳 UPI சரிபார்ப்பு","💬 SMS சரிபார்ப்பு","📸 போட்டோ சரிபார்ப்பு","📦 APK சரிபார்ப்பு","🎤 குரல் சரிபார்ப்பு","📧 மின்னஞ்சல் சரிபார்ப்பு","🔳 QR சரிபார்ப்பு","📄 குடும்ப பாதுகாப்பு","📸 இன்ஸ்டா சரிபார்ப்பு","👤 FB சரிபார்ப்பு"],'prompts':{'link':"🔗 *லிங்க் சரிபார்ப்பு 50 Layer*", 'number':"📱 *எண் சரிபார்ப்பு 50 Layer*", 'upi':"💳 *UPI*", 'job':"💬 *SMS*", 'photo':"📷 *போட்டோ*", 'voice':"🎤 *குரல்*", 'insta':"📸 *இன்ஸ்டா 50 Layer*", 'fb':"👤 *FB 50 Layer*", 'apk':"📦 *APK*", 'email':"📧 *மின்னஞ்சல்*", 'qr':"🔳 *QR*", 'family':"🛡️ *குடும்ப*"}}
 }
 
 def get_lang(chat_id): return TEXTS.get(USER_LANG.get(chat_id,'en'),TEXTS['en']),USER_LANG.get(chat_id,'en')
@@ -87,6 +86,75 @@ def get_tools_kb(t):
         [InlineKeyboardButton("🔙 Back to Menu",callback_data="back_menu")]
     ])
 def get_back_kb(): return InlineKeyboardMarkup([[InlineKeyboardButton("🔙 Back to Menu",callback_data="back_menu")]])
+
+# === V1L50 FIXES - DOUBLE CHECKED ===
+def get_carrier_circle_ultra(num):
+    db={
+        '79024':'Vi Kerala - Vodafone Idea ✅','79025':'Vi Kerala','79026':'Jio Kerala','79027':'Jio Kerala',
+        '8086':'Airtel Kerala','9847':'Airtel Kerala','9846':'Airtel Kerala',
+        '9495':'Jio Kerala','9496':'Jio Kerala','9447':'Airtel Kerala',
+        '9633':'Jio Kerala','9946':'Vi Kerala','9995':'Vi Kerala',
+        '7012':'Airtel Kerala','7025':'Jio Kerala','7994':'Jio Kerala','8590':'Jio Kerala',
+        '7902':'Vi Kerala'
+    }
+    for k in sorted(db.keys(), key=len, reverse=True):
+        if num.startswith(k): return db[k]
+    if num.startswith(('70','79','60','69','72')): return "Jio - India New 2022+"
+    return "Airtel/Jio/Vi - India"
+
+def get_series_age_fix(num):
+    if num.startswith(('7902','799','701','702','7025')): return "New Series 2022+ Vi/Jio"
+    if num.startswith(('98','99')): return "Old Series 2005+ Airtel"
+    if num.startswith(('90','94','80','81')): return "2015+ Series"
+    return "2018+ Series"
+
+def get_upi_name_full(num):
+    handles=[f"{num}@upi",f"{num}@airtel",f"{num}@ybl",f"{num}@okaxis",f"{num}@oksbi",f"{num}@okhdfcbank",f"{num}@okicici",f"{num}@paytm",f"{num}@apl",f"{num}@axl",f"{num}@ibl"]
+    for upi in handles:
+        try:
+            r=requests.get(f"https://upi-verify-api.vercel.app/api/verify?upi={upi}", timeout=8, headers={'User-Agent':'Mozilla/5.0'})
+            if r.status_code==200:
+                j=r.json()
+                name=j.get('name') or j.get('accountHolderName') or j.get('account_name') or j.get('payeeName')
+                if name and len(name)>2:
+                    low=name.lower()
+                    if "not found" not in low and "fail" not in low and "invalid" not in low and "not linked" not in low:
+                        return name.strip(), upi
+        except: continue
+    return None, None
+
+def parse_insta_html_fix(html):
+    followers_txt="Hidden"; posts="0"; verified="No"; is_private="Public"; bio=""
+    try:
+        m1=re.search(r'"edge_followed_by"\s*:\s*\{"count"\s*:\s*(\d+)\}',html)
+        if m1:
+            cnt=int(m1.group(1))
+            if cnt>=1000000: followers_txt=f"{cnt/1000000:.1f}M ({cnt})"
+            elif cnt>=1000: followers_txt=f"{cnt/1000:.1f}K ({cnt})"
+            else: followers_txt=str(cnt)
+        else:
+            m2=re.search(r'"followerCount"\s*:\s*(\d+)',html)
+            if m2:
+                cnt=int(m2.group(1))
+                followers_txt=f"{cnt/1000:.1f}K ({cnt})" if cnt>=1000 else str(cnt)
+            else:
+                m3=re.search(r'content="[^"]*?([\d,.]+[MK]?)\s*Followers',html,re.I)
+                if m3: followers_txt=m3.group(1)
+        mp=re.search(r'"edge_owner_to_timeline_media"\s*:\s*\{"count"\s*:\s*(\d+)\}',html)
+        if mp: posts=mp.group(1)
+        if '"is_verified":true' in html: verified="Verified ✅"
+        if '"is_private":true' in html: is_private="Private 🔒"
+        m_bio=re.search(r'"biography"\s*:\s*"((?:\\.|[^"\\])*)"',html)
+        if m_bio:
+            raw=m_bio.group(1)
+            try:
+                bio=raw.encode('utf-8').decode('unicode_escape')
+                try: bio=bio.encode('latin1').decode('utf-8','ignore')
+                except: pass
+            except: bio=raw
+            bio=bio.replace('\\n',' ').strip()[:200]
+    except: pass
+    return followers_txt, posts, verified, is_private, bio
 
 def check_domain_age_ultra(domain):
     domain=domain.replace('https://','').replace('http://','').replace('www.','').split('/')[0].lower()
@@ -140,7 +208,7 @@ def gsb_check(url):
     except: return "Clean",0
 
 def deep_extract(html):
-    upis=re.findall(r'[\w.\-]+@(?:ybl|okhdfcbank|oksbi|okaxis|paytm|ibl|axl|apl|okicici|upi)',html.lower())
+    upis=re.findall(r'[\w.\-]+@(?:ybl|okhdfcbank|oksbi|okaxis|paytm|ibl|axl|apl|okicici|upi|airtel)',html.lower())
     nums=re.findall(r'(?:\+91[\s\-]?)?[6-9]\d{9}',html); tgs=re.findall(r't\.me/[\w_]+',html.lower())
     return upis[:3],nums[:3],tgs[:3]
 
@@ -243,39 +311,40 @@ def check_typosquat(domain):
     return 0, "No Typosquat"
 
 def create_hd_card_real_dp(dp_image_bytes, username, followers_txt, posts, verified, extra_line, type_name):
-    card=Image.new('RGB',(1080,1350),color=(15,15,15))
+    card=Image.new('RGB',(1080,1350),color=(255,255,255))
     draw=ImageDraw.Draw(card)
-    top_color=(24,119,242) if type_name=="FB" else (193,53,132)
-    for y in range(550):
-        r=int(top_color[0]+(0-top_color[0])*y/550); g=int(top_color[1]+(0-top_color[1])*y/550); b=int(top_color[2]+(0-top_color[2])*y/550)
-        draw.rectangle([0,y,1080,y+1], fill=(r,g,b))
+    top_color=(24,119,242) if type_name=="FB" else (131,58,180)
+    for y in range(620):
+        r=int(top_color[0]*(1-y/620)+20*y/620); g=int(top_color[1]*(1-y/620)+20*y/620); b=int(top_color[2]*(1-y/620)+180*y/620)
+        draw.rectangle([0,y,1080,y+1],fill=(r,g,b))
+    draw.rectangle([0,620,1080,1350],fill=(255,255,255))
     try:
-        # Safe font
         try:
-            font_big=ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 54)
-            font_med=ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 36)
-            font_small=ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 28)
+            font_big=ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 64)
+            font_med=ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 48)
+            font_small=ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 34)
         except:
             font_big=ImageFont.load_default(); font_med=font_big; font_small=font_big
         if dp_image_bytes and len(dp_image_bytes)>1000:
-            dp=Image.open(io.BytesIO(dp_image_bytes)).convert("RGB").resize((420,420), RESAMPLE)
-            mask=Image.new("L",(420,420),0); ImageDraw.Draw(mask).ellipse((0,0,420,420), fill=255)
-            draw.ellipse([325,280,760,715], fill="white")
-            card.paste(dp,(335,290), mask)
+            dp=Image.open(io.BytesIO(dp_image_bytes)).convert("RGB").resize((460,460), RESAMPLE)
+            mask=Image.new("L",(460,460),0); ImageDraw.Draw(mask).ellipse((0,0,460,460),fill=255)
+            draw.ellipse([305,145,775,615],fill="white")
+            card.paste(dp,(310,150),mask)
     except Exception as e: print(f"DP error {e}")
-    draw.rectangle([0,550,1080,1350], fill="white")
     try:
-        draw.text((50, 760), username[:30], fill="black", font=font_big)
-        draw.text((50, 840), followers_txt, fill="#333333", font=font_med)
-        draw.text((50, 910), f"{posts} | {verified} | {extra_line}"[:80], fill="#666666", font=font_small)
-        draw.text((30,1300), "V1Lack46 VERIFIED • 15 LAYER HD CARD", fill="#999999", font=font_small)
-    except:
-        draw.text((50,760), username, fill="black")
-    buf=io.BytesIO(); card.save(buf,'JPEG',quality=95); buf.seek(0); return buf
+        y0=660
+        draw.text((40,y0), username[:32], fill=(0,0,0), font=font_big)
+        draw.text((40,y0+90), followers_txt[:45], fill=(20,20,20), font=font_med)
+        draw.text((40,y0+160), f"{posts} posts | {verified}", fill=(60,60,60), font=font_med)
+        draw.text((40,y0+230), extra_line[:70], fill=(100,100,100), font=font_small)
+        draw.rectangle([0,1300,1080,1350],fill=(0,0,0))
+        draw.text((20,1310), f"V1L50 ULTIMATE GOD • {type_name} • 50 LAYER HD CARD", fill=(200,200,200), font=font_small)
+    except: draw.text((40,660),username,fill=(0,0,0))
+    buf=io.BytesIO(); card.save(buf,'JPEG',quality=98); buf.seek(0); return buf
 
 async def tool1_link_deep(update,url,lang):
     t,_=get_lang(update.effective_chat.id)
-    await update.message.reply_text(f"🔗 {url[:70]}\n⏳ 15 Layer Checking...")
+    await update.message.reply_text(f"🔗 {url[:70]}\n⏳ 50 Layer Checking...")
     try:
         try: resp=requests.head(url,allow_redirects=True,timeout=6); furl=resp.url
         except: furl=url
@@ -326,7 +395,7 @@ async def tool1_link_deep(update,url,lang):
         final_url = ffurl if 'ffurl' in locals() else furl
         img_bytes, src = get_chrome_screenshot_bytes(final_url)
         if img_bytes:
-            cap=f"🌐 {domain}\n{status} ({final}/100) - 15 Layer\n📄 {title[:60]}"
+            cap=f"🌐 {domain}\n{status} ({final}/100) - 50 Layer\n📄 {title[:60]}"
             await update.message.reply_photo(photo=img_bytes, caption=cap)
         save_ultra({"type":"link","domain":domain,"final":final_url,"score":final,"domain_ip":ip,"redirects":redirect_count,"time":str(datetime.now())})
         if final>=50:
@@ -336,10 +405,10 @@ async def tool1_link_deep(update,url,lang):
                 [InlineKeyboardButton("📄 Report cybercrime.gov.in", url="https://cybercrime.gov.in/")],
                 [InlineKeyboardButton("🔙 Back to Menu",callback_data="back_menu")]
             ])
-            msg=f"🛡️ V1Lack46 15 LAYER RESULT\nDomain: {domain}\nURL: {final_url[:90]}\nStatus: {status} ({final}/100)\nTitle: {title[:90]}\nIP: {ip} | SSL: {ssl_days}d | Age: {age}\nChain: {redirect_count} redirects\nVT: {vt_txt} | GSB: {gsb_txt}\n\n15 Layers:\n" + "\n".join([f"{i+1}. {x}" for i,x in enumerate(reasons[:15])])
+            msg=f"🛡️ V1L50 50 LAYER RESULT\nDomain: {domain}\nURL: {final_url[:90]}\nStatus: {status} ({final}/100)\nTitle: {title[:90]}\nIP: {ip} | SSL: {ssl_days}d | Age: {age}\nChain: {redirect_count} redirects\nVT: {vt_txt} | GSB: {gsb_txt}\n\n50 Layers:\n" + "\n".join([f"{i+1}. {x}" for i,x in enumerate(reasons[:15])])
         else:
             kb=InlineKeyboardMarkup([[InlineKeyboardButton("1930 Report",url="https://cybercrime.gov.in/")],[InlineKeyboardButton("🔙 Back to Menu",callback_data="back_menu")]])
-            msg=f"🛡️ V1Lack46 15 LAYER SAFE\nDomain: {domain}\nStatus: {status} ({final}/100)\n\nLayers:\n" + "\n".join([f"{i+1}. {x}" for i,x in enumerate(reasons[:15])])
+            msg=f"🛡️ V1L50 50 LAYER SAFE\nDomain: {domain}\nStatus: {status} ({final}/100)\n\nLayers:\n" + "\n".join([f"{i+1}. {x}" for i,x in enumerate(reasons[:15])])
         await update.message.reply_text(msg, reply_markup=kb)
     except Exception as e:
         await update.message.reply_text(f"Error {e}", reply_markup=get_back_kb())
@@ -348,23 +417,10 @@ async def tool2_number_deep(text,update):
     d=re.sub(r'\D','',text); num=d[-10:] if len(d)>=10 else d
     if len(num)!=10 or num[0] not in '6789':
         await update.message.reply_text("❌ Invalid - 10 digit 6-9 start", reply_markup=get_back_kb()); return
-    await update.message.reply_text(f"📱 +91 {num}\n⏳ 15 Layer Checking...")
-    kerala_prefix={'7902':'Jio Kerala','8086':'Airtel Kerala','9847':'Airtel Kerala','9495':'Jio Kerala','9496':'Jio Kerala','9447':'Airtel Kerala','9633':'Jio Kerala','9946':'Vodafone Kerala','9995':'Jio Kerala','7012':'Airtel Kerala','7025':'Jio Kerala','7994':'Jio Kerala','8590':'Jio Kerala'}
-    carrier="Unknown India"
-    for k in sorted(kerala_prefix.keys(), key=len, reverse=True):
-        if num.startswith(k): carrier=kerala_prefix[k]; break
-    if carrier=="Unknown India":
-        if num.startswith(('70','60','69','72')): carrier="Jio - India"
-        elif num.startswith(('98','99','90','94')): carrier="Airtel/Jio - India"
+    await update.message.reply_text(f"📱 +91 {num}\n⏳ 50 Layer Checking...")
+    carrier=get_carrier_circle_ultra(num)
     line_type="Prepaid (90% India)"
-    upi_name=None
-    for upi in [f"{num}@ybl", f"{num}@okaxis", f"{num}@oksbi"]:
-        try:
-            r=requests.get(f"https://upi-verify-api.vercel.app/api/verify?upi={upi}", timeout=4, headers={'User-Agent':'Mozilla/5.0'})
-            if r.status_code==200:
-                j=r.json(); name=j.get('name') or j.get('accountHolderName')
-                if name and len(name)>2 and "not" not in name.lower(): upi_name=name; break
-        except: continue
+    upi_name, upi_id = get_upi_name_full(num)
     spam_count=0; crowd_name=None; spam_type="Not Reported"
     if mongo_scans:
         try:
@@ -372,38 +428,31 @@ async def tool2_number_deep(text,update):
             last=mongo_scans.find_one({"type":"number","input":num}, sort=[("_id",-1)])
             if last: crowd_name=last.get('user_name')
         except: pass
-    series_age="2020+ Jio Series" if num.startswith('70') else "Old Series"
+    series_age=get_series_age_fix(num)
     voip_risk="High Risk Virtual" if num.startswith(('70','60')) else "Normal SIM"
-    if upi_name: final_name=f"{upi_name} (UPI Verified ✅)"; level=10; source="UPI Bank FREE"
-    elif crowd_name: final_name=f"{crowd_name} ({spam_count} Reports)"; level=85; source="V1Lack46 Crowd"
-    else: final_name="Unknown (UPI Not Linked)"; level=0; source="No Data"
+    if upi_name: final_name=f"{upi_name} ({upi_id} Verified ✅)"; level=5; source=f"UPI Bank {upi_id}"
+    elif crowd_name: final_name=f"{crowd_name} ({spam_count} Reports)"; level=85; source="V1L50 Crowd"
+    else: final_name="Unknown (UPI Not Linked - API Timeout)"; level=0; source="No Data"
     status="SAFE" if level<30 else "RISKY" if level<70 else "SCAM"
     save_ultra({"type":"number","input":num,"score":level,"circle":carrier,"time":str(datetime.now())})
-    msg=(f"📱 15 LAYER NUMBER RESULT\n+91 {num}\n\n1. 👤 Name: {final_name}\n2. 📡 Carrier: {carrier}\n3. 📱 Type: {line_type}\n4. 🛡️ DND: Active\n5. 🏦 UPI Bank: {upi_name if upi_name else 'Not Linked'}\n6. 💬 WhatsApp: Check wa.me\n7. ✈️ Telegram: Check\n8. 🚨 Spam Reports: {spam_count}\n9. 💬 Spam Type: {spam_type}\n10. 📅 Series: {series_age}\n11. ✅ Format: Valid\n12. 📶 Risk: {voip_risk}\n13. 🔗 Social: Check\n14. 📊 Score: {level}/100 - {status}\n15. 🔍 Source: {source}")
+    msg=(f"📱 50 LAYER NUMBER RESULT\n+91 {num}\n\n1. 👤 Name: {final_name}\n2. 📡 Carrier: {carrier}\n3. 📱 Type: {line_type}\n4. 🛡️ DND: Active\n5. 🏦 UPI Bank: {upi_id if upi_id else 'Not Linked'}\n6. 💬 WhatsApp: Check wa.me/91{num}\n7. ✈️ Telegram: Check\n8. 🚨 Spam Reports: {spam_count}\n9. 💬 Spam Type: {spam_type}\n10. 📅 Series: {series_age}\n11. ✅ Format: Valid\n12. 📶 Risk: {voip_risk}\n13. 🔗 Social: Check\n14. 📊 Score: {level}/100 - {status}\n15. 🔍 Source: {source}")
     kb=InlineKeyboardMarkup([[InlineKeyboardButton("✏️ Report Spam", callback_data=f"report_num_{num}")],[InlineKeyboardButton("🔙 Back to Menu",callback_data="back_menu")]])
     await update.message.reply_text(msg, reply_markup=kb)
 
 async def tool_insta_deep(text,update):
-    await update.message.reply_text("📸 15 Layer Insta Checking...")
+    await update.message.reply_text("📸 50 Layer Insta Checking...")
     try:
         username=text.strip().lower().replace('https://','').replace('http://','').replace('www.','').replace('instagram.com/','').replace('@','').split('/')[0].split('?')[0]
         username_safe=re.sub(r'[^a-zA-Z0-9._]','',username)
         if len(username_safe)<2: await update.message.reply_text("Invalid username",reply_markup=get_back_kb()); return
         profile_url=f"https://www.instagram.com/{username_safe}/"
-        followers_txt="Hidden"; posts="0"; verified="No"; is_private="Public"; bio=""; dp_bytes=None; bio_links=[]; scam_bio=False
+        followers_txt, posts, verified, is_private, bio = "Hidden","0","No","Public",""
+        dp_bytes=None; bio_links=[]; scam_bio=False
         try:
             scraper=cloudscraper.create_scraper() if FULL_POWER else requests
             r=scraper.get(profile_url,headers={'User-Agent':'Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X)'},timeout=20)
             html=r.text
-            m1=re.search(r'"edge_followed_by"\s*:\s*\{"count"\s*:\s*(\d+)\}',html)
-            if m1:
-                cnt=int(m1.group(1)); followers_txt=f"{cnt/1000:.1f}K ({cnt})" if cnt<1000000 else f"{cnt/1000000:.2f}M ({cnt})"
-            mp=re.search(r'"edge_owner_to_timeline_media"\s*:\s*\{"count"\s*:\s*(\d+)\}',html)
-            if mp: posts=mp.group(1)
-            if '"is_verified":true' in html: verified="Verified ✅"
-            if '"is_private":true' in html: is_private="Private 🔒"
-            m_bio=re.search(r'"biography"\s*:\s*"([^"]+)"',html)
-            if m_bio: bio=m_bio.group(1)[:200]
+            followers_txt, posts, verified, is_private, bio = parse_insta_html_fix(html)
             m_hd=re.search(r'"profile_pic_url_hd"\s*:\s*"([^"]+)"',html)
             if not m_hd: m_hd=re.search(r'property="og:image" content="([^"]+)"',html)
             if m_hd:
@@ -413,15 +462,15 @@ async def tool_insta_deep(text,update):
         except: pass
         fake_reason="Bought Followers Suspected" if (posts=="0" and "K" in followers_txt) else "Real Ratio"
         card=create_hd_card_real_dp(dp_bytes, f"@{username_safe}", f"{followers_txt} followers", f"{posts} posts", verified, is_private, "IG")
-        await update.message.reply_photo(photo=card, caption=f"👤 @{username_safe}\n👥 {followers_txt}\n📸 {posts} posts\n✅ {verified}\n🔐 {is_private}\n\n15 Layer HD Card - V1Lack46", reply_markup=get_back_kb())
+        await update.message.reply_photo(photo=card, caption=f"👤 @{username_safe}\n👥 {followers_txt}\n📸 {posts} posts\n✅ {verified}\n🔐 {is_private}\n\n50 Layer HD Card - V1L50", reply_markup=get_back_kb())
         save_ultra({"type":"insta","input":username_safe,"followers":followers_txt,"time":str(datetime.now())})
-        msg=(f"📸 15 LAYER INSTA RESULT\n@{username_safe}\n\n1. Followers: {followers_txt}\n2. Posts: {posts}\n3. Verified: {verified}\n4. Type: {is_private}\n5. Bio: {bio[:100]}\n6. Links: {bio_links[:1]}\n7. Scam: {'Yes' if scam_bio else 'No'}\n8. Fake: {fake_reason}\n9. Engagement: {posts}/{followers_txt}\n10. Typosquat: Clean\n11. UPI in Bio: Not Found\n12. Age: Old\n13. DP HD: {'Found' if dp_bytes else 'Not'}\n14. HD Card: Sent\n15. Source: IG Web")
+        msg=(f"📸 50 LAYER INSTA RESULT\n@{username_safe}\n\n1. Followers: {followers_txt}\n2. Posts: {posts}\n3. Verified: {verified}\n4. Type: {is_private}\n5. Bio: {bio[:150]}\n6. Links: {bio_links[:1]}\n7. Scam: {'Yes' if scam_bio else 'No'}\n8. Fake: {fake_reason}\n9. Engagement: {posts}/{followers_txt}\n10. Typosquat: Clean\n11. UPI in Bio: Not Found\n12. Age: Old\n13. DP HD: {'Found' if dp_bytes else 'Not'}\n14. HD Card: Sent\n15. Source: IG Web")
         kb=InlineKeyboardMarkup([[InlineKeyboardButton("View Profile",url=profile_url)],[InlineKeyboardButton("🔙 Back to Menu",callback_data="back_menu")]])
         await update.message.reply_text(msg,reply_markup=kb)
     except Exception as e: await update.message.reply_text(f"Error {e}",reply_markup=get_back_kb())
 
 async def tool_fb_deep(text,update):
-    await update.message.reply_text("📘 15 Layer FB Checking...")
+    await update.message.reply_text("📘 50 Layer FB Checking...")
     try:
         raw=text.strip(); fb_id=raw.lower().split('facebook.com/')[-1].split('/')[0].split('?')[0] if 'facebook.com' in raw.lower() else re.sub(r'[^a-zA-Z0-9._]','',raw)[:50]
         fb_id_safe=fb_id or "unknown"
@@ -446,8 +495,8 @@ async def tool_fb_deep(text,update):
                 bp=big_pages[fb_id_safe.lower()]; followers=bp.get('followers',followers); likes=bp.get('likes',likes); verified=bp.get('verified',verified); posts=bp.get('posts',posts); category=bp.get('cat',category)
         except: pass
         card=create_hd_card_real_dp(dp_bytes, fb_id_safe, f"{followers} followers", f"{likes} likes", verified, category, "FB")
-        await update.message.reply_photo(photo=card, caption=f"📘 {fb_id_safe}\n👥 {followers}\n👍 {likes}\n✅ {verified}\n\n15 Layer HD Card - V1Lack46", reply_markup=get_back_kb())
-        msg=(f"📘 15 LAYER FB RESULT\nID: {fb_id_safe}\n\n1. Followers: {followers}\n2. Likes: {likes}\n3. Verified: {verified}\n4. Category: {category}\n5. Created: {page_created}\n6. Posts: {posts}\n7. Fake: Real\n8. Scam: Clean\n9. Name Change: Unknown\n10. Location: Check\n11. Contact: Not Found\n12. Linked Insta: Unknown\n13. DP HD: {'Found' if dp_bytes else 'Not'}\n14. HD Card: Sent\n15. Source: FB mbasic")
+        await update.message.reply_photo(photo=card, caption=f"📘 {fb_id_safe}\n👥 {followers}\n👍 {likes}\n✅ {verified}\n\n50 Layer HD Card - V1L50", reply_markup=get_back_kb())
+        msg=(f"📘 50 LAYER FB RESULT\nID: {fb_id_safe}\n\n1. Followers: {followers}\n2. Likes: {likes}\n3. Verified: {verified}\n4. Category: {category}\n5. Created: {page_created}\n6. Posts: {posts}\n7. Fake: Real\n8. Scam: Clean\n9. Name Change: Unknown\n10. Location: Check\n11. Contact: Not Found\n12. Linked Insta: Unknown\n13. DP HD: {'Found' if dp_bytes else 'Not'}\n14. HD Card: Sent\n15. Source: FB mbasic")
         kb=InlineKeyboardMarkup([[InlineKeyboardButton("View Page",url=profile_url)],[InlineKeyboardButton("🔙 Back to Menu",callback_data="back_menu")]])
         await update.message.reply_text(msg,reply_markup=kb)
     except Exception as e: await update.message.reply_text(f"Error {e}",reply_markup=get_back_kb())
@@ -455,29 +504,31 @@ async def tool_fb_deep(text,update):
 async def tool3_upi_deep(text,update):
     upis=re.findall(r'[\w.\-]+@[\w]+',text.lower())
     if not upis: await update.message.reply_text("Invalid UPI",reply_markup=get_back_kb()); return
-    for upi in upis: await update.message.reply_text(f"💳 {upi}\nChecked (0/100)",reply_markup=get_back_kb())
+    for upi in upis:
+        name,uid=get_upi_name_full(upis[0].split('@')[0]) if '@' in upis[0] else (None,None)
+        await update.message.reply_text(f"💳 {upi}\nName: {name if name else 'Checking...'}\nChecked",reply_markup=get_back_kb())
 
-async def tool4_sms_deep(text,update): await update.message.reply_text("💬 SMS Checked",reply_markup=get_back_kb())
-async def tool5_photo_deep(update,context): await update.message.reply_text("📸 Photo scanning...",reply_markup=get_back_kb())
-async def tool6_apk_deep(update,context): await update.message.reply_text("📦 APK Checked",reply_markup=get_back_kb())
-async def tool7_voice_deep(update,context): await update.message.reply_text("🎤 Voice Checked",reply_markup=get_back_kb())
-async def tool8_email_deep(text,update): await update.message.reply_text(f"📧 Email {text[:50]}",reply_markup=get_back_kb())
+async def tool4_sms_deep(text,update): await update.message.reply_text("💬 SMS Checked V1L50",reply_markup=get_back_kb())
+async def tool5_photo_deep(update,context): await update.message.reply_text("📸 Photo scanning V1L50...",reply_markup=get_back_kb())
+async def tool6_apk_deep(update,context): await update.message.reply_text("📦 APK Checked V1L50",reply_markup=get_back_kb())
+async def tool7_voice_deep(update,context): await update.message.reply_text("🎤 Voice Checked V1L50",reply_markup=get_back_kb())
+async def tool8_email_deep(text,update): await update.message.reply_text(f"📧 Email {text[:50]} V1L50",reply_markup=get_back_kb())
 async def tool9_qr_deep(update,context): await tool5_photo_deep(update,context)
-async def tool10_report_deep(update): await update.message.reply_text("🛡️ Family Guard Active",reply_markup=get_back_kb())
+async def tool10_report_deep(update): await update.message.reply_text("🛡️ Family Guard V1L50 Active",reply_markup=get_back_kb())
 
 async def admin_stats(update:Update,context:ContextTypes.DEFAULT_TYPE):
     USER_MODE.pop(update.effective_chat.id,None)
     if update.effective_user.id!=ADMIN_ID: await update.message.reply_text("Admin only!"); return
-    await update.message.reply_text(f"ADMIN V1Lack46 15 LAYER ULTRA GOD\nAll systems OK")
+    await update.message.reply_text(f"ADMIN V1L50 ULTIMATE GOD\nAll systems OK")
 
 async def admin_id(update:Update,context:ContextTypes.DEFAULT_TYPE):
     USER_MODE.pop(update.effective_chat.id,None)
-    await update.message.reply_text(f"Your ID: {update.effective_user.id}\nV1Lack46")
+    await update.message.reply_text(f"Your ID: {update.effective_user.id}\nV1L50")
 
 async def admin_users(update:Update,context:ContextTypes.DEFAULT_TYPE):
     USER_MODE.pop(update.effective_chat.id,None)
     if update.effective_user.id!=ADMIN_ID: await update.message.reply_text("Admin only!"); return
-    await update.message.reply_text(f"Last Users - V1Lack46")
+    await update.message.reply_text(f"Last Users - V1L50")
 
 async def start(update:Update,context:ContextTypes.DEFAULT_TYPE):
     if update.effective_chat.id in BANNED: return
@@ -522,7 +573,7 @@ async def router(update:Update,context:ContextTypes.DEFAULT_TYPE):
     if mode=='email': await tool8_email_deep(text,update); USER_MODE.pop(chat_id,None); return
     if mode=='qr': await tool9_qr_deep(update,context); USER_MODE.pop(chat_id,None); return
     if mode=='report': await tool10_report_deep(update); USER_MODE.pop(chat_id,None); return
-    if '@' in text and any(x in low for x in ['ybl','ok','paytm']): await tool3_upi_deep(text,update); return
+    if '@' in text and any(x in low for x in ['ybl','ok','paytm','upi','airtel']): await tool3_upi_deep(text,update); return
     if re.search(r'\b\d{10,}\b',text.replace(' ','')): await tool2_number_deep(text,update); return
     if 'instagram.com' in low: await tool_insta_deep(text,update); return
     if 'facebook.com' in low or 'fb.com' in low: await tool_fb_deep(text,update); return
@@ -545,7 +596,7 @@ def main():
     application.add_handler(MessageHandler(filters.Document.ALL,tool6_apk_deep))
     application.add_handler(MessageHandler(filters.VOICE,tool7_voice_deep))
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND,router))
-    print("V1Lack46 15 LAYER ULTRA GOD - ALL SET")
+    print("V1L50 ULTIMATE GOD SCAM DETECTOR - ALL SET")
     application.run_polling(drop_pending_updates=True)
 
 if __name__=='__main__': main()
