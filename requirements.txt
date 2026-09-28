@@ -8,4 +8,3 @@ pymongo
 cloudscraper
 beautifulsoup4
 lxml
-easyocr
